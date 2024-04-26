@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=3 format=3 uid="uid://b74phqnk6cljg"]
+
+[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/card_preset.png" id="1_t0gp3"]
+[ext_resource type="PackedScene" uid="uid://wmfju5bt76ho" path="res://scenes/drawn_card.tscn" id="2_qcnc8"]
 
 [node name="Game" type="Node2D"]
 
@@ -30,11 +33,64 @@ size_flags_stretch_ratio = 3.0
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="TextureButton" type="TextureButton" parent="TableUi/VBoxContainer/Cards/Deck"]
+layout_mode = 2
+texture_normal = ExtResource("1_t0gp3")
+stretch_mode = 5
+
 [node name="GridContainer" type="GridContainer" parent="TableUi/VBoxContainer/Cards"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 7.0
-columns = 11
+columns = 6
+
+[node name="DrawnCard" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard2" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard3" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard4" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard5" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard6" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard7" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard8" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard9" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard10" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DrawnCard11" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Player2" type="HBoxContainer" parent="TableUi/VBoxContainer"]
 layout_mode = 2
