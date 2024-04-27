@@ -29,7 +29,7 @@ func _process(delta):
 
 
 func _on_pressed():
-	$"../../GridContainer".add_child(CreateCard(PiggyType.Phoebe, 2))
+	$"../../GridContainer".add_child(CreateCard(Cards[0].type, Cards[0].value))
 
 func CreateCard(piggyType: int, cardValue: int) -> Node:
 	var marginContainer = MarginContainer.new()
