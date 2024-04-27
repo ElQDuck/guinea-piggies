@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=4 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/card_preset.png" id="1_t0gp3"]
+[ext_resource type="Script" path="res://scripts/Deck.gd" id="2_brk4h"]
 [ext_resource type="PackedScene" uid="uid://wmfju5bt76ho" path="res://scenes/drawn_card.tscn" id="2_qcnc8"]
 
 [node name="Game" type="Node2D"]
@@ -23,11 +24,6 @@ grow_vertical = 2
 [node name="Player1" type="HBoxContainer" parent="TableUi/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="DrawCard" type="Button" parent="TableUi/VBoxContainer/Player1"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Draw Card"
 
 [node name="EndTurn" type="Button" parent="TableUi/VBoxContainer/Player1"]
 layout_mode = 2
@@ -59,14 +55,15 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="Deck" type="MarginContainer" parent="TableUi/VBoxContainer/Cards"]
+[node name="MarginContainer" type="MarginContainer" parent="TableUi/VBoxContainer/Cards"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureButton" type="TextureButton" parent="TableUi/VBoxContainer/Cards/Deck"]
+[node name="Deck" type="TextureButton" parent="TableUi/VBoxContainer/Cards/MarginContainer"]
 layout_mode = 2
 texture_normal = ExtResource("1_t0gp3")
 stretch_mode = 5
+script = ExtResource("2_brk4h")
 
 [node name="GridContainer" type="GridContainer" parent="TableUi/VBoxContainer/Cards"]
 layout_mode = 2
@@ -81,11 +78,6 @@ size_flags_vertical = 3
 [node name="Player2" type="HBoxContainer" parent="TableUi/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="DrawCard" type="Button" parent="TableUi/VBoxContainer/Player2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Draw Card"
 
 [node name="EndTurn" type="Button" parent="TableUi/VBoxContainer/Player2"]
 layout_mode = 2
@@ -111,3 +103,5 @@ text = "CardCount: "
 [node name="Score" type="Label" parent="TableUi/VBoxContainer/Player2/VBoxContainer"]
 layout_mode = 2
 text = "Score:"
+
+[connection signal="pressed" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="TableUi/VBoxContainer/Cards/MarginContainer/Deck" method="_on_pressed"]
