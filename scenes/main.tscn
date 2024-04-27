@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/card_preset.png" id="1_t0gp3"]
 [ext_resource type="Script" path="res://scripts/Deck.gd" id="2_brk4h"]
-[ext_resource type="PackedScene" uid="uid://wmfju5bt76ho" path="res://scenes/drawn_card.tscn" id="2_qcnc8"]
+[ext_resource type="PackedScene" uid="uid://bt4i7ffhw68qn" path="res://scenes/card.tscn" id="3_eu2co"]
 
 [node name="Game" type="Node2D"]
 
@@ -71,9 +71,10 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 7.0
 columns = 6
 
-[node name="DrawnCard" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("2_qcnc8")]
+[node name="Card" parent="TableUi/VBoxContainer/Cards/GridContainer" instance=ExtResource("3_eu2co")]
 layout_mode = 2
-size_flags_vertical = 3
+Value = 3
+Type = 3
 
 [node name="Player2" type="HBoxContainer" parent="TableUi/VBoxContainer"]
 layout_mode = 2
