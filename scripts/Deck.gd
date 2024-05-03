@@ -14,10 +14,11 @@ var Cards = [
 	{type = PiggyType.Teddy, value = 1}, {type = PiggyType.Teddy, value = 1}, {type = PiggyType.Teddy, value = 2}, {type = PiggyType.Teddy, value = 2}, {type = PiggyType.Teddy, value = 3}, {type = PiggyType.Teddy, value = 4},
 	{type = PiggyType.Nackedei, value = 1}, {type = PiggyType.Nackedei, value = 1}, {type = PiggyType.Nackedei, value = 2}, {type = PiggyType.Nackedei, value = 2}, {type = PiggyType.Nackedei, value = 3}, {type = PiggyType.Nackedei, value = 4}
 ]
+signal card_drawn_from_deck(drawnCard)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	add_user_signal("card_drawn_from_deck", [{"name": "drawnCard", "type": Object}])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,6 +28,7 @@ func _process(delta):
 
 func _on_pressed():
 	var drawnCard = DrawRandomCard()
+	card_drawn_from_deck.emit(drawnCard)
 	$"../../GridContainer".add_child(CreateCard(drawnCard.type, drawnCard.value))
 
 func CreateCard(piggyType: int, cardValue: int) -> Node:
