@@ -31,8 +31,8 @@ signal card_drawn_from_deck(drawnCard)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_user_signal("card_drawn_from_deck", [{"name": "drawnCard", "type": Card}])
-
+	pass
+	#add_user_signal("card_drawn_from_deck", [{"name": "drawnCard", "type": Card}])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -40,8 +40,8 @@ func _process(delta):
 
 func _on_pressed():
 	var drawnCard: Card = DrawRandomCard()
-	card_drawn_from_deck.emit(drawnCard)
 	$"../../GridContainer".add_child(CreateCard(drawnCard.Type, drawnCard.Value))
+	card_drawn_from_deck.emit(drawnCard)
 
 func CreateCard(piggyType: int, cardValue: int) -> Node:
 	var marginContainer = MarginContainer.new()

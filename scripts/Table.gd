@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var Cards: Array = []
+@export var CardsOnTable: Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,9 +11,24 @@ func _process(delta):
 	pass
 
 func _card_drawn_from_deck(drawnCard: Card):
-	Cards.append(drawnCard)
+	CardsOnTable.push_back(drawnCard)
+	CheckDoubleCards(drawnCard)
 
-func CheckDoubleCards(newCard):
-	pass
-	#for card in Cards:
-		#if card.
+func CheckDoubleCards(newCard: Card):
+	# Find double card types
+	for i in range(CardsOnTable.size() - 1):
+		if CardsOnTable[i].Type == newCard.Type:
+			print("Double card found: " + Card.PiggyType.keys()[newCard.Type])
+			# Add left over cards to current player
+			if $"../Player1".Active:
+				for j in range(i):
+					$"../Player1".CardsInHand.push_back(CardsOnTable[j])
+			if $"../Player2".Active:
+				for j in range(i):
+					$"../Player2".CardsInHand.push_back(CardsOnTable[j])
+			# Cleanup table
+			CardsOnTable.clear()
+			for uiCardOnTable in $"../TableUi/VBoxContainer/Cards/GridContainer".get_children():
+				$"../TableUi/VBoxContainer/Cards/GridContainer".remove_child(uiCardOnTable)
+				uiCardOnTable.queue_free()
+			break
