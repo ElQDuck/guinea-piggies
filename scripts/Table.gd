@@ -18,14 +18,18 @@ func CheckDoubleCards(newCard: Card):
 	# Find double card types
 	for i in range(CardsOnTable.size() - 1):
 		if CardsOnTable[i].Type == newCard.Type:
-			print("Double card found: " + Card.PiggyType.keys()[newCard.Type])
+			print("Double card found: " + Card.PiggyType.keys()[newCard.Type] + " at " + str(i))
 			# Add left over cards to current player
 			if $"../Player1".Active:
 				for j in range(i):
 					$"../Player1".CardsInHand.push_back(CardsOnTable[j])
-			if $"../Player2".Active:
+				$"../Player1".Active = false
+				$"../Player2".Active = true
+			else:
 				for j in range(i):
 					$"../Player2".CardsInHand.push_back(CardsOnTable[j])
+				$"../Player1".Active = true
+				$"../Player2".Active = false
 			# Cleanup table
 			CardsOnTable.clear()
 			for uiCardOnTable in $"../TableUi/VBoxContainer/Cards/GridContainer".get_children():
