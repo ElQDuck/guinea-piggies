@@ -12,6 +12,7 @@ func _process(delta):
 
 func _card_drawn_from_deck(drawnCard: Card):
 	CardsOnTable.push_back(drawnCard)
+	CheckPredator(drawnCard)
 	CheckDoubleCards(drawnCard)
 
 func CheckDoubleCards(newCard: Card):
@@ -23,16 +24,18 @@ func CheckDoubleCards(newCard: Card):
 			if $"../Player1".Active:
 				for j in range(i):
 					$"../Player1".CardsInHand.push_back(CardsOnTable[j])
-				$"../Player1".Active = false
-				$"../Player2".Active = true
 			else:
 				for j in range(i):
 					$"../Player2".CardsInHand.push_back(CardsOnTable[j])
-				$"../Player1".Active = true
-				$"../Player2".Active = false
-			# Cleanup table
+			SwitchPlaerTurn()
 			CleanupTable()
 			break
+
+func CheckPredator(newCard: Card):
+	if newCard.Type == Card.PiggyType.Predator:
+		print("Predator!")
+		CleanupTable()
+		SwitchPlaerTurn()
 
 func CleanupTable():
 	CardsOnTable.clear()
@@ -40,3 +43,6 @@ func CleanupTable():
 		$"../TableUi/VBoxContainer/Cards/GridContainer".remove_child(uiCardOnTable)
 		uiCardOnTable.queue_free()
 	
+func SwitchPlaerTurn():
+	$"../Player1".Active = !$"../Player1".Active
+	$"../Player2".Active = !$"../Player2".Active

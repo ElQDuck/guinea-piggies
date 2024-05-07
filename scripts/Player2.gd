@@ -18,9 +18,8 @@ func _on_end_turn_pressed():
 	print("Player1 ended turn")
 	print("He got:")
 	print(Table.CardsOnTable)
-	Active = false
-	$"../Player1".Active = true
 	Table.CleanupTable()
+	Table.SwitchPlaerTurn()
 
 func _on_show_cards_pressed():
 	print("Player 2 Cards in hand:")
