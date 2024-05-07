@@ -31,8 +31,12 @@ func CheckDoubleCards(newCard: Card):
 				$"../Player1".Active = true
 				$"../Player2".Active = false
 			# Cleanup table
-			CardsOnTable.clear()
-			for uiCardOnTable in $"../TableUi/VBoxContainer/Cards/GridContainer".get_children():
-				$"../TableUi/VBoxContainer/Cards/GridContainer".remove_child(uiCardOnTable)
-				uiCardOnTable.queue_free()
+			CleanupTable()
 			break
+
+func CleanupTable():
+	CardsOnTable.clear()
+	for uiCardOnTable in $"../TableUi/VBoxContainer/Cards/GridContainer".get_children():
+		$"../TableUi/VBoxContainer/Cards/GridContainer".remove_child(uiCardOnTable)
+		uiCardOnTable.queue_free()
+	

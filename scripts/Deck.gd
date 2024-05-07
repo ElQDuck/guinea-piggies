@@ -39,9 +39,10 @@ func _process(delta):
 	pass
 
 func _on_pressed():
-	var drawnCard: Card = DrawRandomCard()
-	$"../../GridContainer".add_child(CreateCard(drawnCard.Type, drawnCard.Value))
-	card_drawn_from_deck.emit(drawnCard)
+	if Cards.size() > 0:
+		var drawnCard: Card = DrawRandomCard()
+		$"../../GridContainer".add_child(CreateCard(drawnCard.Type, drawnCard.Value))
+		card_drawn_from_deck.emit(drawnCard)
 
 func CreateCard(piggyType: int, cardValue: int) -> Node:
 	var marginContainer = MarginContainer.new()
