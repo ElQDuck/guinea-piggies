@@ -59,3 +59,8 @@ func CleanupTable():
 func SwitchPlaerTurn():
 	$"../Player1".Active = !$"../Player1".Active
 	$"../Player2".Active = !$"../Player2".Active
+
+func GetActivePlayer():
+	if Player1.Active:
+		return Player1
+	return Player2
