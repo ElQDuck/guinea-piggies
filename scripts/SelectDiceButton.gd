@@ -28,6 +28,9 @@ func _process(delta):
 			Dice3.disabled = true
 		2:
 			Dice3.disabled = true
+		_:
+			Dice2.disabled = false
+			Dice3.disabled = false
 
 
 func _on__toggled_1(toggled_on):
