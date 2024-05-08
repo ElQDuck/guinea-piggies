@@ -17,9 +17,9 @@ func _process(delta):
 		$"../TableUi/VBoxContainer/Player1/EndTurn".disabled = false
 
 func _on_end_turn_pressed():
-	print("Player1 ended turn")
-	print("He got:")
-	print(Table.CardsOnTable)
+	print("Player1 ended turn. He got " + str(Table.CardsOnTable.size()) + " cards.")
+	for card: Card in Table.CardsOnTable:
+		CardsInHand.append(card)
 	Table.CleanupTable()
 	Table.SwitchPlaerTurn()
 

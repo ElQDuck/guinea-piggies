@@ -62,8 +62,8 @@ func _on_self_pressed():
 	$"../..".set_visible(false)
 
 func RollDice(selectedDice: int):
-	var activePlayer = Table.GetActivePlayer()
-	var inactivePlayer = Table.GetInactivePlayer()
+	var activePlayer: Node2D = Table.GetActivePlayer()
+	var inactivePlayer: Node2D = Table.GetInactivePlayer()
 	# get a random number between 1 and 6
 	var diceRollResult = randi() % 6 + 1
 	match diceRollResult:
