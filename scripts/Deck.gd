@@ -14,19 +14,7 @@ var Cards = [
 	Card.new(Card.PiggyType.Teddy, 1), Card.new(Card.PiggyType.Teddy, 1), Card.new(Card.PiggyType.Teddy, 2), Card.new(Card.PiggyType.Teddy, 2), Card.new(Card.PiggyType.Teddy, 3), Card.new(Card.PiggyType.Teddy, 4),
 	Card.new(Card.PiggyType.Nackedei, 1), Card.new(Card.PiggyType.Nackedei, 1), Card.new(Card.PiggyType.Nackedei, 2), Card.new(Card.PiggyType.Nackedei, 2), Card.new(Card.PiggyType.Nackedei, 3), Card.new(Card.PiggyType.Nackedei, 4)
 ]
-#var Cards = [
-	#{type = PiggyType.Predator, value = 0}, {type = PiggyType.Predator, value = 0}, {type = PiggyType.Predator, value = 0}, {type = PiggyType.Predator, value = 0}, {type = PiggyType.Predator, value = 0}, {type = PiggyType.Predator, value = 0},
-	#{type = PiggyType.Einstein, value = 1}, {type = PiggyType.Einstein, value = 1}, {type = PiggyType.Einstein, value = 2}, {type = PiggyType.Einstein, value = 2}, {type = PiggyType.Einstein, value = 3}, {type = PiggyType.Einstein, value = 4},
-	#{type = PiggyType.Phoebe, value = 1}, {type = PiggyType.Phoebe, value = 1}, {type = PiggyType.Phoebe, value = 2}, {type = PiggyType.Phoebe, value = 2}, {type = PiggyType.Phoebe, value = 3}, {type = PiggyType.Phoebe, value = 4},
-	#{type = PiggyType.Ciri, value = 1}, {type = PiggyType.Ciri, value = 1}, {type = PiggyType.Ciri, value = 2}, {type = PiggyType.Ciri, value = 2}, {type = PiggyType.Ciri, value = 3}, {type = PiggyType.Ciri, value = 4},
-	#{type = PiggyType.Legolas, value = 1}, {type = PiggyType.Legolas, value = 1}, {type = PiggyType.Legolas, value = 2}, {type = PiggyType.Legolas, value = 2}, {type = PiggyType.Legolas, value = 3}, {type = PiggyType.Legolas, value = 4},
-	#{type = PiggyType.Triss, value = 1}, {type = PiggyType.Triss, value = 1}, {type = PiggyType.Triss, value = 2}, {type = PiggyType.Triss, value = 2}, {type = PiggyType.Triss, value = 3}, {type = PiggyType.Triss, value = 4},
-	#{type = PiggyType.Emma, value = 1}, {type = PiggyType.Emma, value = 1}, {type = PiggyType.Emma, value = 2}, {type = PiggyType.Emma, value = 2}, {type = PiggyType.Emma, value = 3}, {type = PiggyType.Emma, value = 4},
-	#{type = PiggyType.Tauriel, value = 1}, {type = PiggyType.Tauriel, value = 1}, {type = PiggyType.Tauriel, value = 2}, {type = PiggyType.Tauriel, value = 2}, {type = PiggyType.Tauriel, value = 3}, {type = PiggyType.Tauriel, value = 4},
-	#{type = PiggyType.Arya, value = 1}, {type = PiggyType.Arya, value = 1}, {type = PiggyType.Arya, value = 2}, {type = PiggyType.Arya, value = 2}, {type = PiggyType.Arya, value = 3}, {type = PiggyType.Arya, value = 4},
-	#{type = PiggyType.Teddy, value = 1}, {type = PiggyType.Teddy, value = 1}, {type = PiggyType.Teddy, value = 2}, {type = PiggyType.Teddy, value = 2}, {type = PiggyType.Teddy, value = 3}, {type = PiggyType.Teddy, value = 4},
-	#{type = PiggyType.Nackedei, value = 1}, {type = PiggyType.Nackedei, value = 1}, {type = PiggyType.Nackedei, value = 2}, {type = PiggyType.Nackedei, value = 2}, {type = PiggyType.Nackedei, value = 3}, {type = PiggyType.Nackedei, value = 4}
-#]
+
 signal card_drawn_from_deck(drawnCard)
 
 # Called when the node enters the scene tree for the first time.
@@ -43,6 +31,10 @@ func _on_pressed():
 		var drawnCard: Card = DrawRandomCard()
 		$"../../GridContainer".add_child(CreateCard(drawnCard.Type, drawnCard.Value))
 		card_drawn_from_deck.emit(drawnCard)
+	if Cards.size() == 0:
+		# Count Points of each player
+		$"../../../../../Player1".CalculateScoreForCurrentRun()
+		$"../../../../../Player2".CalculateScoreForCurrentRun()
 
 func CreateCard(piggyType: int, cardValue: int) -> Node:
 	var marginContainer = MarginContainer.new()
