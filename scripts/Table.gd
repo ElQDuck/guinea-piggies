@@ -64,3 +64,8 @@ func GetActivePlayer():
 	if Player1.Active:
 		return Player1
 	return Player2
+
+func GetInactivePlayer():
+	if !Player1.Active:
+		return Player1
+	return Player2
