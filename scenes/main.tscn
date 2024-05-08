@@ -114,6 +114,7 @@ layout_mode = 2
 text = "Score:"
 
 [node name="DiceSelectionUi" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="DiceSelectionUi"]
 self_modulate = Color(0, 0.65355, 0.325028, 1)
@@ -182,3 +183,4 @@ script = ExtResource("7_on0k7")
 [connection signal="toggled" from="DiceSelectionUi/VBoxContainer/HBoxContainer/1" to="DiceSelectionUi/VBoxContainer/Button" method="_on__toggled_1"]
 [connection signal="toggled" from="DiceSelectionUi/VBoxContainer/HBoxContainer/2" to="DiceSelectionUi/VBoxContainer/Button" method="_on__toggled_2"]
 [connection signal="toggled" from="DiceSelectionUi/VBoxContainer/HBoxContainer/3" to="DiceSelectionUi/VBoxContainer/Button" method="_on__toggled_3"]
+[connection signal="pressed" from="DiceSelectionUi/VBoxContainer/Button" to="DiceSelectionUi/VBoxContainer/Button" method="_on_self_pressed"]

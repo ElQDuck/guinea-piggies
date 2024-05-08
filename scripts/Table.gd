@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var Player1 = $"../Player1"
+@onready var Player2 = $"../Player2"
 @export var CardsOnTable: Array = []
 
 # Called when the node enters the scene tree for the first time.
@@ -21,12 +23,12 @@ func CheckDoubleCards(newCard: Card):
 		if CardsOnTable[i].Type == newCard.Type:
 			print("Double card found: " + Card.PiggyType.keys()[newCard.Type] + " at " + str(i))
 			# Add left over cards to current player
-			if $"../Player1".Active:
+			if Player1.Active:
 				for j in range(i):
-					$"../Player1".CardsInHand.push_back(CardsOnTable[j])
+					Player1.CardsInHand.push_back(CardsOnTable[j])
 			else:
 				for j in range(i):
-					$"../Player2".CardsInHand.push_back(CardsOnTable[j])
+					Player2.CardsInHand.push_back(CardsOnTable[j])
 			SwitchPlaerTurn()
 			CleanupTable()
 			break
@@ -35,7 +37,18 @@ func CheckPredator(newCard: Card):
 	if newCard.Type == Card.PiggyType.Predator:
 		print("Predator!")
 		CleanupTable()
-		SwitchPlaerTurn()
+		if Player1.Active and Player1.CardsInHand.size() > 0:
+			$"../DiceSelectionUi".set_visible(true)
+		if Player1.Active and Player1.CardsInHand.size() == 0:
+			print("Player has no cards in hand. Skip predator event.")
+			SwitchPlaerTurn()
+		if Player2.Active and Player2.CardsInHand.size() > 0:
+			$"../DiceSelectionUi".set_visible(true)
+		if Player2.Active and Player2.CardsInHand.size() == 0:
+			print("Player has no cards in hand. Skip predator event.")
+			SwitchPlaerTurn()
+
+
 
 func CleanupTable():
 	CardsOnTable.clear()
