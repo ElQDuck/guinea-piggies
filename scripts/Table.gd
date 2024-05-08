@@ -37,14 +37,16 @@ func CheckPredator(newCard: Card):
 	if newCard.Type == Card.PiggyType.Predator:
 		print("Predator!")
 		CleanupTable()
-		if Player1.Active and Player1.CardsInHand.size() > 0:
+		if Player1.Active and Player2.CardsInHand.size() > 0:
+			$"../DiceSelectionUi/VBoxContainer/Label".text = "Player 1 Choose the number of cards you want to steal from Player 2."
 			$"../DiceSelectionUi".set_visible(true)
-		if Player1.Active and Player1.CardsInHand.size() == 0:
+		if Player1.Active and Player2.CardsInHand.size() == 0:
 			print("Player has no cards in hand. Skip predator event.")
 			SwitchPlaerTurn()
-		if Player2.Active and Player2.CardsInHand.size() > 0:
+		if Player2.Active and Player1.CardsInHand.size() > 0:
+			$"../DiceSelectionUi/VBoxContainer/Label".text = "Player 2 Choose the number of cards you want to steal from Player 1."
 			$"../DiceSelectionUi".set_visible(true)
-		if Player2.Active and Player2.CardsInHand.size() == 0:
+		if Player2.Active and Player1.CardsInHand.size() == 0:
 			print("Player has no cards in hand. Skip predator event.")
 			SwitchPlaerTurn()
 

@@ -72,12 +72,14 @@ func RollDice(selectedDice: int):
 	match diceRollResult:
 		1:
 			# -1 - One card of the player will be discarded
+			print("Rolled Dice: -1")
 			if activePlayer.CardsInHand.size() > 0:
 				var discardedCard: Card = activePlayer.CardsInHand.pick_random()
 				activePlayer.CardsInHand.erase(discardedCard)
 				print("Active player lost: " + Card.PiggyType.keys()[discardedCard.Type] + " - " + str(discardedCard.Value))
 		2, 4:
 			# 1 - The oponent loses one card to the active player if picked dice == 1
+			print("Rolled Dice: 1")
 			if selectedDice == 1:
 				PickCardsFromOponent(1, activePlayer, inactivePlayer)
 		3, 5:
@@ -85,6 +87,7 @@ func RollDice(selectedDice: int):
 			#	- 1 card to the active player if picked 1
 			#	- 2 cards to the active player if picked 2
 			#	- 3 cards to the active player if picked 3
+			print("Rolled Dice: 3")
 			match selectedDice:
 				1:
 					PickCardsFromOponent(1, activePlayer, inactivePlayer)
@@ -96,6 +99,7 @@ func RollDice(selectedDice: int):
 			# 2 - The oponent loses:
 			#	- 1 card to the active player if picked 1
 			#	- 2 cards to the active player if picked 2
+			print("Rolled Dice: 2")
 			match selectedDice:
 				1:
 					PickCardsFromOponent(1, activePlayer, inactivePlayer)
