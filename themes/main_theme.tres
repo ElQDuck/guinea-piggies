@@ -1,6 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://coh1hpb85ikuu"]
 
 [resource]
+Button/font_sizes/font_size = 48
+Label/font_sizes/font_size = 48
 MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8

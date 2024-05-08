@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=10 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_fo1c3"]
 [ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/card_preset.png" id="1_t0gp3"]
 [ext_resource type="Script" path="res://scripts/Deck.gd" id="2_brk4h"]
 [ext_resource type="Script" path="res://scripts/Player1.gd" id="2_s56it"]
 [ext_resource type="Script" path="res://scripts/Player2.gd" id="3_bs3t5"]
+[ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="6_hkrqt"]
+[ext_resource type="Script" path="res://scripts/SelectDiceButton.gd" id="7_on0k7"]
+
+[sub_resource type="Gradient" id="Gradient_d8adn"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.0784314, 0.101961, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t4tp5"]
+gradient = SubResource("Gradient_d8adn")
 
 [node name="Game" type="Node2D"]
 
@@ -105,9 +113,72 @@ text = "CardCount: "
 layout_mode = 2
 text = "Score:"
 
+[node name="DiceSelectionUi" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="DiceSelectionUi"]
+self_modulate = Color(0, 0.65355, 0.325028, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DiceSelectionUi"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DiceSelectionUi/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 10
+text = "Choose the number of cards you want to steal from your oponent."
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DiceSelectionUi/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="1" type="TextureButton" parent="DiceSelectionUi/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+texture_normal = ExtResource("6_hkrqt")
+texture_pressed = SubResource("GradientTexture2D_t4tp5")
+stretch_mode = 5
+
+[node name="2" type="TextureButton" parent="DiceSelectionUi/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+texture_normal = ExtResource("6_hkrqt")
+texture_pressed = SubResource("GradientTexture2D_t4tp5")
+stretch_mode = 5
+
+[node name="3" type="TextureButton" parent="DiceSelectionUi/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+texture_normal = ExtResource("6_hkrqt")
+texture_pressed = SubResource("GradientTexture2D_t4tp5")
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="DiceSelectionUi/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "GO!"
+script = ExtResource("7_on0k7")
+
 [connection signal="pressed" from="TableUi/VBoxContainer/Player1/EndTurn" to="Player1" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player1/ShowCards" to="Player1" method="_on_show_cards_pressed"]
 [connection signal="card_drawn_from_deck" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="TableUi/VBoxContainer/Cards/MarginContainer/Deck" method="_on_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player2/EndTurn" to="Player2" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player2/ShowCards" to="Player2" method="_on_show_cards_pressed"]
+[connection signal="toggled" from="DiceSelectionUi/VBoxContainer/HBoxContainer/1" to="DiceSelectionUi/VBoxContainer/Button" method="_on__toggled_1"]
+[connection signal="toggled" from="DiceSelectionUi/VBoxContainer/HBoxContainer/2" to="DiceSelectionUi/VBoxContainer/Button" method="_on__toggled_2"]
+[connection signal="toggled" from="DiceSelectionUi/VBoxContainer/HBoxContainer/3" to="DiceSelectionUi/VBoxContainer/Button" method="_on__toggled_3"]
