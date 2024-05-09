@@ -38,6 +38,13 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="ProfileImage" type="TextureRect" parent="TableUi/VBoxContainer/Player1"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("6_hkrqt")
+expand_mode = 3
+stretch_mode = 5
+
 [node name="EndTurn" type="Button" parent="TableUi/VBoxContainer/Player1"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -54,10 +61,6 @@ layout_mode = 2
 [node name="PlayerName" type="Label" parent="TableUi/VBoxContainer/Player1/VBoxContainer"]
 layout_mode = 2
 text = "PlayerName"
-
-[node name="CardsCount" type="Label" parent="TableUi/VBoxContainer/Player1/VBoxContainer"]
-layout_mode = 2
-text = "CardCount: "
 
 [node name="Score" type="Label" parent="TableUi/VBoxContainer/Player1/VBoxContainer"]
 layout_mode = 2
@@ -88,6 +91,24 @@ columns = 6
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="ProfileImage" type="TextureRect" parent="TableUi/VBoxContainer/Player2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("6_hkrqt")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TableUi/VBoxContainer/Player2"]
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="TableUi/VBoxContainer/Player2/VBoxContainer"]
+layout_mode = 2
+text = "PlayerName"
+
+[node name="Score" type="Label" parent="TableUi/VBoxContainer/Player2/VBoxContainer"]
+layout_mode = 2
+text = "Score:"
+
 [node name="EndTurn" type="Button" parent="TableUi/VBoxContainer/Player2"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -97,21 +118,6 @@ text = "End Turn"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Show Cards"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TableUi/VBoxContainer/Player2"]
-layout_mode = 2
-
-[node name="PlayerName" type="Label" parent="TableUi/VBoxContainer/Player2/VBoxContainer"]
-layout_mode = 2
-text = "PlayerName"
-
-[node name="CardsCount" type="Label" parent="TableUi/VBoxContainer/Player2/VBoxContainer"]
-layout_mode = 2
-text = "CardCount: "
-
-[node name="Score" type="Label" parent="TableUi/VBoxContainer/Player2/VBoxContainer"]
-layout_mode = 2
-text = "Score:"
 
 [node name="DiceSelectionUi" type="CanvasLayer" parent="."]
 visible = false

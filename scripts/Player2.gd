@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var Name: String
+@export var ProfileImage: int
 @export var Active: bool = false
 @export var CardsInHand: Array = []
 @export var TotalScore: int = 0
