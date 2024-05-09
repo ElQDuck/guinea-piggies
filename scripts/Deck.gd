@@ -1,7 +1,7 @@
 extends TextureButton
 
 enum PiggyType { Predator = 0, Einstein = 1, Phoebe = 2, Ciri = 3, Legolas = 4, Triss = 5, Emma = 6, Tauriel = 7, Arya = 8, Teddy = 9, Nackedei = 10 }
-var Cards = [
+var AllCardsInGame = [
 	Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0),
 	Card.new(Card.PiggyType.Einstein, 1), Card.new(Card.PiggyType.Einstein, 1), Card.new(Card.PiggyType.Einstein, 2), Card.new(Card.PiggyType.Einstein, 2), Card.new(Card.PiggyType.Einstein, 3), Card.new(Card.PiggyType.Einstein, 4),
 	Card.new(Card.PiggyType.Phoebe, 1), Card.new(Card.PiggyType.Phoebe, 1), Card.new(Card.PiggyType.Phoebe, 2), Card.new(Card.PiggyType.Phoebe, 2), Card.new(Card.PiggyType.Phoebe, 3), Card.new(Card.PiggyType.Phoebe, 4),
@@ -14,6 +14,10 @@ var Cards = [
 	Card.new(Card.PiggyType.Teddy, 1), Card.new(Card.PiggyType.Teddy, 1), Card.new(Card.PiggyType.Teddy, 2), Card.new(Card.PiggyType.Teddy, 2), Card.new(Card.PiggyType.Teddy, 3), Card.new(Card.PiggyType.Teddy, 4),
 	Card.new(Card.PiggyType.Nackedei, 1), Card.new(Card.PiggyType.Nackedei, 1), Card.new(Card.PiggyType.Nackedei, 2), Card.new(Card.PiggyType.Nackedei, 2), Card.new(Card.PiggyType.Nackedei, 3), Card.new(Card.PiggyType.Nackedei, 4)
 ]
+var Cards = AllCardsInGame
+@onready var Player1 = $"../../../../../Player1"
+@onready var Player2 = $"../../../../../Player2"
+@onready var Table = $"../../../../../Table"
 
 signal card_drawn_from_deck(drawnCard)
 
@@ -33,8 +37,16 @@ func _on_pressed():
 		card_drawn_from_deck.emit(drawnCard)
 	if Cards.size() == 0:
 		# Count Points of each player
-		$"../../../../../Player1".CalculateScoreForCurrentRun()
-		$"../../../../../Player2".CalculateScoreForCurrentRun()
+		Player1.CalculateScoreForCurrentRun()
+		Player2.CalculateScoreForCurrentRun()
+		# Reset drawn cards and clear table
+		Player1.CardsInHand.clear()
+		Player2.CardsInHand.clear()
+		Table.CleanupTable()
+		# Fill up Deck
+		Cards = AllCardsInGame
+		# Popup round end window
+
 
 func CreateCard(piggyType: int, cardValue: int) -> Node:
 	var marginContainer = MarginContainer.new()
