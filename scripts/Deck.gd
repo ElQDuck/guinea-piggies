@@ -56,9 +56,13 @@ func _on_pressed():
 		else:
 			Player1.Active = false
 			Player2.Active = true
-			
-		# Popup round end window
-		$"../../../../../RoundEndUi".set_visible(true)
+
+		if Player1.TotalScore >= 77 or Player2.TotalScore >= 77:
+			# PopUp Game End window
+			$"../../../../../GameEndUi".set_visible(true)
+		else:
+			# Popup round end window
+			$"../../../../../RoundEndUi".set_visible(true)
 
 
 func CreateCard(piggyType: int, cardValue: int) -> Node:
