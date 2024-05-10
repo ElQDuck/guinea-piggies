@@ -62,6 +62,7 @@ func _on_self_pressed():
 	if Dice3.button_pressed:
 		print("3 selected")
 		RollDice(3)
+	Table.SwitchPlaerTurn()
 	$"../..".set_visible(false)
 
 func RollDice(selectedDice: int):
