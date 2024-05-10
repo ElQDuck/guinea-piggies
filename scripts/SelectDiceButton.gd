@@ -63,6 +63,9 @@ func _on_self_pressed():
 		print("3 selected")
 		RollDice(3)
 	Table.SwitchPlaerTurn()
+	Dice1.set_pressed_no_signal(false)
+	Dice2.set_pressed_no_signal(false)
+	Dice3.set_pressed_no_signal(false)
 	$"../..".set_visible(false)
 
 func RollDice(selectedDice: int):
