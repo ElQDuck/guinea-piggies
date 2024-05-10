@@ -19,3 +19,5 @@ func _on_pressed():
 	Player2.TotalScore = 0
 	Player2.Active = false
 	$"../..".hide()
+	$"../../../RoundEndUi".hide()
+	$"../../../DiceSelectionUi".hide()
