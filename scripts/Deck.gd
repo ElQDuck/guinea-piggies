@@ -14,7 +14,7 @@ var AllCardsInGame = [
 	Card.new(Card.PiggyType.Teddy, 1), Card.new(Card.PiggyType.Teddy, 1), Card.new(Card.PiggyType.Teddy, 2), Card.new(Card.PiggyType.Teddy, 2), Card.new(Card.PiggyType.Teddy, 3), Card.new(Card.PiggyType.Teddy, 4),
 	Card.new(Card.PiggyType.Nackedei, 1), Card.new(Card.PiggyType.Nackedei, 1), Card.new(Card.PiggyType.Nackedei, 2), Card.new(Card.PiggyType.Nackedei, 2), Card.new(Card.PiggyType.Nackedei, 3), Card.new(Card.PiggyType.Nackedei, 4)
 ]
-var Cards = AllCardsInGame
+var Cards = AllCardsInGame.duplicate(true)
 @onready var Player1 = $"../../../../../Player1"
 @onready var Player2 = $"../../../../../Player2"
 @onready var Table = $"../../../../../Table"
@@ -44,7 +44,7 @@ func _on_pressed():
 		Player2.CardsInHand.clear()
 		Table.CleanupTable()
 		# Fill up Deck
-		Cards = AllCardsInGame
+		Cards = AllCardsInGame.duplicate(true)
 		# The Player with the lowest score starts the round
 		if Player1.TotalScore == Player2.TotalScore:
 			# If Score is equal: Random player starts
