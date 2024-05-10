@@ -45,7 +45,20 @@ func _on_pressed():
 		Table.CleanupTable()
 		# Fill up Deck
 		Cards = AllCardsInGame
+		# The Player with the lowest score starts the round
+		if Player1.TotalScore == Player2.TotalScore:
+			# If Score is equal: Random player starts
+			Player1.Active = (randi_range(0, 1) == 0)
+			Player2.Active = !Player1.Active
+		if Player1.TotalScore < Player2.TotalScore:
+			Player1.Active = true
+			Player2.Active = false
+		else:
+			Player1.Active = false
+			Player2.Active = true
+			
 		# Popup round end window
+		$"../../../../../RoundEndUi".set_visible(true)
 
 
 func CreateCard(piggyType: int, cardValue: int) -> Node:
