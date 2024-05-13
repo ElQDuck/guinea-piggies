@@ -32,7 +32,7 @@ func _process(delta):
 			Dice2.disabled = false
 			Dice3.disabled = false
 
-
+# TODo: use button_group instead
 func _on__toggled_1(toggled_on):
 	if toggled_on:
 		Dice2.set_pressed_no_signal(false)
