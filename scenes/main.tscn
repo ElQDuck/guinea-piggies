@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_fo1c3"]
-[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/card_preset.png" id="1_t0gp3"]
+[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="1_t0gp3"]
 [ext_resource type="Script" path="res://scripts/Deck.gd" id="2_brk4h"]
 [ext_resource type="Script" path="res://scripts/Player1.gd" id="2_s56it"]
 [ext_resource type="Script" path="res://scripts/Player2.gd" id="3_bs3t5"]

@@ -12,6 +12,10 @@ var score: int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Panel/TextureButton/ProfileImage.texture = profile_image
+	
+	var profileBorderStyleBox: StyleBoxFlat = $Panel/TextureButton/Panel.get_theme_stylebox("panel").duplicate()
+	profileBorderStyleBox.set("border_color", primary_color)
+	$Panel/TextureButton/Panel.add_theme_stylebox_override("panel", profileBorderStyleBox)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
