@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkpglbq6yv1v0"]
+[gd_scene load_steps=9 format=3 uid="uid://bkpglbq6yv1v0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dom8a"]
 [ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="1_pdcv7"]
+[ext_resource type="Texture2D" uid="uid://br5sng1ho8px8" path="res://assets/profile_images/profile1.png" id="2_66jmo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa5oh"]
 bg_color = Color(1, 0.701961, 0.831373, 1)
@@ -49,6 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 script = ExtResource("1_dom8a")
+profile_image = ExtResource("2_66jmo")
 primary_color = Color(0.596078, 0.956863, 0.941176, 1)
 secondary_color = Color(0.00784314, 0.933333, 0.901961, 1)
 complementary_color = Color(0.933333, 0.00784314, 0.0392157, 1)
