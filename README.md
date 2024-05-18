@@ -7,3 +7,13 @@ This is a game about guinea piggies
 - https://fonts.google.com/specimen/Acme?preview.text=Guinea%20Piggies
 - https://fonts.google.com/specimen/Rubik+Bubbles?preview.text=Guinea%20Piggies&query=bub
 - https://fonts.google.com/specimen/Poetsen+One?preview.text=Guinea%20Piggies
+
+# Test Translations
+By adding 
+
+```gdscript
+func _ready():
+  TranslationServer.set_locale("en")
+```
+
+The full list of languages: [List](https://docs.godotengine.org/de/4.x/tutorials/i18n/locales.html#doc-locales)

@@ -27,6 +27,10 @@ window/stretch/aspect="expand"
 
 theme/custom="res://themes/main_theme.tres"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/translations/translation.de.translation", "res://assets/translations/translation.en.translation")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

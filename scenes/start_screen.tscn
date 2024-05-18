@@ -29,4 +29,4 @@ offset_right = 135.0
 offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Start Game"
+text = "START_GAME"
