@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://btr43ps8xb5c7"]
+
+[ext_resource type="Script" path="res://scripts/profile_setup_player.gd" id="1_sp1hu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l16hv"]
+bg_color = Color(0.308841, 0.687151, 0.489287, 1)
+
+[node name="ProfileSetupPlayer" type="Control" node_paths=PackedStringArray("ReadyButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 6
+script = ExtResource("1_sp1hu")
+ReadyButton = NodePath("Panel/Button")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l16hv")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "blub"
