@@ -9,7 +9,7 @@ This is a game about guinea piggies
 - https://fonts.google.com/specimen/Poetsen+One?preview.text=Guinea%20Piggies
 
 # Test Translations
-By adding 
+By [set settings in editor](https://docs.godotengine.org/de/4.x/tutorials/i18n/internationalizing_games.html#testing-translations) or adding 
 
 ```gdscript
 func _ready():
