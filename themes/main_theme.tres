@@ -1,8 +1,13 @@
-[gd_resource type="Theme" format=3 uid="uid://coh1hpb85ikuu"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://coh1hpb85ikuu"]
+
+[ext_resource type="FontFile" uid="uid://bgejhiangff2e" path="res://assets/fonts/Rubik_Bubbles/RubikBubbles-Regular.ttf" id="1_y4xsd"]
 
 [resource]
 Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("1_y4xsd")
 Label/font_sizes/font_size = 48
+Label/fonts/font = ExtResource("1_y4xsd")
+LineEdit/fonts/font = ExtResource("1_y4xsd")
 MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
