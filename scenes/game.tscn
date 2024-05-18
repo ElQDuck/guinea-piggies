@@ -1,17 +1,17 @@
 [gd_scene load_steps=15 format=3 uid="uid://b74phqnk6cljg"]
 
-[ext_resource type="Script" path="res://scripts/Table.gd" id="1_fo1c3"]
-[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="1_t0gp3"]
-[ext_resource type="Script" path="res://scripts/Deck.gd" id="2_brk4h"]
-[ext_resource type="Script" path="res://scripts/Player1.gd" id="2_s56it"]
-[ext_resource type="Script" path="res://scripts/Player2.gd" id="3_bs3t5"]
-[ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="6_hkrqt"]
-[ext_resource type="Script" path="res://scripts/SelectDiceButton.gd" id="7_on0k7"]
-[ext_resource type="Script" path="res://scripts/NewRoundButton.gd" id="8_ub627"]
-[ext_resource type="Script" path="res://scripts/GameOverStats.gd" id="9_36wbk"]
-[ext_resource type="Script" path="res://scripts/NewGameButton.gd" id="10_8hl7a"]
-[ext_resource type="Texture2D" uid="uid://bo8p8xgav6a18" path="res://assets/backgrounds/cave.png" id="11_5n41x"]
-[ext_resource type="PackedScene" uid="uid://bkpglbq6yv1v0" path="res://scenes/player.tscn" id="11_ah7ty"]
+[ext_resource type="Script" path="res://scripts/Table.gd" id="1_0c6vw"]
+[ext_resource type="Script" path="res://scripts/Player1.gd" id="2_dbbpl"]
+[ext_resource type="Script" path="res://scripts/Player2.gd" id="3_qm4nx"]
+[ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="4_qaxsu"]
+[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="5_26hgj"]
+[ext_resource type="Script" path="res://scripts/Deck.gd" id="6_sbxb1"]
+[ext_resource type="Script" path="res://scripts/SelectDiceButton.gd" id="7_vttep"]
+[ext_resource type="Script" path="res://scripts/NewRoundButton.gd" id="8_vxqrd"]
+[ext_resource type="Script" path="res://scripts/GameOverStats.gd" id="9_mioui"]
+[ext_resource type="Script" path="res://scripts/NewGameButton.gd" id="10_m3kql"]
+[ext_resource type="Texture2D" uid="uid://bo8p8xgav6a18" path="res://assets/backgrounds/cave.png" id="11_lvt0k"]
+[ext_resource type="PackedScene" uid="uid://bkpglbq6yv1v0" path="res://scenes/player.tscn" id="12_hmlvb"]
 
 [sub_resource type="Gradient" id="Gradient_d8adn"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 0.0784314, 0.101961, 1)
@@ -22,13 +22,13 @@ gradient = SubResource("Gradient_d8adn")
 [node name="Game" type="Node2D"]
 
 [node name="Table" type="Node2D" parent="."]
-script = ExtResource("1_fo1c3")
+script = ExtResource("1_0c6vw")
 
 [node name="Player1" type="Node2D" parent="."]
-script = ExtResource("2_s56it")
+script = ExtResource("2_dbbpl")
 
 [node name="Player2" type="Node2D" parent="."]
-script = ExtResource("3_bs3t5")
+script = ExtResource("3_qm4nx")
 
 [node name="TableUi" type="CanvasLayer" parent="."]
 visible = false
@@ -47,7 +47,7 @@ size_flags_vertical = 3
 [node name="ProfileImage" type="TextureRect" parent="TableUi/VBoxContainer/Player1"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("6_hkrqt")
+texture = ExtResource("4_qaxsu")
 expand_mode = 3
 stretch_mode = 5
 
@@ -83,9 +83,9 @@ size_flags_horizontal = 3
 
 [node name="Deck" type="TextureButton" parent="TableUi/VBoxContainer/Cards/MarginContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_t0gp3")
+texture_normal = ExtResource("5_26hgj")
 stretch_mode = 5
-script = ExtResource("2_brk4h")
+script = ExtResource("6_sbxb1")
 
 [node name="GridContainer" type="GridContainer" parent="TableUi/VBoxContainer/Cards"]
 layout_mode = 2
@@ -100,7 +100,7 @@ size_flags_vertical = 3
 [node name="ProfileImage" type="TextureRect" parent="TableUi/VBoxContainer/Player2"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("6_hkrqt")
+texture = ExtResource("4_qaxsu")
 expand_mode = 3
 stretch_mode = 5
 
@@ -160,7 +160,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
-texture_normal = ExtResource("6_hkrqt")
+texture_normal = ExtResource("4_qaxsu")
 texture_pressed = SubResource("GradientTexture2D_t4tp5")
 stretch_mode = 5
 
@@ -168,7 +168,7 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
-texture_normal = ExtResource("6_hkrqt")
+texture_normal = ExtResource("4_qaxsu")
 texture_pressed = SubResource("GradientTexture2D_t4tp5")
 stretch_mode = 5
 
@@ -176,7 +176,7 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
-texture_normal = ExtResource("6_hkrqt")
+texture_normal = ExtResource("4_qaxsu")
 texture_pressed = SubResource("GradientTexture2D_t4tp5")
 stretch_mode = 5
 
@@ -184,7 +184,7 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_vertical = 3
 text = "GO!"
-script = ExtResource("7_on0k7")
+script = ExtResource("7_vttep")
 
 [node name="RoundEndUi" type="CanvasLayer" parent="."]
 visible = false
@@ -221,7 +221,7 @@ size_flags_vertical = 3
 [node name="NewRoundButton" type="Button" parent="RoundEndUi/VBoxContainer"]
 layout_mode = 2
 text = "OK"
-script = ExtResource("8_ub627")
+script = ExtResource("8_vxqrd")
 
 [node name="GameEndUi" type="CanvasLayer" parent="."]
 visible = false
@@ -249,7 +249,7 @@ layout_mode = 2
 size_flags_vertical = 10
 text = "Game Over"
 autowrap_mode = 2
-script = ExtResource("9_36wbk")
+script = ExtResource("9_mioui")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameEndUi/VBoxContainer"]
 layout_mode = 2
@@ -258,7 +258,7 @@ size_flags_vertical = 3
 [node name="NewGameButton" type="Button" parent="GameEndUi/VBoxContainer"]
 layout_mode = 2
 text = "Start new Game"
-script = ExtResource("10_8hl7a")
+script = ExtResource("10_m3kql")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -268,15 +268,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_5n41x")
+texture = ExtResource("11_lvt0k")
 
-[node name="Player1" parent="CanvasLayer" instance=ExtResource("11_ah7ty")]
+[node name="Player1" parent="CanvasLayer" instance=ExtResource("12_hmlvb")]
 player_name = "Player 1"
 primary_color = Color(0.850337, 0.249435, 0.278066, 1)
 secondary_color = Color(0.925197, 0.605826, 0.7781, 1)
 complementary_color = Color(0.116443, 0.393503, 0.678787, 1)
 
-[node name="Player2" parent="CanvasLayer" instance=ExtResource("11_ah7ty")]
+[node name="Player2" parent="CanvasLayer" instance=ExtResource("12_hmlvb")]
 rotation = 3.14159
 player_name = "Player2"
 primary_color = Color(0.899169, 0.921725, 0.323017, 1)
@@ -322,9 +322,9 @@ theme_override_constants/margin_bottom = 0
 
 [node name="Deck" type="TextureButton" parent="CanvasLayer/Table/Cards/DeckArea/MarginContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_t0gp3")
+texture_normal = ExtResource("5_26hgj")
 stretch_mode = 5
-script = ExtResource("2_brk4h")
+script = ExtResource("6_sbxb1")
 
 [node name="DrawnCardsArea" type="Control" parent="CanvasLayer/Table/Cards"]
 layout_mode = 2

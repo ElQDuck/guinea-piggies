@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://uvih57s5oxsu"]
+[gd_scene load_steps=5 format=3 uid="uid://uvih57s5oxsu"]
 
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_1lscr"]
 [ext_resource type="Texture2D" uid="uid://dn4te5tyiu16o" path="res://assets/backgrounds/title_background.svg" id="1_v8ctg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l142b"]
@@ -22,13 +23,15 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("StartGameButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1lscr")
+StartGameButton = NodePath("VBoxContainer/StartGameButton")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -68,7 +71,7 @@ theme_override_font_sizes/font_size = 128
 text = "GAME_TITLE"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="StartGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(0.0823529, 0.247059, 0.0823529, 1)
