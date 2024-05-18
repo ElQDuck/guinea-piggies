@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=14 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_fo1c3"]
 [ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="1_t0gp3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/NewRoundButton.gd" id="8_ub627"]
 [ext_resource type="Script" path="res://scripts/GameOverStats.gd" id="9_36wbk"]
 [ext_resource type="Script" path="res://scripts/NewGameButton.gd" id="10_8hl7a"]
+[ext_resource type="PackedScene" uid="uid://bkpglbq6yv1v0" path="res://scenes/player.tscn" id="11_ah7ty"]
 
 [sub_resource type="Gradient" id="Gradient_d8adn"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 0.0784314, 0.101961, 1)
@@ -22,13 +23,14 @@ gradient = SubResource("Gradient_d8adn")
 [node name="Table" type="Node2D" parent="."]
 script = ExtResource("1_fo1c3")
 
-[node name="Player3" type="Node2D" parent="."]
+[node name="Player1" type="Node2D" parent="."]
 script = ExtResource("2_s56it")
 
 [node name="Player2" type="Node2D" parent="."]
 script = ExtResource("3_bs3t5")
 
 [node name="TableUi" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TableUi"]
 anchors_preset = 15
@@ -257,12 +259,85 @@ layout_mode = 2
 text = "Start new Game"
 script = ExtResource("10_8hl7a")
 
-[node name="Player1" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[connection signal="pressed" from="TableUi/VBoxContainer/Player1/EndTurn" to="Player3" method="_on_end_turn_pressed"]
-[connection signal="pressed" from="TableUi/VBoxContainer/Player1/ShowCards" to="Player3" method="_on_show_cards_pressed"]
+[node name="Player1" parent="CanvasLayer" instance=ExtResource("11_ah7ty")]
+player_name = "Player 1"
+primary_color = Color(0.850337, 0.249435, 0.278066, 1)
+secondary_color = Color(0.925197, 0.605826, 0.7781, 1)
+complementary_color = Color(0.116443, 0.393503, 0.678787, 1)
+
+[node name="Player2" parent="CanvasLayer" instance=ExtResource("11_ah7ty")]
+rotation = 3.14159
+player_name = "Player2"
+primary_color = Color(0.899169, 0.921725, 0.323017, 1)
+secondary_color = Color(0.7785, 0.86241, 0.474671, 1)
+complementary_color = Color(0.798137, 0.211894, 0.664739, 1)
+
+[node name="Table" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cards" type="HBoxContainer" parent="CanvasLayer/Table"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -284.0
+offset_bottom = 284.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="DeckArea" type="Control" parent="CanvasLayer/Table/Cards"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Table/Cards/DeckArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="Deck" type="TextureButton" parent="CanvasLayer/Table/Cards/DeckArea/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_t0gp3")
+stretch_mode = 5
+script = ExtResource("2_brk4h")
+
+[node name="DrawnCardsArea" type="Control" parent="CanvasLayer/Table/Cards"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="DrawnCards" type="Control" parent="CanvasLayer/Table/Cards/DrawnCardsArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="TableUi/VBoxContainer/Player1/EndTurn" to="Player1" method="_on_end_turn_pressed"]
+[connection signal="pressed" from="TableUi/VBoxContainer/Player1/ShowCards" to="Player1" method="_on_show_cards_pressed"]
 [connection signal="card_drawn_from_deck" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="TableUi/VBoxContainer/Cards/MarginContainer/Deck" method="_on_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player2/EndTurn" to="Player2" method="_on_end_turn_pressed"]
@@ -273,3 +348,5 @@ anchors_preset = 0
 [connection signal="pressed" from="DiceSelectionUi/VBoxContainer/Button" to="DiceSelectionUi/VBoxContainer/Button" method="_on_self_pressed"]
 [connection signal="pressed" from="RoundEndUi/VBoxContainer/NewRoundButton" to="RoundEndUi/VBoxContainer/NewRoundButton" method="_on_pressed"]
 [connection signal="pressed" from="GameEndUi/VBoxContainer/NewGameButton" to="GameEndUi/VBoxContainer/NewGameButton" method="_on_pressed"]
+[connection signal="card_drawn_from_deck" from="CanvasLayer/Table/Cards/DeckArea/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]
+[connection signal="pressed" from="CanvasLayer/Table/Cards/DeckArea/MarginContainer/Deck" to="CanvasLayer/Table/Cards/DeckArea/MarginContainer/Deck" method="_on_pressed"]

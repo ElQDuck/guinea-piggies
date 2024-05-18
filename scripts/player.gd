@@ -36,7 +36,9 @@ func _ready():
 	uiPanelStyleBox.set("bg_color", primary_color)
 	uiPanelStyleBox.set("border_color", secondary_color)
 	uiPanel.add_theme_stylebox_override("panel", uiPanelStyleBox)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	# Adjust the pivot to make rotations around the center
+	self.pivot_offset = self.get_size() / 2

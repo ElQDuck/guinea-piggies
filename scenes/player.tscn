@@ -48,7 +48,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 4
 script = ExtResource("1_dom8a")
 player_name = "Test Name"
 profile_image = ExtResource("2_66jmo")
