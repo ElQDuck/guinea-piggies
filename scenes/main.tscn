@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=15 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_fo1c3"]
 [ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="1_t0gp3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/NewRoundButton.gd" id="8_ub627"]
 [ext_resource type="Script" path="res://scripts/GameOverStats.gd" id="9_36wbk"]
 [ext_resource type="Script" path="res://scripts/NewGameButton.gd" id="10_8hl7a"]
+[ext_resource type="Texture2D" uid="uid://bo8p8xgav6a18" path="res://assets/backgrounds/cave.png" id="11_5n41x"]
 [ext_resource type="PackedScene" uid="uid://bkpglbq6yv1v0" path="res://scenes/player.tscn" id="11_ah7ty"]
 
 [sub_resource type="Gradient" id="Gradient_d8adn"]
@@ -260,6 +261,14 @@ text = "Start new Game"
 script = ExtResource("10_8hl7a")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_5n41x")
 
 [node name="Player1" parent="CanvasLayer" instance=ExtResource("11_ah7ty")]
 player_name = "Player 1"
