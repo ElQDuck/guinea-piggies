@@ -30,10 +30,12 @@ grow_vertical = 2
 [node name="GameTitle" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
 text = "GAME_TITLE"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
 text = "START_GAME"
