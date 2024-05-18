@@ -7,6 +7,8 @@ var score: int
 @export_color_no_alpha var primary_color: Color
 @export_color_no_alpha var secondary_color: Color
 @export_color_no_alpha var complementary_color: Color
+@export var scoreValueLabel: Label
+@export var CardsCountValueLabel: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +23,7 @@ func _ready():
 	uiProfileImage.texture = profile_image
 	
 	# ProfileName
+	uiPlayerNameLabel.text = player_name
 	
 	# ProfileColors
 	var profileBorderStyleBox: StyleBoxFlat = uiProfileImageBorder.get_theme_stylebox("panel").duplicate()

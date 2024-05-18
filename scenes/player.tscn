@@ -41,7 +41,7 @@ corner_radius_bottom_left = 16
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4x2e"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="Player" type="Control"]
+[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,10 +50,13 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 script = ExtResource("1_dom8a")
+player_name = "Test Name"
 profile_image = ExtResource("2_66jmo")
 primary_color = Color(0.596078, 0.956863, 0.941176, 1)
 secondary_color = Color(0.00784314, 0.933333, 0.901961, 1)
 complementary_color = Color(0.933333, 0.00784314, 0.0392157, 1)
+scoreValueLabel = NodePath("Panel/Panel/VBoxContainer/HBoxContainer/ScoreValueLabel")
+CardsCountValueLabel = NodePath("Panel/Panel/VBoxContainer/HBoxContainer2/CardsCountValueLabbel")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -178,11 +181,18 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Score: 
 "
 
+[node name="ScoreValueLabel" type="Label" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "28
+"
+
 [node name="Label2" type="Label" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "28/77
+text = "/77
 "
 
 [node name="Icon" type="TextureRect" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
@@ -202,7 +212,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Cards:
 "
 
-[node name="Label2" type="Label" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+[node name="CardsCountValueLabbel" type="Label" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
