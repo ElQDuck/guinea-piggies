@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://btr43ps8xb5c7"]
+[gd_scene load_steps=8 format=3 uid="uid://btr43ps8xb5c7"]
 
 [ext_resource type="Script" path="res://scripts/profile_setup_player.gd" id="1_sp1hu"]
 [ext_resource type="Texture2D" uid="uid://br5sng1ho8px8" path="res://assets/avatar_images/profile1.png" id="2_jm2jc"]
@@ -6,8 +6,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l16hv"]
 bg_color = Color(1, 0.898039, 0.741176, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogjx2"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6s2dm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wsfry"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7befl"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -51,29 +52,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Selectors" type="VBoxContainer" parent="Panel/HBoxContainer"]
+[node name="ColorSelector" type="Panel" parent="Panel/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6s2dm")
+
+[node name="HBoxContainerColor" type="HBoxContainer" parent="Panel/HBoxContainer/ColorSelector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -65.0
+offset_right = 102.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftButton" type="Button" parent="Panel/HBoxContainer/ColorSelector/HBoxContainerColor"]
+layout_mode = 2
 size_flags_vertical = 4
-
-[node name="HBoxContainerAvatar" type="HBoxContainer" parent="Panel/HBoxContainer/Selectors"]
-layout_mode = 2
-
-[node name="HBoxContainerColor" type="HBoxContainer" parent="Panel/HBoxContainer/Selectors"]
-layout_mode = 2
-
-[node name="LeftButton" type="Button" parent="Panel/HBoxContainer/Selectors/HBoxContainerColor"]
-layout_mode = 2
+theme_override_font_sizes/font_size = 96
 text = "<"
 
-[node name="RightButton" type="Button" parent="Panel/HBoxContainer/Selectors/HBoxContainerColor"]
+[node name="ColorPreview" type="Panel" parent="Panel/HBoxContainer/ColorSelector/HBoxContainerColor"]
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
+
+[node name="RightButton" type="Button" parent="Panel/HBoxContainer/ColorSelector/HBoxContainerColor"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 96
 text = ">"
 
 [node name="Profile" type="Panel" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_ogjx2")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wsfry")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Profile"]
 layout_mode = 1
