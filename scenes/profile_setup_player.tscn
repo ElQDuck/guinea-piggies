@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://btr43ps8xb5c7"]
+[gd_scene load_steps=6 format=3 uid="uid://btr43ps8xb5c7"]
 
 [ext_resource type="Script" path="res://scripts/profile_setup_player.gd" id="1_sp1hu"]
+[ext_resource type="Texture2D" uid="uid://br5sng1ho8px8" path="res://assets/avatar_images/profile1.png" id="2_jm2jc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l16hv"]
 bg_color = Color(1, 0.898039, 0.741176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7befl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a317j"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.603922, 0.392157, 0.211765, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="ProfileSetupPlayer" type="Control" node_paths=PackedStringArray("ReadyButton")]
 layout_mode = 3
@@ -55,9 +71,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Panel/HBoxContainer/Profile/VBoxContainer"]
+custom_minimum_size = Vector2(384, 384)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 6
 size_flags_stretch_ratio = 3.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7befl")
 
 [node name="SelectedAvatar" type="TextureRect" parent="Panel/HBoxContainer/Profile/VBoxContainer/Panel"]
 layout_mode = 1
@@ -67,13 +86,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+texture = ExtResource("2_jm2jc")
+stretch_mode = 5
+
+[node name="AvatarBorder" type="Panel" parent="Panel/HBoxContainer/Profile/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a317j")
 
 [node name="LineEdit" type="LineEdit" parent="Panel/HBoxContainer/Profile/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 placeholder_text = "PLACEHOLDER_TYPE_IN_NAME"
 alignment = 1
-clear_button_enabled = true
 select_all_on_focus = true
 
 [node name="ReadyButton" type="Button" parent="Panel/HBoxContainer"]

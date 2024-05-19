@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dom8a"]
 [ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="1_pdcv7"]
-[ext_resource type="Texture2D" uid="uid://br5sng1ho8px8" path="res://assets/profile_images/profile1.png" id="2_66jmo"]
+[ext_resource type="Texture2D" uid="uid://br5sng1ho8px8" path="res://assets/avatar_images/profile1.png" id="2_66jmo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa5oh"]
 bg_color = Color(1, 0.701961, 0.831373, 1)
