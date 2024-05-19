@@ -12,10 +12,24 @@ extends Control
 var color_combinations: Array = [
 	{"primary": Color("ff6b6b"),
 	"secondary": Color("f7b7bb"),
-	"font_color": Color("000000"),
+	"font_color": Color("ffffff"),
 	"complementary_primary": Color("2fadcc"),
 	"complementary_secondary": Color("d0ecff"),
-	"complementary_font_color": Color("ffffff")}
+	"complementary_font_color": Color("000000")},
+	
+	{"primary": Color("f457cf"),
+	"secondary": Color("fbbdea"),
+	"font_color": Color("000000"),
+	"complementary_primary": Color("83f67b"),
+	"complementary_secondary": Color("cffcc9"),
+	"complementary_font_color": Color("000000")},
+	
+	{"primary": Color("4ec4ff"),
+	"secondary": Color("b4e5ff"),
+	"font_color": Color("000000"),
+	"complementary_primary": Color("ff894e"),
+	"complementary_secondary": Color("ffcbb3"),
+	"complementary_font_color": Color("000000")}
 	]
 
 # Called when the node enters the scene tree for the first time.
