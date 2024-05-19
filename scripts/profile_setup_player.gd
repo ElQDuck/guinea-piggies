@@ -10,12 +10,12 @@ extends Control
 @export var ready_button: Button
 
 var color_combinations: Array = [
-	{"primary": Color("ff00ff"),
-	"secondary": Color("00ffff"),
-	"font_color": Color("f0f0f0"),
-	"complementary_primary": Color("0000ff"),
-	"complementary_secondary": Color("0f0f0f"),
-	"complementary_font_color": Color("f0f0f0")}
+	{"primary": Color("ff6b6b"),
+	"secondary": Color("f7b7bb"),
+	"font_color": Color("000000"),
+	"complementary_primary": Color("2fadcc"),
+	"complementary_secondary": Color("d0ecff"),
+	"complementary_font_color": Color("ffffff")}
 	]
 
 # Called when the node enters the scene tree for the first time.
