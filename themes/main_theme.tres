@@ -7,6 +7,7 @@ Button/font_sizes/font_size = 48
 Button/fonts/font = ExtResource("1_y4xsd")
 Label/font_sizes/font_size = 48
 Label/fonts/font = ExtResource("1_y4xsd")
+LineEdit/font_sizes/font_size = 48
 LineEdit/fonts/font = ExtResource("1_y4xsd")
 MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 8
