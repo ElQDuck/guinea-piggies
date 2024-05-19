@@ -81,7 +81,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 96
-text = "<"
+text = " < "
 
 [node name="ColorPreview" type="Panel" parent="Panel/HBoxContainer/ColorSelector/HBoxContainerColor"]
 custom_minimum_size = Vector2(256, 256)
@@ -92,7 +92,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_iipnc")
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 96
-text = ">"
+text = " > "
 
 [node name="Profile" type="Panel" parent="Panel/HBoxContainer"]
 layout_mode = 2
