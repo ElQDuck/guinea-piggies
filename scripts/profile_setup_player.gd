@@ -9,6 +9,7 @@ extends Control
 @export var input_player_name: LineEdit
 @export var ready_button: Button
 
+var selected_color_index: int = 0
 var color_combinations: Array = [
 	{"primary": Color("ff6b6b"),
 	"secondary": Color("f7b7bb"),
@@ -45,12 +46,21 @@ func _process(delta):
 
 
 func _on_color_button_left_pressed():
-	print("left")
+	if selected_color_index == 0:
+		selected_color_index = color_combinations.size() - 1
+	else:
+		selected_color_index -= 1
 	var colorPreviewStyleBox: StyleBoxFlat = color_preview.get_theme_stylebox("panel").duplicate()
-	colorPreviewStyleBox.set("bg_color", color_combinations[0]["primary"])
+	colorPreviewStyleBox.set("bg_color", color_combinations[selected_color_index]["primary"])
 	color_preview.add_theme_stylebox_override("panel", colorPreviewStyleBox)
 
 
 func _on_color_button_right_pressed():
-	print("right")
+	if selected_color_index == color_combinations.size() - 1:
+		selected_color_index = 0
+	else:
+		selected_color_index += 1
+	var colorPreviewStyleBox: StyleBoxFlat = color_preview.get_theme_stylebox("panel").duplicate()
+	colorPreviewStyleBox.set("bg_color", color_combinations[selected_color_index]["primary"])
+	color_preview.add_theme_stylebox_override("panel", colorPreviewStyleBox)
 
