@@ -53,13 +53,22 @@ grow_vertical = 2
 
 [node name="Selectors" type="VBoxContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 4
 
 [node name="HBoxContainerAvatar" type="HBoxContainer" parent="Panel/HBoxContainer/Selectors"]
 layout_mode = 2
 
 [node name="HBoxContainerColor" type="HBoxContainer" parent="Panel/HBoxContainer/Selectors"]
 layout_mode = 2
+
+[node name="LeftButton" type="Button" parent="Panel/HBoxContainer/Selectors/HBoxContainerColor"]
+layout_mode = 2
+text = "<"
+
+[node name="RightButton" type="Button" parent="Panel/HBoxContainer/Selectors/HBoxContainerColor"]
+layout_mode = 2
+text = ">"
 
 [node name="Profile" type="Panel" parent="Panel/HBoxContainer"]
 layout_mode = 2
@@ -74,15 +83,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="Panel/HBoxContainer/Profile/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/Profile/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="LeftButton" type="Button" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 96
+text = "<"
+
+[node name="Panel" type="Panel" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(384, 384)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_horizontal = 6
+size_flags_vertical = 4
 size_flags_stretch_ratio = 3.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7befl")
 
-[node name="SelectedAvatar" type="TextureRect" parent="Panel/HBoxContainer/Profile/VBoxContainer/Panel"]
+[node name="SelectedAvatar" type="TextureRect" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,7 +114,7 @@ size_flags_vertical = 3
 texture = ExtResource("2_jm2jc")
 stretch_mode = 5
 
-[node name="AvatarBorder" type="Panel" parent="Panel/HBoxContainer/Profile/VBoxContainer/Panel"]
+[node name="AvatarBorder" type="Panel" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,6 +122,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a317j")
+
+[node name="RightButton" type="Button" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 96
+text = ">"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/HBoxContainer/Profile/VBoxContainer"]
 layout_mode = 2
