@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://btr43ps8xb5c7"]
+[gd_scene load_steps=9 format=3 uid="uid://btr43ps8xb5c7"]
 
 [ext_resource type="Script" path="res://scripts/profile_setup_player.gd" id="1_sp1hu"]
 [ext_resource type="Texture2D" uid="uid://br5sng1ho8px8" path="res://assets/avatar_images/profile1.png" id="2_jm2jc"]
@@ -7,6 +7,12 @@
 bg_color = Color(1, 0.898039, 0.741176, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6s2dm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iipnc"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wsfry"]
 
@@ -80,6 +86,7 @@ text = "<"
 [node name="ColorPreview" type="Panel" parent="Panel/HBoxContainer/ColorSelector/HBoxContainerColor"]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iipnc")
 
 [node name="RightButton" type="Button" parent="Panel/HBoxContainer/ColorSelector/HBoxContainerColor"]
 layout_mode = 2
