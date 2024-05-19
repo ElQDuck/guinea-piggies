@@ -50,9 +50,7 @@ func _on_color_button_left_pressed():
 		selected_color_index = color_combinations.size() - 1
 	else:
 		selected_color_index -= 1
-	var colorPreviewStyleBox: StyleBoxFlat = color_preview.get_theme_stylebox("panel").duplicate()
-	colorPreviewStyleBox.set("bg_color", color_combinations[selected_color_index]["primary"])
-	color_preview.add_theme_stylebox_override("panel", colorPreviewStyleBox)
+	_change_panel_bg_color(color_preview, color_combinations[selected_color_index]["primary"])
 
 
 func _on_color_button_right_pressed():
@@ -60,7 +58,10 @@ func _on_color_button_right_pressed():
 		selected_color_index = 0
 	else:
 		selected_color_index += 1
-	var colorPreviewStyleBox: StyleBoxFlat = color_preview.get_theme_stylebox("panel").duplicate()
-	colorPreviewStyleBox.set("bg_color", color_combinations[selected_color_index]["primary"])
-	color_preview.add_theme_stylebox_override("panel", colorPreviewStyleBox)
+	_change_panel_bg_color(color_preview, color_combinations[selected_color_index]["primary"])
 
+
+func _change_panel_bg_color(panelObject: Panel, color: Color):
+	var colorPreviewStyleBox: StyleBoxFlat = panelObject.get_theme_stylebox("panel").duplicate()
+	colorPreviewStyleBox.set("bg_color", color)
+	panelObject.add_theme_stylebox_override("panel", colorPreviewStyleBox)
