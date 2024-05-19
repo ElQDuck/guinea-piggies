@@ -9,7 +9,14 @@ extends Control
 @export var input_player_name: LineEdit
 @export var ready_button: Button
 
-var color_combinations: Array = [{"primary": Color("ff00ff"), "secondary": Color("00ffff"), "complementary": Color("0000ff")}]
+var color_combinations: Array = [
+	{"primary": Color("ff00ff"),
+	"secondary": Color("00ffff"),
+	"font_color": Color("f0f0f0"),
+	"complementary_primary": Color("0000ff"),
+	"complementary_secondary": Color("0f0f0f"),
+	"complementary_font_color": Color("f0f0f0")}
+	]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
