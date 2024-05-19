@@ -9,10 +9,12 @@ extends Control
 @export var input_player_name: LineEdit
 @export var ready_button: Button
 
+var color_combinations: Array = [{"primary": Color("ff00ff"), "secondary": Color("00ffff"), "complementary": Color("0000ff")}]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	color_button_left.pressed.connect(_on_color_button_left_pressed)
+	color_button_right.pressed.connect(_on_color_button_right_pressed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,3 +25,11 @@ func _process(delta):
 
 func _on_color_button_left_pressed():
 	print("left")
+	var colorPreviewStyleBox: StyleBoxFlat = color_preview.get_theme_stylebox("panel").duplicate()
+	colorPreviewStyleBox.set("bg_color", color_combinations[0]["primary"])
+	color_preview.add_theme_stylebox_override("panel", colorPreviewStyleBox)
+
+
+func _on_color_button_right_pressed():
+	print("right")
+
