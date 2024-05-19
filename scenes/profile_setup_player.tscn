@@ -17,6 +17,7 @@ script = ExtResource("1_sp1hu")
 ReadyButton = NodePath("Panel/Button")
 
 [node name="Panel" type="Panel" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,3 +40,23 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "blub"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 620.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/AspectRatioContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/AspectRatioContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "<"
+
+[node name="Button2" type="Button" parent="Panel/AspectRatioContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "<"
