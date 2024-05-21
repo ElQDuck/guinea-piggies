@@ -100,8 +100,12 @@ func _on_avatar_button_right_pressed():
 
 
 func _on_ready_button_toggled(toggled_on: bool):
-	# Disable all player input
-	# TODO
+	# Disable all player input if toggled
+	if toggled_on:
+		input_player_name.set_editable(false)
+	else:
+		input_player_name.set_editable(true)
+
 	
 	# Check if name entered otherwise assign a random one
 	if toggled_on == true and input_player_name.text == "":
