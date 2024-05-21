@@ -10,7 +10,8 @@ extends Control
 @export var input_player_name: LineEdit
 @export var ready_button: Button
 
-var selected_image_index = 0
+var selected_player_name: String = ""
+var selected_image_index:int = 0
 var selected_color_index: int = 0
 var color_combinations: Array = [
 	{"primary": Color("ff6b6b"),
@@ -34,8 +35,7 @@ var color_combinations: Array = [
 	"complementary_secondary": Color("ffcbb3"),
 	"complementary_font_color": Color("000000")}
 	]
-	
-# TODO if name empty and ready pressed choose random name from list with piggy names
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,6 +44,7 @@ func _ready():
 	color_button_right.pressed.connect(_on_color_button_right_pressed)
 	avatar_button_left.pressed.connect(_on_avatar_button_left_pressed)
 	avatar_button_right.pressed.connect(_on_avatar_button_right_pressed)
+	ready_button.toggled.connect(_on_ready_button_toggled)
 	#get_tree().get_root().size_changed.connect(_reset_pivot)
 
 
@@ -96,6 +97,17 @@ func _on_avatar_button_right_pressed():
 	else:
 		selected_image_index += 1
 	avatar_image.texture = load("res://assets/avatar_images/profile" + str(selected_image_index) + ".png")
+
+
+func _on_ready_button_toggled(toggled_on: bool):
+	# Disable all player input
+	# TODO
+	
+	# Check if name entered otherwise assign a random one
+	if toggled_on == true and input_player_name.text == "":
+		selected_player_name = str(Card.PiggyType.find_key(randi() % 10 + 1))
+	else:
+		selected_player_name = input_player_name.text
 
 
 # Adjust the pivot to make rotations around the center
