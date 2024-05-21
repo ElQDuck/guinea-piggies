@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://btr43ps8xb5c7"]
 
 [ext_resource type="Script" path="res://scripts/profile_setup_player.gd" id="1_sp1hu"]
-[ext_resource type="Texture2D" uid="uid://br5sng1ho8px8" path="res://assets/avatar_images/profile1.png" id="2_jm2jc"]
+[ext_resource type="Texture2D" uid="uid://bghn4lriwnrej" path="res://assets/avatar_images/profile0.png" id="2_gy73u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l16hv"]
 bg_color = Color(1, 0.898039, 0.741176, 1)
@@ -143,7 +143,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-texture = ExtResource("2_jm2jc")
+texture = ExtResource("2_gy73u")
 stretch_mode = 5
 
 [node name="AvatarBorder" type="Panel" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/Panel"]
