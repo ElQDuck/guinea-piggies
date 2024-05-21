@@ -9,6 +9,7 @@ extends Control
 @export var input_player_name: LineEdit
 @export var ready_button: Button
 
+var selected_image_index = 0
 var selected_color_index: int = 0
 var color_combinations: Array = [
 	{"primary": Color("ff6b6b"),
@@ -40,6 +41,8 @@ func _ready():
 	# Connecting signals
 	color_button_left.pressed.connect(_on_color_button_left_pressed)
 	color_button_right.pressed.connect(_on_color_button_right_pressed)
+	avatar_button_left.pressed.connect(_on_avatar_button_left_pressed)
+	avatar_button_right.pressed.connect(_on_avatar_button_right_pressed)
 	#get_tree().get_root().size_changed.connect(_reset_pivot)
 
 
@@ -68,6 +71,22 @@ func _change_panel_bg_color(panelObject: Panel, color: Color):
 	var colorPreviewStyleBox: StyleBoxFlat = panelObject.get_theme_stylebox("panel").duplicate()
 	colorPreviewStyleBox.set("bg_color", color)
 	panelObject.add_theme_stylebox_override("panel", colorPreviewStyleBox)
+
+
+func _on_avatar_button_left_pressed():
+	if selected_image_index == 0:
+		selected_image_index = 8
+	else:
+		selected_image_index -= 1
+	avatar_image.texture = load("res://assets/avatar_images/profile" + str(selected_image_index) + ".png")
+
+
+func _on_avatar_button_right_pressed():
+	if selected_image_index == 8:
+		selected_image_index = 0
+	else:
+		selected_image_index += 1
+	avatar_image.texture = load("res://assets/avatar_images/profile" + str(selected_image_index) + ".png")
 
 
 # Adjust the pivot to make rotations around the center
