@@ -4,6 +4,7 @@ extends Control
 @export var color_button_left: Button
 @export var color_button_right: Button
 @export var avatar_image: TextureRect
+@export var avatar_border: Panel
 @export var avatar_button_left: Button
 @export var avatar_button_right: Button
 @export var input_player_name: LineEdit
@@ -56,7 +57,8 @@ func _on_color_button_left_pressed():
 		selected_color_index = color_combinations.size() - 1
 	else:
 		selected_color_index -= 1
-	_change_panel_bg_color(color_preview, color_combinations[selected_color_index]["primary"])
+	_change_panel_bg_color(color_combinations[selected_color_index]["primary"])
+	_change_avatar_border_color(color_combinations[selected_color_index]["primary"])
 
 
 func _on_color_button_right_pressed():
@@ -64,13 +66,20 @@ func _on_color_button_right_pressed():
 		selected_color_index = 0
 	else:
 		selected_color_index += 1
-	_change_panel_bg_color(color_preview, color_combinations[selected_color_index]["primary"])
+	_change_panel_bg_color(color_combinations[selected_color_index]["primary"])
+	_change_avatar_border_color(color_combinations[selected_color_index]["primary"])
 
 
-func _change_panel_bg_color(panelObject: Panel, color: Color):
-	var colorPreviewStyleBox: StyleBoxFlat = panelObject.get_theme_stylebox("panel").duplicate()
+func _change_avatar_border_color(color: Color):
+	var avatarBorderStyleBox: StyleBoxFlat = avatar_border.get_theme_stylebox("panel").duplicate()
+	avatarBorderStyleBox.set("border_color", color)
+	avatar_border.add_theme_stylebox_override("panel", avatarBorderStyleBox)
+
+
+func _change_panel_bg_color(color: Color):
+	var colorPreviewStyleBox: StyleBoxFlat = color_preview.get_theme_stylebox("panel").duplicate()
 	colorPreviewStyleBox.set("bg_color", color)
-	panelObject.add_theme_stylebox_override("panel", colorPreviewStyleBox)
+	color_preview.add_theme_stylebox_override("panel", colorPreviewStyleBox)
 
 
 func _on_avatar_button_left_pressed():

@@ -31,7 +31,7 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="ProfileSetupPlayer" type="Control" node_paths=PackedStringArray("color_preview", "color_button_left", "color_button_right", "avatar_image", "avatar_button_left", "avatar_button_right", "input_player_name", "ready_button")]
+[node name="ProfileSetupPlayer" type="Control" node_paths=PackedStringArray("color_preview", "color_button_left", "color_button_right", "avatar_image", "avatar_border", "avatar_button_left", "avatar_button_right", "input_player_name", "ready_button")]
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
@@ -43,6 +43,7 @@ color_preview = NodePath("Panel/HBoxContainer/ColorSelector/HBoxContainerColor/C
 color_button_left = NodePath("Panel/HBoxContainer/ColorSelector/HBoxContainerColor/LeftButton")
 color_button_right = NodePath("Panel/HBoxContainer/ColorSelector/HBoxContainerColor/RightButton")
 avatar_image = NodePath("Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/Panel/SelectedAvatar")
+avatar_border = NodePath("Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/Panel/AvatarBorder")
 avatar_button_left = NodePath("Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/LeftButton")
 avatar_button_right = NodePath("Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/RightButton")
 input_player_name = NodePath("Panel/HBoxContainer/Profile/VBoxContainer/LineEdit")
