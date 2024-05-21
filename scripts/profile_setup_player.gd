@@ -102,10 +102,17 @@ func _on_avatar_button_right_pressed():
 func _on_ready_button_toggled(toggled_on: bool):
 	# Disable all player input if toggled
 	if toggled_on:
+		color_button_left.set_disabled(true)
+		color_button_right.set_disabled(true)
+		avatar_button_left.set_disabled(true)
+		avatar_button_right.set_disabled(true)
 		input_player_name.set_editable(false)
 	else:
+		color_button_left.set_disabled(false)
+		color_button_right.set_disabled(false)
+		avatar_button_left.set_disabled(false)
+		avatar_button_right.set_disabled(false)
 		input_player_name.set_editable(true)
-
 	
 	# Check if name entered otherwise assign a random one
 	if toggled_on == true and input_player_name.text == "":
