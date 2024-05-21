@@ -32,17 +32,20 @@ var color_combinations: Array = [
 	"complementary_secondary": Color("ffcbb3"),
 	"complementary_font_color": Color("000000")}
 	]
+	
+# TODO if name empty and ready pressed choose random name from list with piggy names
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Connecting signals
 	color_button_left.pressed.connect(_on_color_button_left_pressed)
 	color_button_right.pressed.connect(_on_color_button_right_pressed)
+	#get_tree().get_root().size_changed.connect(_reset_pivot)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# Adjust the pivot to make rotations around the center
-	self.pivot_offset = self.get_size() / 2
+	_reset_pivot()
 
 
 func _on_color_button_left_pressed():
@@ -65,3 +68,9 @@ func _change_panel_bg_color(panelObject: Panel, color: Color):
 	var colorPreviewStyleBox: StyleBoxFlat = panelObject.get_theme_stylebox("panel").duplicate()
 	colorPreviewStyleBox.set("bg_color", color)
 	panelObject.add_theme_stylebox_override("panel", colorPreviewStyleBox)
+
+
+# Adjust the pivot to make rotations around the center
+func _reset_pivot():
+	self.pivot_offset = self.get_size() / 2
+
