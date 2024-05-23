@@ -10,6 +10,7 @@ extends Control
 @export var input_player_name: LineEdit
 @export var ready_button: Button
 
+var customisation_ready: bool = false
 var selected_player_name: String = ""
 var selected_image_index:int = 0
 var selected_color_index: int = 0
@@ -107,12 +108,14 @@ func _on_ready_button_toggled(toggled_on: bool):
 		avatar_button_left.set_disabled(true)
 		avatar_button_right.set_disabled(true)
 		input_player_name.set_editable(false)
+		customisation_ready = true
 	else:
 		color_button_left.set_disabled(false)
 		color_button_right.set_disabled(false)
 		avatar_button_left.set_disabled(false)
 		avatar_button_right.set_disabled(false)
 		input_player_name.set_editable(true)
+		customisation_ready = false
 	
 	# Check if name entered otherwise assign a random one
 	if toggled_on == true and input_player_name.text == "":
