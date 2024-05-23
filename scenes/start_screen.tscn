@@ -1,28 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://uvih57s5oxsu"]
+[gd_scene load_steps=4 format=3 uid="uid://uvih57s5oxsu"]
 
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_1lscr"]
 [ext_resource type="Texture2D" uid="uid://dn4te5tyiu16o" path="res://assets/backgrounds/title_background.svg" id="1_v8ctg"]
-[ext_resource type="StyleBox" uid="uid://blb11n34o28ih" path="res://themes/style_boxes/start_game_button.stylebox" id="3_0mb7x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l142b"]
 bg_color = Color(1, 0.780392, 0.560784, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu6jw"]
-content_margin_left = 24.0
-content_margin_top = 8.0
-content_margin_right = 24.0
-content_margin_bottom = 8.0
-bg_color = Color(0.999999, 0.764418, 0.360324, 1)
-border_width_left = 16
-border_width_top = 16
-border_width_right = 16
-border_width_bottom = 16
-border_color = Color(0.603922, 0.392157, 0.211765, 1)
-border_blend = true
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
 
 [node name="Control" type="Control" node_paths=PackedStringArray("StartGameButton")]
 layout_mode = 3
@@ -66,9 +48,9 @@ grow_vertical = 2
 [node name="GameTitle" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_colors/font_color = Color(0.603922, 0.392157, 0.211765, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0.898039, 0.741176, 1)
+theme_override_colors/font_outline_color = Color(0.603922, 0.392157, 0.211765, 1)
 theme_override_constants/outline_size = 64
 theme_override_font_sizes/font_size = 128
 text = "GAME_TITLE"
@@ -77,12 +59,5 @@ horizontal_alignment = 1
 [node name="StartGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_colors/font_color = Color(0.603922, 0.392157, 0.211765, 1)
-theme_override_colors/font_pressed_color = Color(0.603922, 0.392157, 0.211765, 1)
-theme_override_colors/font_hover_color = Color(0.603922, 0.392157, 0.211765, 1)
-theme_override_colors/font_focus_color = Color(0.603922, 0.392157, 0.211765, 1)
 theme_override_font_sizes/font_size = 128
-theme_override_styles/normal = ExtResource("3_0mb7x")
-theme_override_styles/hover = ExtResource("3_0mb7x")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fu6jw")
 text = "START_GAME"
