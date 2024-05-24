@@ -319,6 +319,7 @@ theme_override_constants/margin_bottom = 0
 [node name="Deck" type="TextureButton" parent="CanvasLayer/Table/Cards/DeckArea/MarginContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_26hgj")
+ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("6_sbxb1")
 
