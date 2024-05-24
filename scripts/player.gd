@@ -42,14 +42,14 @@ func _update_ui():
 	
 	# ProfileColors
 	var profileBorderStyleBox: StyleBoxFlat = uiProfileImageBorder.get_theme_stylebox("panel").duplicate()
-	profileBorderStyleBox.set("border_color", colorColection["secondary"])
+	profileBorderStyleBox.set("border_color", colorColection["primary"])
 	uiProfileImageBorder.add_theme_stylebox_override("panel", profileBorderStyleBox)
 	var profileLabelBackgroundStyleBox: StyleBoxFlat = uiNameLabelBackground.get_theme_stylebox("panel").duplicate()
-	profileLabelBackgroundStyleBox.set("bg_color", colorColection["secondary"])
+	profileLabelBackgroundStyleBox.set("bg_color", colorColection["primary"])
 	uiNameLabelBackground.add_theme_stylebox_override("panel", profileLabelBackgroundStyleBox)
 	var uiPanelStyleBox: StyleBoxFlat = uiPanel.get_theme_stylebox("panel").duplicate()
-	uiPanelStyleBox.set("bg_color", colorColection["primary"])
-	uiPanelStyleBox.set("border_color", colorColection["secondary"])
+	uiPanelStyleBox.set("bg_color", colorColection["secondary"])
+	uiPanelStyleBox.set("border_color", colorColection["primary"])
 	uiPanel.add_theme_stylebox_override("panel", uiPanelStyleBox)
 	
 	# Button Color
