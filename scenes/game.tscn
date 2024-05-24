@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=16 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_0c6vw"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_t3f4k"]
 [ext_resource type="Script" path="res://scripts/Player1.gd" id="2_dbbpl"]
 [ext_resource type="Script" path="res://scripts/Player2.gd" id="3_qm4nx"]
 [ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="4_qaxsu"]
@@ -20,6 +21,7 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 0.0784314, 0.101961, 1)
 gradient = SubResource("Gradient_d8adn")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_t3f4k")
 
 [node name="Table" type="Node2D" parent="."]
 script = ExtResource("1_0c6vw")
