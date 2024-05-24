@@ -6,7 +6,12 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player_1.profile_image_index = GlobalVars.player_1["selected_image_index"]
+	player_1.player_name = GlobalVars.player_1["name"]
 	player_1.colorColection = GlobalVars.player_1["color_combinations"]
+	
+	player_2.profile_image_index = GlobalVars.player_2["selected_image_index"]
+	player_2.player_name = GlobalVars.player_2["name"]
 	player_2.colorColection = GlobalVars.player_2["color_combinations"]
 	
 	player_1._update_ui()

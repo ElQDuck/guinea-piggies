@@ -1,8 +1,9 @@
 extends Control
 
 var player_name: String
-var profile_image: Texture2D
+var profile_image_index: int
 var cards_in_hand: Array[Card]
+var player_is_active: bool
 var score: int
 var colorColection: Dictionary = {
 	"primary": Color("ff6b6b"),
@@ -35,7 +36,7 @@ func _update_ui():
 	var uiEndTurnButton = $Panel/Button
 	
 	# ProfileImage
-	uiProfileImage.texture = profile_image
+	uiProfileImage.texture = load("res://assets/avatar_images/profile" + str(profile_image_index) + ".png")
 	
 	# ProfileName
 	uiPlayerNameLabel.text = player_name
