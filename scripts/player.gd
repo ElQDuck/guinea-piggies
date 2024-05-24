@@ -33,7 +33,6 @@ func _update_ui():
 	var uiProfileImageBorder = $Panel/TextureButton/Panel
 	var uiNameLabelBackground = $Panel/TextureButton/Name
 	var uiPlayerNameLabel = $Panel/TextureButton/Name/Label
-	var uiEndTurnButton = $Panel/Button
 	
 	# ProfileImage
 	uiProfileImage.texture = load("res://assets/avatar_images/profile" + str(profile_image_index) + ".png")
@@ -53,3 +52,8 @@ func _update_ui():
 	uiPanelStyleBox.set("border_color", colorColection["secondary"])
 	uiPanel.add_theme_stylebox_override("panel", uiPanelStyleBox)
 	
+	# Button Color
+	var buttonStyleBox: StyleBoxFlat = button_end_turn.get_theme_stylebox("normal").duplicate()
+	buttonStyleBox.set("bg_color", colorColection["complementary_secondary"])
+	buttonStyleBox.set("border_color", colorColection["complementary_primary"])
+	button_end_turn.add_theme_stylebox_override("normal", buttonStyleBox)
