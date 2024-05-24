@@ -34,10 +34,11 @@ corner_radius_bottom_left = 16
 
 [node name="ProfileSetupPlayer" type="Control" node_paths=PackedStringArray("color_preview", "color_button_left", "color_button_right", "avatar_image", "avatar_border", "avatar_button_left", "avatar_button_right", "input_player_name", "ready_button")]
 layout_mode = 3
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 540.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 6
 script = ExtResource("1_sp1hu")
 color_preview = NodePath("Panel/HBoxContainer/ColorSelector/HBoxContainerColor/ColorPreview")
