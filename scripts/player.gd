@@ -1,17 +1,32 @@
 extends Control
 
-@export var player_name: String
-@export var profile_image: Texture2D
-@export var cards_in_hand: Array[String]
+var player_name: String
+var profile_image: Texture2D
+var cards_in_hand: Array[Card]
 var score: int
-@export_color_no_alpha var primary_color: Color
-@export_color_no_alpha var secondary_color: Color
-@export_color_no_alpha var complementary_color: Color
+var colorColection: Dictionary = {
+	"primary": Color("ff6b6b"),
+	"secondary": Color("f7b7bb"),
+	"font_color": Color("ffffff"),
+	"complementary_primary": Color("2fadcc"),
+	"complementary_secondary": Color("d0ecff"),
+	"complementary_font_color": Color("000000")
+}
 @export var scoreValueLabel: Label
 @export var CardsCountValueLabel: Label
+@export var button_end_turn: Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	# Adjust the pivot to make rotations around the center
+	self.pivot_offset = self.get_size() / 2
+
+
+func _update_ui():
 	var uiPanel = $Panel
 	var uiProfileImage = $Panel/TextureButton/ProfileImage
 	var uiProfileImageBorder = $Panel/TextureButton/Panel
@@ -27,18 +42,13 @@ func _ready():
 	
 	# ProfileColors
 	var profileBorderStyleBox: StyleBoxFlat = uiProfileImageBorder.get_theme_stylebox("panel").duplicate()
-	profileBorderStyleBox.set("border_color", secondary_color)
+	profileBorderStyleBox.set("border_color", colorColection["secondary"])
 	uiProfileImageBorder.add_theme_stylebox_override("panel", profileBorderStyleBox)
 	var profileLabelBackgroundStyleBox: StyleBoxFlat = uiNameLabelBackground.get_theme_stylebox("panel").duplicate()
-	profileLabelBackgroundStyleBox.set("bg_color", secondary_color)
+	profileLabelBackgroundStyleBox.set("bg_color", colorColection["secondary"])
 	uiNameLabelBackground.add_theme_stylebox_override("panel", profileLabelBackgroundStyleBox)
 	var uiPanelStyleBox: StyleBoxFlat = uiPanel.get_theme_stylebox("panel").duplicate()
-	uiPanelStyleBox.set("bg_color", primary_color)
-	uiPanelStyleBox.set("border_color", secondary_color)
+	uiPanelStyleBox.set("bg_color", colorColection["primary"])
+	uiPanelStyleBox.set("border_color", colorColection["secondary"])
 	uiPanel.add_theme_stylebox_override("panel", uiPanelStyleBox)
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	# Adjust the pivot to make rotations around the center
-	self.pivot_offset = self.get_size() / 2

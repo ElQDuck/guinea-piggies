@@ -20,8 +20,10 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 0.0784314, 0.101961, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_t4tp5"]
 gradient = SubResource("Gradient_d8adn")
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player_1", "player_2")]
 script = ExtResource("1_t3f4k")
+player_1 = NodePath("CanvasLayer/Player1")
+player_2 = NodePath("CanvasLayer/Player2")
 
 [node name="Table" type="Node2D" parent="."]
 script = ExtResource("1_0c6vw")
@@ -273,17 +275,9 @@ grow_vertical = 2
 texture = ExtResource("11_lvt0k")
 
 [node name="Player1" parent="CanvasLayer" instance=ExtResource("12_hmlvb")]
-player_name = "Player 1"
-primary_color = Color(0.850337, 0.249435, 0.278066, 1)
-secondary_color = Color(0.925197, 0.605826, 0.7781, 1)
-complementary_color = Color(0.116443, 0.393503, 0.678787, 1)
 
 [node name="Player2" parent="CanvasLayer" instance=ExtResource("12_hmlvb")]
 rotation = 3.14159
-player_name = "Player2"
-primary_color = Color(0.899169, 0.921725, 0.323017, 1)
-secondary_color = Color(0.7785, 0.86241, 0.474671, 1)
-complementary_color = Color(0.798137, 0.211894, 0.664739, 1)
 
 [node name="Table" type="Control" parent="CanvasLayer"]
 layout_mode = 3
