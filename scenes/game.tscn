@@ -35,7 +35,6 @@ script = ExtResource("2_dbbpl")
 script = ExtResource("3_qm4nx")
 
 [node name="TableUi" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TableUi"]
 anchors_preset = 15
@@ -265,6 +264,7 @@ text = "Start new Game"
 script = ExtResource("10_m3kql")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Background" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15

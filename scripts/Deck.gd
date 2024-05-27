@@ -68,11 +68,11 @@ func _on_pressed():
 func CreateCard(piggyType: int, cardValue: int) -> Node:
 	var marginContainer = MarginContainer.new()
 	var textureRect = TextureRect.new()
-	var texturePathPreset := "res://assets/%s%s.png"
+	var texturePathPreset := "res://assets/cards/%s%s.png"
 	var texturePath = texturePathPreset % [PiggyType.keys()[piggyType], cardValue]
 	
 	if piggyType == 0 or cardValue == 0:
-		texturePath = "res://assets/Predator.png"
+		texturePath = "res://assets/cards/Predator.png"
 	
 	textureRect.texture = load(texturePath)
 	textureRect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
