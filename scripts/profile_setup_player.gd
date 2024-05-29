@@ -51,7 +51,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	_reset_pivot()
+	pass
 
 
 func _on_color_button_left_pressed():
@@ -122,9 +122,3 @@ func _on_ready_button_toggled(toggled_on: bool):
 		selected_player_name = str(Card.PiggyType.find_key(randi() % 10 + 1))
 	else:
 		selected_player_name = input_player_name.text
-
-
-# Adjust the pivot to make rotations around the center
-func _reset_pivot():
-	self.pivot_offset = self.get_size() / 2
-
