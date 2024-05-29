@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=24 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_0c6vw"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t3f4k"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="4_qaxsu"]
 [ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="5_26hgj"]
 [ext_resource type="Script" path="res://scripts/Deck.gd" id="6_sbxb1"]
-[ext_resource type="Script" path="res://scripts/SelectDiceButton.gd" id="7_vttep"]
+[ext_resource type="Script" path="res://scenes/dice_selection.gd" id="8_3oo5e"]
 [ext_resource type="ButtonGroup" uid="uid://37lcotm7gde" path="res://button_groups/lofty_selection_btn_group.tres" id="8_200mg"]
 [ext_resource type="Texture2D" uid="uid://bbq3eyk2q4hq6" path="res://assets/rest/lofty_1.svg" id="8_jqjl3"]
 [ext_resource type="Script" path="res://scripts/NewRoundButton.gd" id="8_vxqrd"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://76gblt156g3q" path="res://assets/rest/lofty_2_pressed.svg" id="12_3y6em"]
 [ext_resource type="PackedScene" uid="uid://bkpglbq6yv1v0" path="res://scenes/player.tscn" id="12_hmlvb"]
 [ext_resource type="Texture2D" uid="uid://cgnkb35bnn5ha" path="res://assets/rest/lofty_3_pressed.svg" id="14_ec826"]
+[ext_resource type="PackedScene" uid="uid://dfwqqpqavplgh" path="res://scenes/fortune_wheel.tscn" id="17_yrr48"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkh57"]
 bg_color = Color(1, 0.898039, 0.741176, 0.752941)
@@ -144,7 +145,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Show Cards"
 
-[node name="DiceSelectionUi" type="CanvasLayer" parent="."]
+[node name="DiceSelectionUi" type="CanvasLayer" parent="." node_paths=PackedStringArray("box_panel", "lofty_button_1", "lofty_button_2", "lofty_button_3", "start_wheel_button", "fortune_wheel")]
+script = ExtResource("8_3oo5e")
+box_panel = NodePath("Panel2")
+lofty_button_1 = NodePath("Panel2/VBoxContainer/HBoxContainer/1")
+lofty_button_2 = NodePath("Panel2/VBoxContainer/HBoxContainer/2")
+lofty_button_3 = NodePath("Panel2/VBoxContainer/HBoxContainer/3")
+start_wheel_button = NodePath("Panel2/VBoxContainer/Button")
+fortune_wheel = NodePath("Panel2/FortuneWheel")
 
 [node name="Panel" type="Panel" parent="DiceSelectionUi"]
 anchors_preset = 15
@@ -199,6 +207,7 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
+button_pressed = true
 button_group = ExtResource("8_200mg")
 texture_normal = ExtResource("9_2rlq8")
 texture_pressed = ExtResource("12_3y6em")
@@ -218,7 +227,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "BUTTON_SPINN_WHEEL"
-script = ExtResource("7_vttep")
+
+[node name="FortuneWheel" parent="DiceSelectionUi/Panel2" instance=ExtResource("17_yrr48")]
+visible = false
+layout_mode = 1
 
 [node name="RoundEndUi" type="CanvasLayer" parent="."]
 visible = false
@@ -379,10 +391,6 @@ grow_vertical = 2
 [connection signal="pressed" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="TableUi/VBoxContainer/Cards/MarginContainer/Deck" method="_on_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player2/EndTurn" to="Player2" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player2/ShowCards" to="Player2" method="_on_show_cards_pressed"]
-[connection signal="toggled" from="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer/1" to="DiceSelectionUi/Panel2/VBoxContainer/Button" method="_on__toggled_1"]
-[connection signal="toggled" from="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer/2" to="DiceSelectionUi/Panel2/VBoxContainer/Button" method="_on__toggled_2"]
-[connection signal="toggled" from="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer/3" to="DiceSelectionUi/Panel2/VBoxContainer/Button" method="_on__toggled_3"]
-[connection signal="pressed" from="DiceSelectionUi/Panel2/VBoxContainer/Button" to="DiceSelectionUi/Panel2/VBoxContainer/Button" method="_on_self_pressed"]
 [connection signal="pressed" from="RoundEndUi/VBoxContainer/NewRoundButton" to="RoundEndUi/VBoxContainer/NewRoundButton" method="_on_pressed"]
 [connection signal="pressed" from="GameEndUi/VBoxContainer/NewGameButton" to="GameEndUi/VBoxContainer/NewGameButton" method="_on_pressed"]
 [connection signal="card_drawn_from_deck" from="CanvasLayer/Table/Cards/DeckArea/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]
