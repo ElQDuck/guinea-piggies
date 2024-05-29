@@ -13,6 +13,7 @@ func _ready():
 	lofty_button_1.toggled.connect(_handle_lofty_selection.bind(1))
 	lofty_button_2.toggled.connect(_handle_lofty_selection.bind(2))
 	lofty_button_3.toggled.connect(_handle_lofty_selection.bind(3))
+	start_wheel_button.pressed.connect(_handle_start_wheel_button_pressed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,5 +23,8 @@ func _process(delta):
 
 func _handle_lofty_selection(toggled_on: bool, selection: int):
 	if toggled_on:
-		print(selection)
 		selected_lofty = selection
+
+
+func _handle_start_wheel_button_pressed():
+	print(selected_lofty)
