@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=22 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_0c6vw"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t3f4k"]
@@ -8,20 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="5_26hgj"]
 [ext_resource type="Script" path="res://scripts/Deck.gd" id="6_sbxb1"]
 [ext_resource type="Script" path="res://scripts/SelectDiceButton.gd" id="7_vttep"]
+[ext_resource type="ButtonGroup" uid="uid://37lcotm7gde" path="res://button_groups/lofty_selection_btn_group.tres" id="8_200mg"]
+[ext_resource type="Texture2D" uid="uid://bbq3eyk2q4hq6" path="res://assets/rest/lofty_1.svg" id="8_jqjl3"]
 [ext_resource type="Script" path="res://scripts/NewRoundButton.gd" id="8_vxqrd"]
+[ext_resource type="Texture2D" uid="uid://irnrwx3nq72y" path="res://assets/rest/lofty_2.svg" id="9_2rlq8"]
 [ext_resource type="Script" path="res://scripts/GameOverStats.gd" id="9_mioui"]
 [ext_resource type="Script" path="res://scripts/NewGameButton.gd" id="10_m3kql"]
+[ext_resource type="Texture2D" uid="uid://b3ufsygq82u1f" path="res://assets/rest/lofty_1_pressed.svg" id="10_ml0yv"]
+[ext_resource type="Texture2D" uid="uid://juhgiaew4qig" path="res://assets/rest/lofty_3.svg" id="10_v1rnv"]
 [ext_resource type="Texture2D" uid="uid://bo8p8xgav6a18" path="res://assets/backgrounds/cave.png" id="11_lvt0k"]
+[ext_resource type="Texture2D" uid="uid://76gblt156g3q" path="res://assets/rest/lofty_2_pressed.svg" id="12_3y6em"]
 [ext_resource type="PackedScene" uid="uid://bkpglbq6yv1v0" path="res://scenes/player.tscn" id="12_hmlvb"]
+[ext_resource type="Texture2D" uid="uid://cgnkb35bnn5ha" path="res://assets/rest/lofty_3_pressed.svg" id="14_ec826"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkh57"]
 bg_color = Color(1, 0.898039, 0.741176, 0.752941)
-
-[sub_resource type="Gradient" id="Gradient_d8adn"]
-colors = PackedColorArray(0, 0, 0, 1, 1, 0.0784314, 0.101961, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_t4tp5"]
-gradient = SubResource("Gradient_d8adn")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("player_1", "player_2")]
 script = ExtResource("1_t3f4k")
@@ -141,7 +142,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bkh57")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DiceSelectionUi"]
+[node name="Panel2" type="Panel" parent="DiceSelectionUi"]
 anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.1
@@ -150,44 +151,58 @@ anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="DiceSelectionUi/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DiceSelectionUi/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DiceSelectionUi/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 3
 text = "LABEL_CHOOSE_NUM_OF_LOFTYS"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DiceSelectionUi/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DiceSelectionUi/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="1" type="TextureButton" parent="DiceSelectionUi/VBoxContainer/HBoxContainer"]
+[node name="1" type="TextureButton" parent="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
-texture_normal = ExtResource("4_qaxsu")
-texture_pressed = SubResource("GradientTexture2D_t4tp5")
+button_group = ExtResource("8_200mg")
+texture_normal = ExtResource("8_jqjl3")
+texture_pressed = ExtResource("10_ml0yv")
 stretch_mode = 5
 
-[node name="2" type="TextureButton" parent="DiceSelectionUi/VBoxContainer/HBoxContainer"]
+[node name="2" type="TextureButton" parent="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
-texture_normal = ExtResource("4_qaxsu")
-texture_pressed = SubResource("GradientTexture2D_t4tp5")
+button_group = ExtResource("8_200mg")
+texture_normal = ExtResource("9_2rlq8")
+texture_pressed = ExtResource("12_3y6em")
 stretch_mode = 5
 
-[node name="3" type="TextureButton" parent="DiceSelectionUi/VBoxContainer/HBoxContainer"]
+[node name="3" type="TextureButton" parent="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
-texture_normal = ExtResource("4_qaxsu")
-texture_pressed = SubResource("GradientTexture2D_t4tp5")
+button_group = ExtResource("8_200mg")
+texture_normal = ExtResource("10_v1rnv")
+texture_pressed = ExtResource("14_ec826")
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="DiceSelectionUi/VBoxContainer"]
+[node name="Button" type="Button" parent="DiceSelectionUi/Panel2/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 6
 text = "BUTTON_SPINN_WHEEL"
 script = ExtResource("7_vttep")
 
@@ -350,10 +365,10 @@ grow_vertical = 2
 [connection signal="pressed" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="TableUi/VBoxContainer/Cards/MarginContainer/Deck" method="_on_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player2/EndTurn" to="Player2" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player2/ShowCards" to="Player2" method="_on_show_cards_pressed"]
-[connection signal="toggled" from="DiceSelectionUi/VBoxContainer/HBoxContainer/1" to="DiceSelectionUi/VBoxContainer/Button" method="_on__toggled_1"]
-[connection signal="toggled" from="DiceSelectionUi/VBoxContainer/HBoxContainer/2" to="DiceSelectionUi/VBoxContainer/Button" method="_on__toggled_2"]
-[connection signal="toggled" from="DiceSelectionUi/VBoxContainer/HBoxContainer/3" to="DiceSelectionUi/VBoxContainer/Button" method="_on__toggled_3"]
-[connection signal="pressed" from="DiceSelectionUi/VBoxContainer/Button" to="DiceSelectionUi/VBoxContainer/Button" method="_on_self_pressed"]
+[connection signal="toggled" from="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer/1" to="DiceSelectionUi/Panel2/VBoxContainer/Button" method="_on__toggled_1"]
+[connection signal="toggled" from="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer/2" to="DiceSelectionUi/Panel2/VBoxContainer/Button" method="_on__toggled_2"]
+[connection signal="toggled" from="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer/3" to="DiceSelectionUi/Panel2/VBoxContainer/Button" method="_on__toggled_3"]
+[connection signal="pressed" from="DiceSelectionUi/Panel2/VBoxContainer/Button" to="DiceSelectionUi/Panel2/VBoxContainer/Button" method="_on_self_pressed"]
 [connection signal="pressed" from="RoundEndUi/VBoxContainer/NewRoundButton" to="RoundEndUi/VBoxContainer/NewRoundButton" method="_on_pressed"]
 [connection signal="pressed" from="GameEndUi/VBoxContainer/NewGameButton" to="GameEndUi/VBoxContainer/NewGameButton" method="_on_pressed"]
 [connection signal="card_drawn_from_deck" from="CanvasLayer/Table/Cards/DeckArea/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]

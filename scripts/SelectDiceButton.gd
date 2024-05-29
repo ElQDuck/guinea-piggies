@@ -1,8 +1,8 @@
 extends Button
 
-@onready var Table = $"../../../Table"
-@onready var Player1 = $"../../../Player1"
-@onready var Player2 = $"../../../Player2"
+@onready var Table = $"../../../../Table"
+@onready var Player1 = $"../../../../Player1"
+@onready var Player2 = $"../../../../Player2"
 @onready var Dice1 = $"../HBoxContainer/1"
 @onready var Dice2 = $"../HBoxContainer/2"
 @onready var Dice3 = $"../HBoxContainer/3"
