@@ -13,7 +13,7 @@ func _process(delta):
 	pass
 
 
-func _spin(value: int):
+func spin(value: int):
 	var final_degree: float = 0
 	match value:
 		1:

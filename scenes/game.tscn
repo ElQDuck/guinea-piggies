@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=25 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_0c6vw"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t3f4k"]
@@ -25,7 +25,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkh57"]
 bg_color = Color(1, 0.898039, 0.741176, 0.752941)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om3bn"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ufxd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mtn8"]
 bg_color = Color(1, 0.898039, 0.741176, 1)
 border_width_left = 16
 border_width_top = 16
@@ -145,14 +147,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Show Cards"
 
-[node name="DiceSelectionUi" type="CanvasLayer" parent="." node_paths=PackedStringArray("box_panel", "lofty_button_1", "lofty_button_2", "lofty_button_3", "start_wheel_button", "fortune_wheel")]
+[node name="DiceSelectionUi" type="CanvasLayer" parent="." node_paths=PackedStringArray("box_panel", "dice_select_panel", "lofty_button_1", "lofty_button_2", "lofty_button_3", "start_wheel_button", "fortune_wheel")]
 script = ExtResource("8_3oo5e")
-box_panel = NodePath("Panel2")
-lofty_button_1 = NodePath("Panel2/VBoxContainer/HBoxContainer/1")
-lofty_button_2 = NodePath("Panel2/VBoxContainer/HBoxContainer/2")
-lofty_button_3 = NodePath("Panel2/VBoxContainer/HBoxContainer/3")
-start_wheel_button = NodePath("Panel2/VBoxContainer/Button")
-fortune_wheel = NodePath("Panel2/FortuneWheel")
+box_panel = NodePath("BoxPanel")
+dice_select_panel = NodePath("BoxPanel/DiceSelectPanel")
+lofty_button_1 = NodePath("BoxPanel/DiceSelectPanel/VBoxContainer/HBoxContainer/1")
+lofty_button_2 = NodePath("BoxPanel/DiceSelectPanel/VBoxContainer/HBoxContainer/2")
+lofty_button_3 = NodePath("BoxPanel/DiceSelectPanel/VBoxContainer/HBoxContainer/3")
+start_wheel_button = NodePath("BoxPanel/DiceSelectPanel/VBoxContainer/Button")
+fortune_wheel = NodePath("BoxPanel/FortuneWheel")
 
 [node name="Panel" type="Panel" parent="DiceSelectionUi"]
 anchors_preset = 15
@@ -162,7 +165,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bkh57")
 
-[node name="Panel2" type="Panel" parent="DiceSelectionUi"]
+[node name="BoxPanel" type="Panel" parent="DiceSelectionUi"]
 anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.1
@@ -170,9 +173,18 @@ anchor_right = 0.9
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_om3bn")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5ufxd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DiceSelectionUi/Panel2"]
+[node name="DiceSelectPanel" type="Panel" parent="DiceSelectionUi/BoxPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7mtn8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DiceSelectionUi/BoxPanel/DiceSelectPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -180,7 +192,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="DiceSelectionUi/Panel2/VBoxContainer"]
+[node name="Label" type="Label" parent="DiceSelectionUi/BoxPanel/DiceSelectPanel/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_vertical = 3
@@ -190,11 +202,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DiceSelectionUi/Panel2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DiceSelectionUi/BoxPanel/DiceSelectPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="1" type="TextureButton" parent="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer"]
+[node name="1" type="TextureButton" parent="DiceSelectionUi/BoxPanel/DiceSelectPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -203,7 +215,7 @@ texture_normal = ExtResource("8_jqjl3")
 texture_pressed = ExtResource("10_ml0yv")
 stretch_mode = 5
 
-[node name="2" type="TextureButton" parent="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer"]
+[node name="2" type="TextureButton" parent="DiceSelectionUi/BoxPanel/DiceSelectPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -213,7 +225,7 @@ texture_normal = ExtResource("9_2rlq8")
 texture_pressed = ExtResource("12_3y6em")
 stretch_mode = 5
 
-[node name="3" type="TextureButton" parent="DiceSelectionUi/Panel2/VBoxContainer/HBoxContainer"]
+[node name="3" type="TextureButton" parent="DiceSelectionUi/BoxPanel/DiceSelectPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -222,13 +234,13 @@ texture_normal = ExtResource("10_v1rnv")
 texture_pressed = ExtResource("14_ec826")
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="DiceSelectionUi/Panel2/VBoxContainer"]
+[node name="Button" type="Button" parent="DiceSelectionUi/BoxPanel/DiceSelectPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "BUTTON_SPINN_WHEEL"
 
-[node name="FortuneWheel" parent="DiceSelectionUi/Panel2" instance=ExtResource("17_yrr48")]
+[node name="FortuneWheel" parent="DiceSelectionUi/BoxPanel" instance=ExtResource("17_yrr48")]
 visible = false
 layout_mode = 1
 
