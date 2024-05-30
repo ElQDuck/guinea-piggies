@@ -3,7 +3,7 @@ class_name Card
 extends Object
 
 ## The possible Types of guinea pigs
-enum PiggyType { Predator = 0, Einstein = 1, Phoebe = 2, Ciri = 3, Legolas = 4, Triss = 5, Emma = 6, Tauriel = 7, Arya = 8, Teddy = 9, Nackedei = 10 }
+enum PiggyType { Predator = 0, Einstein = 1, Phoebe = 2, Ciri = 3, Legolas = 4, Triss = 5, Emma = 6, Tauriel = 7, Arya = 8, Teddy = 9, Kruemel = 10 }
 
 ## The GuineaPig Type
 var Type: int:

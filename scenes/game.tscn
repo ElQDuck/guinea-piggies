@@ -148,6 +148,7 @@ size_flags_horizontal = 3
 text = "Show Cards"
 
 [node name="DiceSelectionUi" type="CanvasLayer" parent="." node_paths=PackedStringArray("box_panel", "dice_select_panel", "lofty_button_1", "lofty_button_2", "lofty_button_3", "start_wheel_button", "fortune_wheel")]
+visible = false
 script = ExtResource("8_3oo5e")
 box_panel = NodePath("BoxPanel")
 dice_select_panel = NodePath("BoxPanel/DiceSelectPanel")

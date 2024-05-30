@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4kdwmnsnnqff"
-path="res://.godot/imported/Nackedei3.png-2a125547dc8e1a13d65fa280a492694d.ctex"
+uid="uid://qei3cjx1fwra"
+path="res://.godot/imported/Kruemel1.png-96e4c08323debc2f15cb4fae73858fb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/Nackedei3.png"
-dest_files=["res://.godot/imported/Nackedei3.png-2a125547dc8e1a13d65fa280a492694d.ctex"]
+source_file="res://assets/cards/Kruemel1.png"
+dest_files=["res://.godot/imported/Kruemel1.png-96e4c08323debc2f15cb4fae73858fb7.ctex"]
 
 [params]
 

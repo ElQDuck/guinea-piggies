@@ -46,7 +46,7 @@ func CalculateScoreForCurrentRun():
 	var taurielMaxValue = 0
 	var aryaMaxValue = 0
 	var teddyMaxValue = 0
-	var nackedeiMaxValue = 0
+	var kruemelMaxValue = 0
 
 	for card: Card in CardsInHand:
 		match card.Type:
@@ -78,8 +78,8 @@ func CalculateScoreForCurrentRun():
 				if card.Value > teddyMaxValue:
 					teddyMaxValue = card.Value
 			10:
-				if card.Value > nackedeiMaxValue:
-					nackedeiMaxValue = card.Value
+				if card.Value > kruemelMaxValue:
+					kruemelMaxValue = card.Value
 					
-	TotalScore = TotalScore + einsteinMaxValue + phoebeMaxValue + ciriMaxValue + legolasMaxValue + trissMaxValue + emmaMaxValue + taurielMaxValue + aryaMaxValue + teddyMaxValue + nackedeiMaxValue
+	TotalScore = TotalScore + einsteinMaxValue + phoebeMaxValue + ciriMaxValue + legolasMaxValue + trissMaxValue + emmaMaxValue + taurielMaxValue + aryaMaxValue + teddyMaxValue + kruemelMaxValue
 	$"../TableUi/VBoxContainer/Player1/VBoxContainer/Score".text = "Score: " + str(TotalScore)

@@ -1,6 +1,6 @@
 extends TextureButton
 
-enum PiggyType { Predator = 0, Einstein = 1, Phoebe = 2, Ciri = 3, Legolas = 4, Triss = 5, Emma = 6, Tauriel = 7, Arya = 8, Teddy = 9, Nackedei = 10 }
+enum PiggyType { Predator = 0, Einstein = 1, Phoebe = 2, Ciri = 3, Legolas = 4, Triss = 5, Emma = 6, Tauriel = 7, Arya = 8, Teddy = 9, Kruemel = 10 }
 var AllCardsInGame = [
 	Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0), Card.new(Card.PiggyType.Predator, 0),
 	Card.new(Card.PiggyType.Einstein, 1), Card.new(Card.PiggyType.Einstein, 1), Card.new(Card.PiggyType.Einstein, 2), Card.new(Card.PiggyType.Einstein, 2), Card.new(Card.PiggyType.Einstein, 3), Card.new(Card.PiggyType.Einstein, 4),
@@ -12,7 +12,7 @@ var AllCardsInGame = [
 	Card.new(Card.PiggyType.Tauriel, 1), Card.new(Card.PiggyType.Tauriel, 1), Card.new(Card.PiggyType.Tauriel, 2), Card.new(Card.PiggyType.Tauriel, 2), Card.new(Card.PiggyType.Tauriel, 3), Card.new(Card.PiggyType.Tauriel, 4),
 	Card.new(Card.PiggyType.Arya, 1), Card.new(Card.PiggyType.Arya, 1), Card.new(Card.PiggyType.Arya, 2), Card.new(Card.PiggyType.Arya, 2), Card.new(Card.PiggyType.Arya, 3), Card.new(Card.PiggyType.Arya, 4),
 	Card.new(Card.PiggyType.Teddy, 1), Card.new(Card.PiggyType.Teddy, 1), Card.new(Card.PiggyType.Teddy, 2), Card.new(Card.PiggyType.Teddy, 2), Card.new(Card.PiggyType.Teddy, 3), Card.new(Card.PiggyType.Teddy, 4),
-	Card.new(Card.PiggyType.Nackedei, 1), Card.new(Card.PiggyType.Nackedei, 1), Card.new(Card.PiggyType.Nackedei, 2), Card.new(Card.PiggyType.Nackedei, 2), Card.new(Card.PiggyType.Nackedei, 3), Card.new(Card.PiggyType.Nackedei, 4)
+	Card.new(Card.PiggyType.Kruemel, 1), Card.new(Card.PiggyType.Kruemel, 1), Card.new(Card.PiggyType.Kruemel, 2), Card.new(Card.PiggyType.Kruemel, 2), Card.new(Card.PiggyType.Kruemel, 3), Card.new(Card.PiggyType.Kruemel, 4)
 ]
 var Cards = AllCardsInGame.duplicate(true)
 @onready var Player1 = $"../../../../../Player1"
