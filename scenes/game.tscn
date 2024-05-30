@@ -319,7 +319,6 @@ text = "Start new Game"
 script = ExtResource("10_m3kql")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Background" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15

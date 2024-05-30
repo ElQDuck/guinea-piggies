@@ -22,8 +22,8 @@ func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _process(delta):	# Adjust the pivot to make rotations around the center
+	self.pivot_offset = self.get_size() / 2
 
 
 func _update_ui():
