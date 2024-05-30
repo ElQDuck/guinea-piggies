@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=26 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_0c6vw"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t3f4k"]
@@ -39,10 +39,12 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6hth"]
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("player_1", "player_2")]
 script = ExtResource("1_t3f4k")
-player_1 = NodePath("CanvasLayer/Player1")
-player_2 = NodePath("CanvasLayer/Player2")
+player_1 = NodePath("CanvasLayer/VBoxContainer/Player1")
+player_2 = NodePath("CanvasLayer/VBoxContainer/Panel/Player2")
 
 [node name="Table" type="Node2D" parent="."]
 script = ExtResource("1_0c6vw")
@@ -328,22 +330,30 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_lvt0k")
 
-[node name="Player1" parent="CanvasLayer" instance=ExtResource("12_hmlvb")]
-
-[node name="Player2" parent="CanvasLayer" instance=ExtResource("12_hmlvb")]
-rotation = 3.14159
-
-[node name="Table" type="Control" parent="CanvasLayer"]
-custom_minimum_size = Vector2(0, 540)
-layout_mode = 3
-anchors_preset = 14
-anchor_top = 0.5
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Cards" type="HBoxContainer" parent="CanvasLayer/Table"]
+[node name="Panel" type="Panel" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c6hth")
+
+[node name="Player2" parent="CanvasLayer/VBoxContainer/Panel" instance=ExtResource("12_hmlvb")]
+layout_mode = 1
+rotation = 3.14159
+size_flags_vertical = 3
+
+[node name="Table" type="Control" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 540)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Cards" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Table"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -356,11 +366,11 @@ grow_vertical = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="DeckArea" type="Control" parent="CanvasLayer/Table/Cards"]
+[node name="DeckArea" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Table/Cards/DeckArea"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/Table/Cards/DeckArea"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -372,19 +382,19 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 0
 
-[node name="Deck" type="TextureButton" parent="CanvasLayer/Table/Cards/DeckArea/MarginContainer"]
+[node name="Deck" type="TextureButton" parent="CanvasLayer/VBoxContainer/Table/Cards/DeckArea/MarginContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_26hgj")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("6_sbxb1")
 
-[node name="DrawnCardsArea" type="Control" parent="CanvasLayer/Table/Cards"]
+[node name="DrawnCardsArea" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 
-[node name="DrawnCards" type="Control" parent="CanvasLayer/Table/Cards/DrawnCardsArea"]
+[node name="DrawnCards" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards/DrawnCardsArea"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -398,6 +408,10 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Player1" parent="CanvasLayer/VBoxContainer" instance=ExtResource("12_hmlvb")]
+layout_mode = 2
+size_flags_vertical = 3
+
 [connection signal="pressed" from="TableUi/VBoxContainer/Player1/EndTurn" to="Player1" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player1/ShowCards" to="Player1" method="_on_show_cards_pressed"]
 [connection signal="card_drawn_from_deck" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]
@@ -406,5 +420,5 @@ grow_vertical = 2
 [connection signal="pressed" from="TableUi/VBoxContainer/Player2/ShowCards" to="Player2" method="_on_show_cards_pressed"]
 [connection signal="pressed" from="RoundEndUi/VBoxContainer/NewRoundButton" to="RoundEndUi/VBoxContainer/NewRoundButton" method="_on_pressed"]
 [connection signal="pressed" from="GameEndUi/VBoxContainer/NewGameButton" to="GameEndUi/VBoxContainer/NewGameButton" method="_on_pressed"]
-[connection signal="card_drawn_from_deck" from="CanvasLayer/Table/Cards/DeckArea/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]
-[connection signal="pressed" from="CanvasLayer/Table/Cards/DeckArea/MarginContainer/Deck" to="CanvasLayer/Table/Cards/DeckArea/MarginContainer/Deck" method="_on_pressed"]
+[connection signal="card_drawn_from_deck" from="CanvasLayer/VBoxContainer/Table/Cards/DeckArea/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Table/Cards/DeckArea/MarginContainer/Deck" to="CanvasLayer/VBoxContainer/Table/Cards/DeckArea/MarginContainer/Deck" method="_on_pressed"]
