@@ -3,7 +3,7 @@ extends Control
 var player_name: String
 var profile_image_index: int
 var cards_in_hand: Array[Card]
-var player_is_active: bool
+var player_is_active: bool = true
 var score: int
 var colorColection: Dictionary = {
 	"primary": Color("ff6b6b"),
@@ -16,14 +16,24 @@ var colorColection: Dictionary = {
 @export var scoreValueLabel: Label
 @export var CardsCountValueLabel: Label
 @export var button_end_turn: Button
+@export var disable_layer_panel: Panel
+@export var disable_layer_avater: Panel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):	# Adjust the pivot to make rotations around the center
+func _process(delta):
+	# Adjust the pivot to make rotations around the center
 	self.pivot_offset = self.get_size() / 2
+	
+	if player_is_active:
+		disable_layer_panel.set_visible(false)
+		disable_layer_avater.set_visible(false)
+	else:
+		disable_layer_panel.set_visible(true)
+		disable_layer_avater.set_visible(true)
 
 
 func _update_ui():

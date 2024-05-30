@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkpglbq6yv1v0"]
+[gd_scene load_steps=9 format=3 uid="uid://bkpglbq6yv1v0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dom8a"]
 [ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="1_pdcv7"]
@@ -10,6 +10,14 @@ border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
 border_color = Color(1, 0.494118, 0.713726, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4x2e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_doi1h"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.631373)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 
@@ -30,10 +38,12 @@ bg_color = Color(1, 0.494118, 0.713726, 1)
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4x2e"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jml6w"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.631373)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
 
-[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn")]
+[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,6 +54,8 @@ script = ExtResource("1_dom8a")
 scoreValueLabel = NodePath("Panel/Panel/VBoxContainer/HBoxContainer/ScoreValueLabel")
 CardsCountValueLabel = NodePath("Panel/Panel/VBoxContainer/HBoxContainer2/CardsCountValueLabbel")
 button_end_turn = NodePath("Panel/Button")
+disable_layer_panel = NodePath("Panel/IsDisabledOverlay")
+disable_layer_avater = NodePath("Panel/TextureButton/IsDisabledOverlayAvatar")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -55,64 +67,6 @@ offset_top = -224.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oa5oh")
-
-[node name="TextureButton" type="TextureButton" parent="Panel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -256.0
-offset_right = 128.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="ProfileImage" type="TextureRect" parent="Panel/TextureButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_pdcv7")
-
-[node name="Panel" type="Panel" parent="Panel/TextureButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1vq45")
-
-[node name="Name" type="Panel" parent="Panel/TextureButton"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -64.0
-offset_right = 128.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_cbjsy")
-
-[node name="Label" type="Label" parent="Panel/TextureButton/Name"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "LongUser Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-text_overrun_behavior = 1
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 1
@@ -197,3 +151,81 @@ size_flags_horizontal = 0
 texture = ExtResource("1_pdcv7")
 expand_mode = 3
 stretch_mode = 4
+
+[node name="IsDisabledOverlay" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_doi1h")
+
+[node name="TextureButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -256.0
+offset_right = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ProfileImage" type="TextureRect" parent="Panel/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pdcv7")
+
+[node name="Panel" type="Panel" parent="Panel/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1vq45")
+
+[node name="Name" type="Panel" parent="Panel/TextureButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -64.0
+offset_right = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbjsy")
+
+[node name="Label" type="Label" parent="Panel/TextureButton/Name"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LongUser Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="IsDisabledOverlayAvatar" type="Panel" parent="Panel/TextureButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jml6w")
