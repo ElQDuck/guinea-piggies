@@ -3,7 +3,7 @@ extends Control
 var player_name: String
 var profile_image_index: int
 var cards_in_hand: Array[Card]
-var player_is_active: bool = true
+var player_is_active: bool = false
 var score: int
 var colorColection: Dictionary = {
 	"primary": Color("ff6b6b"),
