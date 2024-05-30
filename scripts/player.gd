@@ -11,7 +11,7 @@ var colorColection: Dictionary = {
 	"font_color": Color("ffffff"),
 	"complementary_primary": Color("2fadcc"),
 	"complementary_secondary": Color("d0ecff"),
-	"complementary_font_color": Color("000000")
+	"complementary_font_color": Color("ffffff")
 }
 @export var scoreValueLabel: Label
 @export var CardsCountValueLabel: Label
@@ -62,7 +62,23 @@ func _update_ui():
 	uiPanel.add_theme_stylebox_override("panel", uiPanelStyleBox)
 	
 	# Button Color
-	var buttonStyleBox: StyleBoxFlat = button_end_turn.get_theme_stylebox("normal").duplicate()
-	buttonStyleBox.set("bg_color", colorColection["complementary_secondary"])
-	buttonStyleBox.set("border_color", colorColection["complementary_primary"])
-	button_end_turn.add_theme_stylebox_override("normal", buttonStyleBox)
+	# Normal
+	button_end_turn.set("theme_override_colors/font_color", colorColection["complementary_font_color"])
+	button_end_turn.set("theme_override_colors/font_pressed_color", colorColection["complementary_font_color"])
+	button_end_turn.set("theme_override_colors/font_focus_color", colorColection["complementary_font_color"])
+	var buttonStyleBoxNormal: StyleBoxFlat = button_end_turn.get_theme_stylebox("normal").duplicate()
+	buttonStyleBoxNormal.set("bg_color", colorColection["complementary_secondary"])
+	buttonStyleBoxNormal.set("border_color", colorColection["complementary_primary"])
+	button_end_turn.add_theme_stylebox_override("normal", buttonStyleBoxNormal)
+	# Hover
+	button_end_turn.set("theme_override_colors/font_hover_color", colorColection["complementary_font_color"])
+	var buttonStyleBoxHover: StyleBoxFlat = button_end_turn.get_theme_stylebox("hover").duplicate()
+	buttonStyleBoxHover.set("bg_color", colorColection["complementary_secondary"])
+	buttonStyleBoxHover.set("border_color", colorColection["complementary_primary"])
+	button_end_turn.add_theme_stylebox_override("hover", buttonStyleBoxHover)
+	# Pressed
+	button_end_turn.set("theme_override_colors/font_pressed_color", colorColection["complementary_font_color"])
+	var buttonStyleBoxPressed: StyleBoxFlat = button_end_turn.get_theme_stylebox("pressed").duplicate()
+	buttonStyleBoxPressed.set("bg_color", colorColection["complementary_secondary"])
+	buttonStyleBoxPressed.set("border_color", colorColection["complementary_primary"])
+	button_end_turn.add_theme_stylebox_override("pressed", buttonStyleBoxPressed)
