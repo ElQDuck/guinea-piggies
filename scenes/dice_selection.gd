@@ -9,6 +9,8 @@ extends CanvasLayer
 @export var fortune_wheel: Control
 var selected_lofty: int = 0
 var oponent_cards_count: int = 1
+var wheel_result: int = -1
+signal fortune_wheel_spin_result(result: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +22,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# Make the buttons invisible if oponent has less cards than possibly can be taken
 	match oponent_cards_count:
 		1:
 			lofty_button_2.set_visible(false)
@@ -30,7 +33,7 @@ func _process(delta):
 		_:
 			lofty_button_2.set_visible(true)
 			lofty_button_3.set_visible(true)
-	
+
 	if !lofty_button_1.is_pressed() and !lofty_button_2.is_pressed() and !lofty_button_3.is_pressed():
 		start_wheel_button.set_disabled(true)
 	else:
@@ -61,6 +64,40 @@ func _handle_start_wheel_button_pressed():
 	fortune_wheel.spin(random_num)
 	await get_tree().create_timer(5.5).timeout
 	
+	# Figure out how many cards the player will get from oponent depending on his selection and roll result
+	match random_num:
+		1:
+			# -1 - One card of the player will be discarded
+			print("Rolled Dice: -1")
+			wheel_result = -1
+		2, 4:
+			# 1 - The oponent loses one card to the active player if picked dice == 1
+			print("Rolled Dice: 1")
+			wheel_result = 1
+		3, 5:
+			# 3 - The oponent loses:
+			#	- 1 card to the active player if picked 1
+			#	- 2 cards to the active player if picked 2
+			#	- 3 cards to the active player if picked 3
+			print("Rolled Dice: 3")
+			match selected_lofty:
+				1:
+					wheel_result = 1
+				2:
+					wheel_result = 2
+				3:
+					wheel_result = 3
+		6:
+			# 2 - The oponent loses:
+			#	- 1 card to the active player if picked 1
+			#	- 2 cards to the active player if picked 2
+			print("Rolled Dice: 2")
+			match selected_lofty:
+				1:
+					wheel_result = 1
+				2:
+					wheel_result = 2
+	
 	# Scaling down
 	var scale_down_tween = create_tween()
 	scale_down_tween.tween_property(fortune_wheel, "scale", Vector2(0, 0), 0.7).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
@@ -71,5 +108,5 @@ func _handle_start_wheel_button_pressed():
 	fortune_wheel.set_visible(false)
 	self.set_visible(false)
 	
-	# Trigger a signal with the wheel result
-	# TODO
+	# Emit a signal with the wheel result
+	fortune_wheel_spin_result.emit(wheel_result)
