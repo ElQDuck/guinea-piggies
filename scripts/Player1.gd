@@ -14,10 +14,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Table.CardsOnTable.size() == 0 or Active == false:
-		$"../TableUi/VBoxContainer/Player1/EndTurn".disabled = true
-	if Table.CardsOnTable.size() > 0 and Active == true:
-		$"../TableUi/VBoxContainer/Player1/EndTurn".disabled = false
+	pass
+	#if Table.CardsOnTable.size() == 0 or Active == false:
+		#$"../TableUi/VBoxContainer/Player1/EndTurn".disabled = true
+	#if Table.CardsOnTable.size() > 0 and Active == true:
+		#$"../TableUi/VBoxContainer/Player1/EndTurn".disabled = false
 
 
 func _on_end_turn_pressed():

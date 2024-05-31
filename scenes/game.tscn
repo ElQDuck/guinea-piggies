@@ -47,7 +47,6 @@ player_1 = NodePath("CanvasLayer/VBoxContainer/Player1")
 player_2 = NodePath("CanvasLayer/VBoxContainer/Panel/Player2")
 
 [node name="Table" type="Node2D" parent="."]
-script = ExtResource("1_0c6vw")
 
 [node name="Player1" type="Node2D" parent="."]
 script = ExtResource("2_dbbpl")
@@ -348,11 +347,14 @@ layout_mode = 1
 rotation = 3.14159
 size_flags_vertical = 3
 
-[node name="Table" type="Control" parent="CanvasLayer/VBoxContainer"]
+[node name="Table" type="Control" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("deck", "drawn_cards_area")]
 custom_minimum_size = Vector2(0, 540)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
+script = ExtResource("1_0c6vw")
+deck = NodePath("Cards/DeckArea/MarginContainer/Deck")
+drawn_cards_area = NodePath("Cards/DrawnCardsArea/DrawnCards")
 
 [node name="Cards" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Table"]
 layout_mode = 1
@@ -421,5 +423,3 @@ size_flags_vertical = 3
 [connection signal="pressed" from="TableUi/VBoxContainer/Player2/ShowCards" to="Player2" method="_on_show_cards_pressed"]
 [connection signal="pressed" from="RoundEndUi/VBoxContainer/NewRoundButton" to="RoundEndUi/VBoxContainer/NewRoundButton" method="_on_pressed"]
 [connection signal="pressed" from="GameEndUi/VBoxContainer/NewGameButton" to="GameEndUi/VBoxContainer/NewGameButton" method="_on_pressed"]
-[connection signal="card_drawn_from_deck" from="CanvasLayer/VBoxContainer/Table/Cards/DeckArea/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Table/Cards/DeckArea/MarginContainer/Deck" to="CanvasLayer/VBoxContainer/Table/Cards/DeckArea/MarginContainer/Deck" method="_on_pressed"]
