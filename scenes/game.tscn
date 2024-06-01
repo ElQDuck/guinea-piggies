@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=27 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_0c6vw"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t3f4k"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="4_qaxsu"]
 [ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="5_26hgj"]
 [ext_resource type="Script" path="res://scripts/Deck.gd" id="6_sbxb1"]
-[ext_resource type="Script" path="res://scenes/dice_selection.gd" id="8_3oo5e"]
+[ext_resource type="Script" path="res://scripts/dice_selection.gd" id="8_3oo5e"]
 [ext_resource type="ButtonGroup" uid="uid://37lcotm7gde" path="res://button_groups/lofty_selection_btn_group.tres" id="8_200mg"]
 [ext_resource type="Texture2D" uid="uid://bbq3eyk2q4hq6" path="res://assets/rest/lofty_1.svg" id="8_jqjl3"]
 [ext_resource type="Script" path="res://scripts/NewRoundButton.gd" id="8_vxqrd"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bkpglbq6yv1v0" path="res://scenes/player.tscn" id="12_hmlvb"]
 [ext_resource type="Texture2D" uid="uid://cgnkb35bnn5ha" path="res://assets/rest/lofty_3_pressed.svg" id="14_ec826"]
 [ext_resource type="PackedScene" uid="uid://dfwqqpqavplgh" path="res://scenes/fortune_wheel.tscn" id="17_yrr48"]
+[ext_resource type="PackedScene" uid="uid://dadljf7sfmpob" path="res://scenes/played_card.tscn" id="22_jfthc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkh57"]
 bg_color = Color(1, 0.898039, 0.741176, 0.752941)
@@ -355,6 +356,7 @@ size_flags_stretch_ratio = 2.0
 script = ExtResource("1_0c6vw")
 deck = NodePath("Cards/DeckArea/MarginContainer/Deck")
 drawn_cards_area = NodePath("Cards/DrawnCardsArea/DrawnCards")
+played_card_scene = ExtResource("22_jfthc")
 
 [node name="Cards" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Table"]
 layout_mode = 1
