@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://dadljf7sfmpob"]
+
+[ext_resource type="Shader" path="res://assets/shader/fake_3D.gdshader" id="1_38rxx"]
+[ext_resource type="Script" path="res://scripts/played_card.gd" id="1_184s7"]
+[ext_resource type="Texture2D" uid="uid://c4eamx8vw2oep" path="res://assets/cards/Arya1.png" id="3_5nqvb"]
+[ext_resource type="Texture2D" uid="uid://bmjvwcsnsokg8" path="res://assets/cards/Ciri1.png" id="4_wpr27"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_am5o8"]
+resource_local_to_scene = true
+shader = ExtResource("1_38rxx")
+shader_parameter/rect_size = null
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = false
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="Card" type="Panel" node_paths=PackedStringArray("card_view_port")]
+script = ExtResource("1_184s7")
+card_view_port = NodePath("SubViewportContainer")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_am5o8")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(480, 768)
+render_target_update_mode = 4
+
+[node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport"]
+custom_minimum_size = Vector2(480, 768)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Front" type="TextureRect" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_5nqvb")
+
+[node name="Back" type="TextureRect" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_wpr27")
