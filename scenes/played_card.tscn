@@ -18,6 +18,8 @@ shader_parameter/inset = 0.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5e83g"]
 
 [node name="Card" type="Panel" node_paths=PackedStringArray("card_view_port", "displayed_card_image")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_184s7")
 card_view_port = NodePath("SubViewportContainer")
 back_texture = ExtResource("2_fq480")
@@ -27,8 +29,10 @@ displayed_card_image = NodePath("SubViewportContainer/SubViewport/Panel/CardImag
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_am5o8")
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -240.0
+offset_top = -384.0
+offset_right = 240.0
+offset_bottom = 384.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
