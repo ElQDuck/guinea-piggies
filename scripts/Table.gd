@@ -19,3 +19,4 @@ func _place_card_on_table(card: Card):
 	print(card.Type)
 	var played_card: Panel = played_card_scene.instantiate()
 	drawn_cards_area.add_child(played_card)
+	played_card.flip_card(3)

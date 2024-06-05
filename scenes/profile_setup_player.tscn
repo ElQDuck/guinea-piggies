@@ -137,17 +137,6 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 3.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7befl")
 
-[node name="SelectedAvatar" type="TextureRect" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-texture = ExtResource("2_gy73u")
-stretch_mode = 5
-
 [node name="AvatarBorder" type="Panel" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
@@ -156,6 +145,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a317j")
+
+[node name="SelectedAvatar" type="TextureRect" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+size_flags_vertical = 3
+texture = ExtResource("2_gy73u")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="RightButton" type="Button" parent="Panel/HBoxContainer/Profile/VBoxContainer/HBoxContainer"]
 layout_mode = 2

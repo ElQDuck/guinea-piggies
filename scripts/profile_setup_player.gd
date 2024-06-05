@@ -86,14 +86,14 @@ func _change_panel_bg_color(color: Color):
 
 func _on_avatar_button_left_pressed():
 	if selected_image_index == 0:
-		selected_image_index = 8
+		selected_image_index = 6
 	else:
 		selected_image_index -= 1
 	avatar_image.texture = load("res://assets/avatar_images/profile" + str(selected_image_index) + ".png")
 
 
 func _on_avatar_button_right_pressed():
-	if selected_image_index == 8:
+	if selected_image_index == 6:
 		selected_image_index = 0
 	else:
 		selected_image_index += 1

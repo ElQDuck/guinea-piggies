@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dadljf7sfmpob"]
+[gd_scene load_steps=7 format=3 uid="uid://dadljf7sfmpob"]
 
 [ext_resource type="Shader" path="res://assets/shader/fake_3D.gdshader" id="1_38rxx"]
 [ext_resource type="Script" path="res://scripts/played_card.gd" id="1_184s7"]
+[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="2_fq480"]
 [ext_resource type="Texture2D" uid="uid://c4eamx8vw2oep" path="res://assets/cards/Arya1.png" id="3_5nqvb"]
-[ext_resource type="Texture2D" uid="uid://bmjvwcsnsokg8" path="res://assets/cards/Ciri1.png" id="4_wpr27"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_am5o8"]
 resource_local_to_scene = true
@@ -15,9 +15,14 @@ shader_parameter/y_rot = 0.0
 shader_parameter/x_rot = 0.0
 shader_parameter/inset = 0.0
 
-[node name="Card" type="Panel" node_paths=PackedStringArray("card_view_port")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5e83g"]
+
+[node name="Card" type="Panel" node_paths=PackedStringArray("card_view_port", "displayed_card_image")]
 script = ExtResource("1_184s7")
 card_view_port = NodePath("SubViewportContainer")
+back_texture = ExtResource("2_fq480")
+front_texture = ExtResource("3_5nqvb")
+displayed_card_image = NodePath("SubViewportContainer/SubViewport/Panel/CardImage")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_am5o8")
@@ -34,8 +39,9 @@ render_target_update_mode = 4
 custom_minimum_size = Vector2(480, 768)
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5e83g")
 
-[node name="Front" type="TextureRect" parent="SubViewportContainer/SubViewport/Panel"]
+[node name="CardImage" type="TextureRect" parent="SubViewportContainer/SubViewport/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,12 +49,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_5nqvb")
-
-[node name="Back" type="TextureRect" parent="SubViewportContainer/SubViewport/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_wpr27")
