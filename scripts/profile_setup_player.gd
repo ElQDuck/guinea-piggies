@@ -60,7 +60,7 @@ func _on_color_button_left_pressed():
 	else:
 		selected_color_index -= 1
 	_change_panel_bg_color(color_combinations[selected_color_index]["primary"])
-	_change_avatar_border_color(color_combinations[selected_color_index]["primary"])
+	_change_avatar_panel_colors(color_combinations[selected_color_index]["secondary"], color_combinations[selected_color_index]["primary"])
 
 
 func _on_color_button_right_pressed():
@@ -69,12 +69,13 @@ func _on_color_button_right_pressed():
 	else:
 		selected_color_index += 1
 	_change_panel_bg_color(color_combinations[selected_color_index]["primary"])
-	_change_avatar_border_color(color_combinations[selected_color_index]["primary"])
+	_change_avatar_panel_colors(color_combinations[selected_color_index]["secondary"], color_combinations[selected_color_index]["primary"])
 
 
-func _change_avatar_border_color(color: Color):
+func _change_avatar_panel_colors(background_color: Color, border_color: Color):
 	var avatarBorderStyleBox: StyleBoxFlat = avatar_border.get_theme_stylebox("panel").duplicate()
-	avatarBorderStyleBox.set("border_color", color)
+	avatarBorderStyleBox.set("bg_color", background_color)
+	avatarBorderStyleBox.set("border_color", border_color)
 	avatar_border.add_theme_stylebox_override("panel", avatarBorderStyleBox)
 
 
