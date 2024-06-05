@@ -51,6 +51,7 @@ func _update_ui():
 	
 	# ProfileColors
 	var profileBorderStyleBox: StyleBoxFlat = uiProfileImageBorder.get_theme_stylebox("panel").duplicate()
+	profileBorderStyleBox.set("bg_color", colorColection["secondary"])
 	profileBorderStyleBox.set("border_color", colorColection["primary"])
 	uiProfileImageBorder.add_theme_stylebox_override("panel", profileBorderStyleBox)
 	var profileLabelBackgroundStyleBox: StyleBoxFlat = uiNameLabelBackground.get_theme_stylebox("panel").duplicate()
