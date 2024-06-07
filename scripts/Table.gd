@@ -17,6 +17,23 @@ func _process(delta):
 func _place_card_on_table(card: Card):
 	print("_place_card_on_table called with card")
 	print(card.Type)
+	
+	var deck_position: Vector2 = get_object_global_center_position(deck)
+	var cards_area_center_position: Vector2 = drawn_cards_area.get_global_position()
 	var played_card: Panel = played_card_scene.instantiate()
 	drawn_cards_area.add_child(played_card)
+	move_card(played_card, deck_position, cards_area_center_position)
 	played_card.flip_card(3)
+
+
+func move_card(card_in_scene: Panel, from: Vector2, to: Vector2):
+	card_in_scene._set_global_position(from)
+	await get_tree().create_timer(3).timeout
+	card_in_scene._set_global_position(to)
+
+
+func get_object_global_center_position(object) -> Vector2:
+	var object_global_position: Vector2 = object.get_global_position()
+	var object_size: Vector2 = object.get_size()
+	var object_center_global_position: Vector2 = object_global_position + object_size / 2
+	return object_center_global_position

@@ -24,6 +24,10 @@ func flip_card(flip_duration: float):
 	await card_rotation_tween_180.tween_property(card_view_port.material, "shader_parameter/y_rot", 180.0, half_flip_dur).from(90.0).finished
 
 
+func flip_instant():
+	displayed_card_image.set_texture(front_texture)
+
+
 func destroy_card():
 	# TODO: Add explosion effect
 	card_view_port.set_visible(false)

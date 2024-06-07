@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://assets/shader/fake_3D.gdshader" id="1_38rxx"]
 [ext_resource type="Script" path="res://scripts/played_card.gd" id="1_184s7"]
-[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="2_fq480"]
+[ext_resource type="Texture2D" uid="uid://bmjvwcsnsokg8" path="res://assets/cards/Ciri1.png" id="2_aawuw"]
 [ext_resource type="Texture2D" uid="uid://c4eamx8vw2oep" path="res://assets/cards/Arya1.png" id="3_5nqvb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_am5o8"]
@@ -22,7 +22,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_184s7")
 card_view_port = NodePath("SubViewportContainer")
-back_texture = ExtResource("2_fq480")
+back_texture = ExtResource("2_aawuw")
 front_texture = ExtResource("3_5nqvb")
 displayed_card_image = NodePath("SubViewportContainer/SubViewport/Panel/CardImage")
 
