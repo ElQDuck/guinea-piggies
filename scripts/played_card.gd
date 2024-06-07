@@ -18,10 +18,10 @@ func _process(delta):
 func flip_card(flip_duration: float):
 	var half_flip_dur = flip_duration / 2
 	var card_rotation_tween_90 = create_tween()
-	await card_rotation_tween_90.tween_property(card_view_port.material, "shader_parameter/y_rot", 90.0, half_flip_dur).finished
+	await card_rotation_tween_90.tween_property(card_view_port.material, "shader_parameter/y_rot", -90.0, half_flip_dur).finished
 	displayed_card_image.set_texture(front_texture)
 	var card_rotation_tween_180 = create_tween()
-	await card_rotation_tween_180.tween_property(card_view_port.material, "shader_parameter/y_rot", 180.0, half_flip_dur).from(90.0).finished
+	await card_rotation_tween_180.tween_property(card_view_port.material, "shader_parameter/y_rot", -180.0, half_flip_dur).from_current().finished
 
 
 func flip_instant():

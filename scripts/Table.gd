@@ -27,9 +27,8 @@ func _place_card_on_table(card: Card):
 
 
 func move_card(card_in_scene: Panel, from: Vector2, to: Vector2):
-	card_in_scene._set_global_position(from)
-	await get_tree().create_timer(3).timeout
-	card_in_scene._set_global_position(to)
+	var tween = create_tween()
+	tween.tween_property(card_in_scene, "global_position", to, 3).from(from)
 
 
 func get_object_global_center_position(object) -> Vector2:
