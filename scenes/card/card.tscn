@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dadljf7sfmpob"]
+
+[ext_resource type="Shader" path="res://assets/shader/fake_3D.gdshader" id="1_38rxx"]
+[ext_resource type="Script" path="res://scenes/card/scripts/card_scene.gd" id="1_npqod"]
+[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://scenes/card/visuals/card_preset.png" id="2_5bkqo"]
+[ext_resource type="Texture2D" uid="uid://c4eamx8vw2oep" path="res://scenes/card/visuals/Arya1.png" id="3_5nqvb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_am5o8"]
+resource_local_to_scene = true
+shader = ExtResource("1_38rxx")
+shader_parameter/rect_size = null
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = false
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5e83g"]
+
+[node name="Card" type="Panel" node_paths=PackedStringArray("card_view_port", "displayed_card_image")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_npqod")
+card_view_port = NodePath("SubViewportContainer")
+back_texture = ExtResource("2_5bkqo")
+front_texture = ExtResource("2_5bkqo")
+displayed_card_image = NodePath("SubViewportContainer/SubViewport/Panel/CardImage")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_am5o8")
+layout_mode = 0
+offset_left = -240.0
+offset_top = -384.0
+offset_right = 240.0
+offset_bottom = 384.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(480, 768)
+render_target_update_mode = 4
+
+[node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport"]
+custom_minimum_size = Vector2(480, 768)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5e83g")
+
+[node name="CardImage" type="TextureRect" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_5nqvb")

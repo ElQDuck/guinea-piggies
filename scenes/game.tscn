@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/Player1.gd" id="2_dbbpl"]
 [ext_resource type="Script" path="res://scripts/Player2.gd" id="3_qm4nx"]
 [ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="4_qaxsu"]
-[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://assets/cards/card_preset.png" id="5_26hgj"]
+[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://scenes/card/visuals/card_preset.png" id="5_26hgj"]
 [ext_resource type="Script" path="res://scripts/Deck.gd" id="6_sbxb1"]
 [ext_resource type="Script" path="res://scripts/dice_selection.gd" id="8_3oo5e"]
 [ext_resource type="ButtonGroup" uid="uid://37lcotm7gde" path="res://button_groups/lofty_selection_btn_group.tres" id="8_200mg"]
@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bkpglbq6yv1v0" path="res://scenes/player.tscn" id="12_hmlvb"]
 [ext_resource type="Texture2D" uid="uid://cgnkb35bnn5ha" path="res://assets/rest/lofty_3_pressed.svg" id="14_ec826"]
 [ext_resource type="PackedScene" uid="uid://dfwqqpqavplgh" path="res://scenes/fortune_wheel.tscn" id="17_yrr48"]
-[ext_resource type="PackedScene" uid="uid://dadljf7sfmpob" path="res://scenes/played_card.tscn" id="22_jfthc"]
+[ext_resource type="PackedScene" uid="uid://dadljf7sfmpob" path="res://scenes/card/card.tscn" id="22_jfthc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkh57"]
 bg_color = Color(1, 0.898039, 0.741176, 0.752941)
