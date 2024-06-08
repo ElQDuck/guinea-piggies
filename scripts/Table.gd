@@ -20,7 +20,8 @@ func _place_card_on_table(card: Card):
 	
 	var deck_position: Vector2 = get_object_global_center_position(deck)
 	var cards_area_center_position: Vector2 = drawn_cards_area.get_global_position()
-	var played_card: Panel = played_card_scene.instantiate()
+	var newCard: Card = Card.new(Card.PiggyType.Einstein, 1)
+	var played_card: Panel = newCard.get_scene()
 	drawn_cards_area.add_child(played_card)
 	move_card(played_card, deck_position, cards_area_center_position)
 	played_card.flip_card(3)

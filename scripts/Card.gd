@@ -20,6 +20,16 @@ var Value: int:
 	set(newValue):
 		Value = clampi(newValue, 0, 4)
 
+var played_card_scene: PackedScene = load("res://scenes/played_card.tscn")
+
 func _init(type: int, value: int):
 	Type = clampi(type, 0, 10)
 	Value = clampi(value, 0, 4)
+
+
+func get_scene() -> Panel:
+	var played_card: Panel = played_card_scene.instantiate()
+	var texturePathPreset := "res://assets/cards/%s%s.png"
+	var texturePath = texturePathPreset % [PiggyType.keys()[Type], Value]
+	played_card.front_texture = load(texturePath)
+	return played_card
