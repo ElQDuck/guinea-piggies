@@ -36,6 +36,7 @@ func _check_double_cards():
 		for i in range(cards_on_table.size() - 1):
 			if cards_on_table[i].type == last_card.type:
 				print("Double card found: " + Card.PiggyType.keys()[last_card.type] + " at " + str(i))
+				# TODO: Add event what happens after the double card was found -> drop between and add rest to player
 				break
 
 #func CheckPredator(newCard: Card):
