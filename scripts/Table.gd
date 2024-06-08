@@ -16,12 +16,12 @@ func _process(delta):
 
 func _place_card_on_table(card: Card):
 	print("_place_card_on_table called with card")
-	print(card.Type)
+	print(card.type)
 	
 	var deck_position: Vector2 = get_object_global_center_position(deck)
 	var cards_area_center_position: Vector2 = drawn_cards_area.get_global_position()
-	var newCard: Card = Card.new(Card.PiggyType.Einstein, 1)
-	var played_card: Panel = newCard.get_scene()
+	var new_card: Card = Card.new(card.type, card.value)
+	var played_card: Panel = new_card.get_scene()
 	drawn_cards_area.add_child(played_card)
 	move_card(played_card, deck_position, cards_area_center_position)
 	played_card.flip_card(3)
