@@ -3,6 +3,7 @@ extends Control
 @export var deck: TextureButton
 @export var drawn_cards_area: Control
 @export var played_card_scene: PackedScene
+var cards_on_table: Array[Card] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,14 +16,14 @@ func _process(delta):
 
 
 func _place_card_on_table(card: Card):
-	print("_place_card_on_table called with card")
-	print(card.type)
-	
+	var new_card: Card = Card.new(card.type, card.value)
+	cards_on_table.append(new_card)
+	var played_card: Panel = new_card.get_scene()
+	## Add card to scene
+	drawn_cards_area.add_child(played_card)
+	# Animate card drawing
 	var deck_position: Vector2 = get_object_global_center_position(deck)
 	var cards_area_center_position: Vector2 = drawn_cards_area.get_global_position()
-	var new_card: Card = Card.new(card.type, card.value)
-	var played_card: Panel = new_card.get_scene()
-	drawn_cards_area.add_child(played_card)
 	move_card(played_card, deck_position, cards_area_center_position)
 	played_card.flip_card(3)
 
