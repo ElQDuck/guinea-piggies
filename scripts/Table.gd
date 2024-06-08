@@ -16,17 +16,24 @@ func _process(delta):
 
 
 func _place_card_on_table(card: Card):
+	# During the placement effect the deck button is deactivated.
+	# This way the animation wont brake if double clicked.
+	deck.set_disabled(true)
+	## Add card to table
 	var new_card: Card = Card.new(card.type, card.value)
 	cards_on_table.append(new_card)
 	var played_card: Panel = new_card.get_scene()
-	## Add card to scene
+	# Add card to scene
 	drawn_cards_area.add_child(played_card)
 	# Animate card drawing
 	var deck_position: Vector2 = get_object_global_center_position(deck)
 	var cards_area_center_position: Vector2 = drawn_cards_area.get_global_position()
-	move_card(played_card, deck_position, cards_area_center_position)
-	played_card.flip_card(3)
+	var animation_speed = 3
+	move_card(played_card, deck_position, cards_area_center_position, animation_speed)
+	await played_card.flip_card(animation_speed)
 	_check_double_cards()
+	# After everything is done, a new card can be drawn. The deck button gets activated again.
+	deck.set_disabled(false)
 
 
 func _check_double_cards():
@@ -57,9 +64,9 @@ func _check_double_cards():
 			#SwitchPlaerTurn()
 
 
-func move_card(card_in_scene: Panel, from: Vector2, to: Vector2):
+func move_card(card_in_scene: Panel, from: Vector2, to: Vector2, speed: float):
 	var tween = create_tween()
-	tween.tween_property(card_in_scene, "global_position", to, 3).from(from)
+	tween.tween_property(card_in_scene, "global_position", to, speed).from(from)
 
 
 func get_object_global_center_position(object) -> Vector2:
