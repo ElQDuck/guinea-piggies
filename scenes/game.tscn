@@ -348,14 +348,15 @@ layout_mode = 1
 rotation = 3.14159
 size_flags_vertical = 3
 
-[node name="Table" type="Control" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("deck", "drawn_cards_area")]
+[node name="Table" type="Control" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("deck", "drawn_cards_area", "card_placement_area")]
 custom_minimum_size = Vector2(0, 540)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 script = ExtResource("1_0c6vw")
 deck = NodePath("Cards/DeckArea/MarginContainer/Deck")
-drawn_cards_area = NodePath("Cards/DrawnCardsArea/DrawnCards")
+drawn_cards_area = NodePath("Cards/CardPlacementArea/DrawnCardsArea")
+card_placement_area = NodePath("Cards/CardPlacementArea")
 played_card_scene = ExtResource("22_jfthc")
 
 [node name="Cards" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Table"]
@@ -394,12 +395,12 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("6_sbxb1")
 
-[node name="DrawnCardsArea" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards"]
+[node name="CardPlacementArea" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 
-[node name="DrawnCards" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards/DrawnCardsArea"]
+[node name="DrawnCardsArea" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards/CardPlacementArea"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

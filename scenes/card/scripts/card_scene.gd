@@ -31,3 +31,7 @@ func flip_instant():
 func destroy_card():
 	# TODO: Add explosion effect
 	card_view_port.set_visible(false)
+
+
+func get_card_size() -> Vector2:
+	return card_view_port.get_size() / 2
