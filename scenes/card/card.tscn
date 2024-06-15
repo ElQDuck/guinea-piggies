@@ -29,18 +29,18 @@ displayed_card_image = NodePath("SubViewportContainer/SubViewport/Panel/CardImag
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_am5o8")
 layout_mode = 0
-offset_left = -240.0
-offset_top = -384.0
-offset_right = 240.0
-offset_bottom = 384.0
+offset_left = -300.0
+offset_top = -480.0
+offset_right = 300.0
+offset_bottom = 480.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(480, 768)
+size = Vector2i(600, 960)
 render_target_update_mode = 4
 
 [node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport"]
-custom_minimum_size = Vector2(480, 768)
+custom_minimum_size = Vector2(600, 960)
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5e83g")
