@@ -29,7 +29,7 @@ func _place_card_on_table(card: Card):
 	# Animate card drawing
 	var deck_position: Vector2 = get_object_global_center_position(deck)
 	var cards_area_center_position: Vector2 = drawn_cards_area.get_global_position()
-	var animation_speed = 3
+	var animation_speed = 0.5
 	# Calculating the final position of all cards
 	# 1. We get the field size to check on how many cards can be places
 	var cards_area_size: Vector2 = card_placement_area.get_size()
@@ -38,30 +38,30 @@ func _place_card_on_table(card: Card):
 	var card_size: Vector2 = played_card.get_card_size()
 	print("Card size: " + str(card_size.x))
 	# 3. Now we check how many cards can be placed in the are + we add a smal margin
-	var position_offset: float= 20
+	var position_offset: float = 20
+	var offset_to_deck: float = 20
 	var cards_count_fitting_in_area = floori(cards_area_size.x / (card_size.x + position_offset))
 	var area_start_position: float = cards_area_center_position.x - (cards_area_size.x / 2)
 	print("Area start position: " + str(area_start_position))
 	# 4. Now we know if we can just move the cards or have to overlap
 	if cards_on_table.size() <= cards_count_fitting_in_area:
 		# Cards fit in area
-		for n in range(cards_on_table.size()):
-			var card_final_position = Vector2(area_start_position + (card_size.x / 2) + position_offset + ((card_size.x + position_offset) * n), cards_area_center_position.y)
-			print("Card Nr. " + str(n) + " final position: " + str(card_final_position))
-			var current_card = drawn_cards_area.get_child(n)
-			# last card gets also the draw from deck animation
-			if n + 1 == cards_on_table.size():
-				move_card_from_to(current_card, deck_position, card_final_position, animation_speed)
-				await current_card.flip_card(animation_speed)
-			else:
-				# moving already placed cards to the needed position
-				move_card_to(current_card, card_final_position, animation_speed)
-			
+		position_offset = 20
 	else:
 		# Cards dont fit in are
-		print("cards_count_fitting_in_area: " + str(cards_count_fitting_in_area))
-		print("cards_on_table.size(): " + str(cards_on_table.size()))
+		position_offset = -((card_size.x * cards_on_table.size()) - cards_area_size.x) / cards_on_table.size()
 	
+	for n in range(cards_on_table.size()):
+		var card_final_position = Vector2(area_start_position + (card_size.x / 2) + position_offset + ((card_size.x + position_offset) * n), cards_area_center_position.y)
+		print("Card Nr. " + str(n) + " final position: " + str(card_final_position))
+		var current_card = drawn_cards_area.get_child(n)
+		# last card gets also the draw from deck animation
+		if n + 1 == cards_on_table.size():
+			move_card_from_to(current_card, deck_position, card_final_position, animation_speed)
+			await current_card.flip_card(animation_speed)
+		else:
+			# moving already placed cards to the needed position
+			move_card_to(current_card, card_final_position, animation_speed)
 	# move_card(played_card, deck_position, cards_area_center_position, animation_speed)
 	# await played_card.flip_card(animation_speed)
 	_check_double_cards()
