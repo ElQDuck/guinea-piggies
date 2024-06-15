@@ -39,7 +39,7 @@ func _place_card_on_table(card: Card):
 	print("Card size: " + str(card_size.x))
 	# 3. Now we check how many cards can be placed in the are + we add a smal margin
 	var position_offset: float = 20
-	var offset_to_deck: float = 20
+	var offset_to_deck: float = position_offset
 	var cards_count_fitting_in_area = floori(cards_area_size.x / (card_size.x + position_offset))
 	var area_start_position: float = cards_area_center_position.x - (cards_area_size.x / 2)
 	print("Area start position: " + str(area_start_position))
