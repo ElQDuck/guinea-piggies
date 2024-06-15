@@ -49,10 +49,16 @@ func _place_card_on_table(card: Card):
 		position_offset = 20
 	else:
 		# Cards dont fit in are
-		position_offset = -((card_size.x * cards_on_table.size()) - cards_area_size.x) / cards_on_table.size()
+		position_offset = -(((card_size.x * cards_on_table.size()) - cards_area_size.x + card_size.x) / cards_on_table.size())
 	
 	for n in range(cards_on_table.size()):
-		var card_final_position = Vector2(area_start_position + (card_size.x / 2) + position_offset + ((card_size.x + position_offset) * n), cards_area_center_position.y)
+		# First card gets position with offset to Deck
+		var card_final_position = 0
+		if n == 0:
+			card_final_position = Vector2(area_start_position + (card_size.x / 2) + offset_to_deck, cards_area_center_position.y)
+		# The next cards get the position depending on first card
+		else:
+			card_final_position = Vector2(drawn_cards_area.get_child(0).global_position.x + ((card_size.x + position_offset) * n), cards_area_center_position.y)
 		print("Card Nr. " + str(n) + " final position: " + str(card_final_position))
 		var current_card = drawn_cards_area.get_child(n)
 		# last card gets also the draw from deck animation
