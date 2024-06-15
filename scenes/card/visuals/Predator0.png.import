@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byyshjny38tx7"
-path="res://.godot/imported/Predator.png-06604e429ae83073193c8136bac6ec10.ctex"
+uid="uid://3v1sex2rokc0"
+path="res://.godot/imported/Predator0.png-2b22b4ba4dee56a990c2edb3847cc2df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/card/visuals/Predator.png"
-dest_files=["res://.godot/imported/Predator.png-06604e429ae83073193c8136bac6ec10.ctex"]
+source_file="res://scenes/card/visuals/Predator0.png"
+dest_files=["res://.godot/imported/Predator0.png-2b22b4ba4dee56a990c2edb3847cc2df.ctex"]
 
 [params]
 
