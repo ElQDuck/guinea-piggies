@@ -1,5 +1,7 @@
 extends Control
 
+signal end_turn
+
 var player_name: String
 var profile_image_index: int
 var cards_in_hand: Array[Card]
@@ -21,7 +23,7 @@ var colorColection: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	button_end_turn.pressed.connect(_handle_button_click)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -83,3 +85,7 @@ func _update_ui():
 	buttonStyleBoxPressed.set("bg_color", colorColection["complementary_secondary"])
 	buttonStyleBoxPressed.set("border_color", colorColection["complementary_primary"])
 	button_end_turn.add_theme_stylebox_override("pressed", buttonStyleBoxPressed)
+
+
+func _handle_button_click():
+	end_turn.emit()

@@ -33,16 +33,13 @@ func _place_card_on_table(card: Card):
 	# Calculating the final position of all cards
 	# 1. We get the field size to check on how many cards can be places
 	var cards_area_size: Vector2 = card_placement_area.get_size()
-	print("Cards area size: " + str(cards_area_size.x))
 	# 2. Then we get the size of the cards
 	var card_size: Vector2 = played_card.get_card_size()
-	print("Card size: " + str(card_size.x))
 	# 3. Now we check how many cards can be placed in the are + we add a smal margin
 	var position_offset: float = 20
 	var offset_to_deck: float = position_offset
 	var cards_count_fitting_in_area = floori(cards_area_size.x / (card_size.x + position_offset))
 	var area_start_position: float = cards_area_center_position.x - (cards_area_size.x / 2)
-	print("Area start position: " + str(area_start_position))
 	# 4. Now we know if we can just move the cards or have to overlap
 	if cards_on_table.size() <= cards_count_fitting_in_area:
 		# Cards fit in area
@@ -59,7 +56,6 @@ func _place_card_on_table(card: Card):
 		# The next cards get the position depending on first card
 		else:
 			card_final_position = Vector2(drawn_cards_area.get_child(0).global_position.x + ((card_size.x + position_offset) * n), cards_area_center_position.y)
-		print("Card Nr. " + str(n) + " final position: " + str(card_final_position))
 		var current_card = drawn_cards_area.get_child(n)
 		# last card gets also the draw from deck animation
 		if n + 1 == cards_on_table.size():

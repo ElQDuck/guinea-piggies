@@ -42,10 +42,11 @@ corner_radius_bottom_left = 64
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6hth"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("player_1", "player_2")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "table")]
 script = ExtResource("1_t3f4k")
 player_1 = NodePath("CanvasLayer/VBoxContainer/Player1")
 player_2 = NodePath("CanvasLayer/VBoxContainer/Panel/Player2")
+table = NodePath("CanvasLayer/VBoxContainer/Table")
 
 [node name="Table" type="Node2D" parent="."]
 
@@ -346,6 +347,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_c6hth")
 [node name="Player2" parent="CanvasLayer/VBoxContainer/Panel" instance=ExtResource("12_hmlvb")]
 layout_mode = 1
 rotation = 3.14159
+pivot_offset = Vector2(960, 133)
 size_flags_vertical = 3
 
 [node name="Table" type="Control" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("deck", "drawn_cards_area", "card_placement_area")]
