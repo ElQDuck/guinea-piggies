@@ -33,6 +33,7 @@ offset_left = -300.0
 offset_top = -480.0
 offset_right = 300.0
 offset_bottom = 480.0
+mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
