@@ -1,6 +1,11 @@
 # guinea-piggies
 This is a game about guinea piggies
 
+# TODOs
+- slightly rotate cards when played ( not perfectly in line to have a played card effect)
+- add card count indicator to player profile image
+
+
 # Possible Fonts collection:
 - https://fonts.google.com/specimen/Ruge+Boogie?preview.text=Guinea%20Piggies&query=Ruge+Boogie
 - https://fonts.google.com/specimen/Cherry+Bomb+One?preview.text=Guinea%20Piggies&query=Cherry+Bomb+One
