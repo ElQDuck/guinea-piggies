@@ -59,8 +59,19 @@ func _place_card_on_table(card: Card):
 		var current_card = drawn_cards_area.get_child(n)
 		# last card gets also the draw from deck animation
 		if n + 1 == cards_on_table.size():
-			move_card_from_to(current_card, deck_position, card_final_position, animation_speed)
+			# First moving the card to the center and making it slightly bigger to have an effect of drawing
+			move_card_from_to(current_card, deck_position, DisplayServer.window_get_size() / 2, animation_speed)
+			var size_tween = create_tween()
+			await size_tween.tween_property(current_card, "scale", Vector2(1.25, 1.25), animation_speed).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 			await current_card.flip_card(animation_speed)
+			await get_tree().create_timer(0.25).timeout
+			# then moving it to the needed position and making it the default size again
+			move_card_to(current_card, card_final_position, animation_speed)
+			var size_tween2 = create_tween()
+			size_tween2.tween_property(current_card, "scale", Vector2(1, 1), animation_speed).set_ease(Tween.EASE_IN).from_current()
+			# At the end rotate the card slightly to have an effect of drawn cards
+			var rotation_tween = create_tween()
+			rotation_tween.tween_property(current_card, "rotation", deg_to_rad(randi_range(-5, 5)), animation_speed)
 		else:
 			# moving already placed cards to the needed position
 			move_card_to(current_card, card_final_position, animation_speed)
