@@ -44,7 +44,7 @@ bg_color = Color(0.145098, 0.145098, 0.145098, 0.631373)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 
-[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater")]
+[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater", "uiPanel", "uiProfileImage", "uiProfileImageBorder", "uiNameLabelBackground", "uiPlayerNameLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,6 +57,11 @@ CardsCountValueLabel = NodePath("Panel/Panel/VBoxContainer/HBoxContainer2/CardsC
 button_end_turn = NodePath("Panel/Button")
 disable_layer_panel = NodePath("Panel/IsDisabledOverlay")
 disable_layer_avater = NodePath("Panel/TextureButton/IsDisabledOverlayAvatar")
+uiPanel = NodePath("Panel")
+uiProfileImage = NodePath("Panel/TextureButton/ProfileImage")
+uiProfileImageBorder = NodePath("Panel/TextureButton/Panel")
+uiNameLabelBackground = NodePath("Panel/TextureButton/Name")
+uiPlayerNameLabel = NodePath("Panel/TextureButton/Name/Label")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

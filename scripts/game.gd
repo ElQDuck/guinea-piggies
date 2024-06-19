@@ -30,7 +30,7 @@ func _process(delta):
 
 func _handle_player_end_turn(player: Control):
 	print(player.name + " ended turn.")
-	table.add_cards_to_player(Vector2(0, 0))
+	table.add_cards_to_player(player.get_player_position())
 	_switch_active_player()
 		
 

@@ -349,6 +349,7 @@ layout_mode = 1
 rotation = 3.14159
 pivot_offset = Vector2(960, 133)
 size_flags_vertical = 3
+player_id = 2
 
 [node name="Table" type="Control" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("deck", "drawn_cards_area", "card_placement_area")]
 z_index = 1
@@ -416,6 +417,7 @@ grow_vertical = 2
 [node name="Player1" parent="CanvasLayer/VBoxContainer" instance=ExtResource("12_hmlvb")]
 layout_mode = 2
 size_flags_vertical = 3
+player_id = 1
 
 [connection signal="pressed" from="TableUi/VBoxContainer/Player1/EndTurn" to="Player1" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="TableUi/VBoxContainer/Player1/ShowCards" to="Player1" method="_on_show_cards_pressed"]

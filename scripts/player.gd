@@ -15,11 +15,17 @@ var colorColection: Dictionary = {
 	"complementary_secondary": Color("d0ecff"),
 	"complementary_font_color": Color("ffffff")
 }
+@export var player_id: int
 @export var scoreValueLabel: Label
 @export var CardsCountValueLabel: Label
 @export var button_end_turn: Button
 @export var disable_layer_panel: Panel
 @export var disable_layer_avater: Panel
+@export var uiPanel: Panel
+@export var uiProfileImage: TextureRect
+@export var uiProfileImageBorder: Panel
+@export var uiNameLabelBackground: Panel
+@export var uiPlayerNameLabel: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,13 +44,14 @@ func _process(delta):
 		disable_layer_avater.set_visible(true)
 
 
-func _update_ui():
-	var uiPanel = $Panel
-	var uiProfileImage = $Panel/TextureButton/ProfileImage
-	var uiProfileImageBorder = $Panel/TextureButton/Panel
-	var uiNameLabelBackground = $Panel/TextureButton/Name
-	var uiPlayerNameLabel = $Panel/TextureButton/Name/Label
-	
+func get_player_position() -> Vector2:
+	if player_id == 1:
+		return uiProfileImage.get_global_position() + uiProfileImage.get_size() / 2
+	else:
+		return uiProfileImage.get_global_position() - uiProfileImage.get_size() / 2
+
+
+func _update_ui():	
 	# ProfileImage
 	uiProfileImage.texture = load("res://assets/avatar_images/profile" + str(profile_image_index) + ".png")
 	
