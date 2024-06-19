@@ -64,7 +64,7 @@ func _place_card_on_table(card: Card):
 			var size_tween = create_tween()
 			await size_tween.tween_property(current_card, "scale", Vector2(1.25, 1.25), animation_speed).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 			await current_card.flip_card(animation_speed)
-			await get_tree().create_timer(0.25).timeout
+			await get_tree().create_timer(0.125).timeout
 			# then moving it to the needed position and making it the default size again
 			move_card_to(current_card, card_final_position, animation_speed)
 			var size_tween2 = create_tween()
@@ -145,9 +145,15 @@ func _move_cards_to_player(cards: Array[Node], player_position: Vector2, speed: 
 		# Rotating to normal
 		var rotation_tween := create_tween()
 		rotation_tween.tween_property(cards[n], "rotation", deg_to_rad(0), speed).from_current()
+	# Waiting a bit
+	await get_tree().create_timer(0.5).timeout
+	for n in range(cards.size()):
 		# Moving to player
+		move_card_to(cards[n], player_position, speed)
 		# Sizing to zero
+		var size_tween = create_tween()
+		size_tween.tween_property(cards[n], "scale", Vector2(0, 0), speed).from_current()
 
 
 func add_cards_to_player(player_position: Vector2):
-	await _move_cards_to_player(drawn_cards_area.get_children(), player_position, 2)
+	await _move_cards_to_player(drawn_cards_area.get_children(), player_position, 0.25)
