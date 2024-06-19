@@ -351,6 +351,7 @@ pivot_offset = Vector2(960, 133)
 size_flags_vertical = 3
 
 [node name="Table" type="Control" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("deck", "drawn_cards_area", "card_placement_area")]
+z_index = 1
 custom_minimum_size = Vector2(0, 540)
 layout_mode = 2
 size_flags_vertical = 3

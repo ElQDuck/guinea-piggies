@@ -135,12 +135,19 @@ func _move_cards_to_player(cards: Array[Node], player_position: Vector2, speed: 
 	var needed_card_area: int = cards.size() * (card_size_x - overlap)
 	var card_placement_starting_point = DisplayServer.window_get_size().x / 2 - needed_card_area / 2 + card_size_x / 2
 	for n in range(cards.size()):
+		# Moving to center
 		var final_card_position = Vector2(card_placement_starting_point + ((card_size_x - overlap) * n ), center.y)
 		print("Final Card position: " + str(final_card_position))
 		move_card_to(cards[n], final_card_position, speed)
+		# Upsizing
 		var size_tween := create_tween()
+		size_tween.tween_property(cards[n], "scale", Vector2(1.3, 1.3), speed).from_current()
+		# Rotating to normal
 		var rotation_tween := create_tween()
+		rotation_tween.tween_property(cards[n], "rotation", deg_to_rad(0), speed).from_current()
+		# Moving to player
+		# Sizing to zero
 
 
 func add_cards_to_player(player_position: Vector2):
-	_move_cards_to_player(drawn_cards_area.get_children(), player_position, 2)
+	await _move_cards_to_player(drawn_cards_area.get_children(), player_position, 2)
