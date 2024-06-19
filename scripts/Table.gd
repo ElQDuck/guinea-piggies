@@ -66,7 +66,7 @@ func _place_card_on_table(card: Card):
 			await current_card.flip_card(animation_speed)
 			await get_tree().create_timer(0.125).timeout
 			# then moving it to the needed position and making it the default size again
-			move_card_to(current_card, card_final_position, animation_speed)
+			move_card_to(current_card, card_final_position, animation_speed/2)
 			var size_tween2 = create_tween()
 			size_tween2.tween_property(current_card, "scale", Vector2(1, 1), animation_speed).set_ease(Tween.EASE_IN).from_current()
 			# At the end rotate the card slightly to have an effect of drawn cards

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/Player1.gd" id="2_dbbpl"]
 [ext_resource type="Script" path="res://scripts/Player2.gd" id="3_qm4nx"]
 [ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="4_qaxsu"]
-[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://scenes/card/visuals/card_preset.png" id="5_26hgj"]
+[ext_resource type="Texture2D" uid="uid://dak106rnrsvrp" path="res://scenes/card/visuals/card_preset.png" id="5_26hgj"]
 [ext_resource type="Script" path="res://scripts/Deck.gd" id="6_sbxb1"]
 [ext_resource type="Script" path="res://scripts/dice_selection.gd" id="8_3oo5e"]
 [ext_resource type="ButtonGroup" uid="uid://37lcotm7gde" path="res://button_groups/lofty_selection_btn_group.tres" id="8_200mg"]

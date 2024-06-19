@@ -2,8 +2,8 @@
 
 [ext_resource type="Shader" path="res://assets/shader/fake_3D.gdshader" id="1_38rxx"]
 [ext_resource type="Script" path="res://scenes/card/scripts/card_scene.gd" id="1_npqod"]
-[ext_resource type="Texture2D" uid="uid://cjblj0v0n8pni" path="res://scenes/card/visuals/card_preset.png" id="2_5bkqo"]
-[ext_resource type="Texture2D" uid="uid://c4eamx8vw2oep" path="res://scenes/card/visuals/Arya1.png" id="3_5nqvb"]
+[ext_resource type="Texture2D" uid="uid://dak106rnrsvrp" path="res://scenes/card/visuals/card_preset.png" id="2_5bkqo"]
+[ext_resource type="Texture2D" uid="uid://c4ko2t28vkyww" path="res://scenes/card/visuals/Arya1.png" id="3_5nqvb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_am5o8"]
 resource_local_to_scene = true
