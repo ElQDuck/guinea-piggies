@@ -71,10 +71,10 @@ func _place_card_on_table(card: Card):
 			size_tween2.tween_property(current_card, "scale", Vector2(1, 1), animation_speed).set_ease(Tween.EASE_IN).from_current()
 			# At the end rotate the card slightly to have an effect of drawn cards
 			var rotation_tween = create_tween()
-			rotation_tween.tween_property(current_card, "rotation", deg_to_rad(randi_range(-5, 5)), animation_speed)
+			await rotation_tween.tween_property(current_card, "rotation", deg_to_rad(randi_range(-5, 5)), animation_speed)
 		else:
 			# moving already placed cards to the needed position
-			move_card_to(current_card, card_final_position, animation_speed)
+			await move_card_to(current_card, card_final_position, animation_speed)
 	# move_card(played_card, deck_position, cards_area_center_position, animation_speed)
 	# await played_card.flip_card(animation_speed)
 	_check_double_cards()
@@ -125,3 +125,22 @@ func get_object_global_center_position(object) -> Vector2:
 	var object_size: Vector2 = object.get_size()
 	var object_center_global_position: Vector2 = object_global_position + object_size / 2
 	return object_center_global_position
+
+
+func _move_cards_to_player(cards: Array[Node], player_position: Vector2, speed: float):
+	var display_area: Vector2 = DisplayServer.window_get_size() - DisplayServer.window_get_size() / 4
+	var center: Vector2 = DisplayServer.window_get_size() / 2
+	var overlap: int = 15 * cards.size()
+	var card_size_x = cards[0].get_card_size().x
+	var needed_card_area: int = cards.size() * (card_size_x - overlap)
+	var card_placement_starting_point = DisplayServer.window_get_size().x / 2 - needed_card_area / 2 + card_size_x / 2
+	for n in range(cards.size()):
+		var final_card_position = Vector2(card_placement_starting_point + ((card_size_x - overlap) * n ), center.y)
+		print("Final Card position: " + str(final_card_position))
+		move_card_to(cards[n], final_card_position, speed)
+		var size_tween := create_tween()
+		var rotation_tween := create_tween()
+
+
+func add_cards_to_player(player_position: Vector2):
+	_move_cards_to_player(drawn_cards_area.get_children(), player_position, 2)
