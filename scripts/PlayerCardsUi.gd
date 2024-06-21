@@ -12,3 +12,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func visible_on(player: Control) -> void:
+	player_name = player.player_name
+	self.set_visible(true)
+
+
+func visible_off() -> void:
+	self.set_visible(false)
