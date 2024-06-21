@@ -155,5 +155,5 @@ func _move_cards_to_player(cards: Array[Node], player_position: Vector2, speed: 
 		size_tween.tween_property(cards[n], "scale", Vector2(0, 0), speed).from_current()
 
 
-func add_cards_to_player(player: Control):
-	await _move_cards_to_player(drawn_cards_area.get_children(), player.get_player_position(), 0.25)
+func move_cards_to_player(cards: Array[Node], player: Control):
+	await _move_cards_to_player(cards, player.get_player_position(), 0.25)
