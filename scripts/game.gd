@@ -3,6 +3,7 @@ extends Node2D
 @export var player_1: Control
 @export var player_2: Control
 @export var table: Control
+@export var player_cards_ui: CanvasLayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -37,7 +38,7 @@ func _handle_player_end_turn_button(player: Control):
 		await table.move_cards_to_player(table.drawn_cards_area.get_children(), player)
 		table.clean_up_table()
 	_switch_active_player()
-		
+
 
 
 func _switch_active_player():
@@ -50,5 +51,4 @@ func _switch_active_player():
 
 
 func _handle_show_player_cards(cards: Array[Card], player: Control):
-	print("cards of player " + str(player.player_id))
-	print(str(cards))
+	player_cards_ui.visible_on(player)
