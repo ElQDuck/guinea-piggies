@@ -8,3 +8,4 @@ LABEL_SCORE,SCORE:,PUNKTE:
 LABEL_CARDS,CARDS:,KARTEN:
 LABEL_CHOOSE_NUM_OF_LOFTYS,How many piggies do you want to steal from your opponent?,Wie viele Schweinchen möchtest du von deinem Gegner klauen?
 BUTTON_SPINN_WHEEL,OK,OK
+LABEL_PLAYER_CARDS_IN_HAND,%ss cards in hand,%ss Karten auf der Hand
