@@ -246,8 +246,8 @@ visible = false
 
 [node name="PlayerCardsUi" type="CanvasLayer" parent="." node_paths=PackedStringArray("header_label", "close_button", "box_panel")]
 script = ExtResource("17_tsn65")
-header_label = NodePath("DiceSelectPanel/VBoxContainer/Label")
-close_button = NodePath("DiceSelectPanel/VBoxContainer/CloseUiButton")
+header_label = NodePath("DiceSelectPanel/MarginContainer/VBoxContainer/Label")
+close_button = NodePath("DiceSelectPanel/MarginContainer/VBoxContainer/CloseUiButton")
 box_panel = NodePath("DiceSelectPanel")
 
 [node name="Background" type="Panel" parent="PlayerCardsUi"]
@@ -268,25 +268,41 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7mtn8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerCardsUi/DiceSelectPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayerCardsUi/DiceSelectPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 6
 
-[node name="Label" type="Label" parent="PlayerCardsUi/DiceSelectPanel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 theme_override_colors/font_color = Color(0.603922, 0.392157, 0.211765, 1)
 text = "LABEL_PLAYER_CARDS_IN_HAND"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="CloseUiButton" type="Button" parent="PlayerCardsUi/DiceSelectPanel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+horizontal_scroll_mode = 0
+
+[node name="FlowContainer" type="FlowContainer" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="CloseUiButton" type="Button" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
