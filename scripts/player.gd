@@ -1,6 +1,7 @@
 extends Control
 
 signal end_turn
+signal show_player_cards(cards: Array[Card])
 
 var player_name: String
 var profile_image_index: int
@@ -26,10 +27,12 @@ var colorColection: Dictionary = {
 @export var uiProfileImageBorder: Panel
 @export var uiNameLabelBackground: Panel
 @export var uiPlayerNameLabel: Label
+@export var ui_profile_image_button: TextureButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	button_end_turn.pressed.connect(_handle_button_click)
+	ui_profile_image_button.pressed.connect(_handle_ui_profile_image_button_pressed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -96,3 +99,7 @@ func _update_ui():
 
 func _handle_button_click():
 	end_turn.emit()
+
+
+func _handle_ui_profile_image_button_pressed():
+	show_player_cards.emit(cards_in_hand)

@@ -44,7 +44,7 @@ bg_color = Color(0.145098, 0.145098, 0.145098, 0.631373)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 
-[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater", "uiPanel", "uiProfileImage", "uiProfileImageBorder", "uiNameLabelBackground", "uiPlayerNameLabel")]
+[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater", "uiPanel", "uiProfileImage", "uiProfileImageBorder", "uiNameLabelBackground", "uiPlayerNameLabel", "ui_profile_image_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,6 +62,7 @@ uiProfileImage = NodePath("Panel/TextureButton/ProfileImage")
 uiProfileImageBorder = NodePath("Panel/TextureButton/Panel")
 uiNameLabelBackground = NodePath("Panel/TextureButton/Name")
 uiPlayerNameLabel = NodePath("Panel/TextureButton/Name/Label")
+ui_profile_image_button = NodePath("Panel/TextureButton")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -212,6 +213,7 @@ offset_top = -64.0
 offset_right = 128.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_cbjsy")
 
 [node name="Label" type="Label" parent="Panel/TextureButton/Name"]
