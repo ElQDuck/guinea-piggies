@@ -31,6 +31,7 @@ func _process(delta):
 func _handle_player_end_turn_button(player: Control):
 	print(player.name + " ended turn.")
 	if table.drawn_cards_area.get_children().size() > 0:
+		player.cards_in_hand.append_array(table.cards_on_table)
 		await table.move_cards_to_player(table.drawn_cards_area.get_children(), player)
 		table.clean_up_table()
 	_switch_active_player()
