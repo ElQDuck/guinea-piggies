@@ -1,19 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=21 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_0c6vw"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t3f4k"]
-[ext_resource type="Script" path="res://scripts/Player1.gd" id="2_dbbpl"]
-[ext_resource type="Script" path="res://scripts/Player2.gd" id="3_qm4nx"]
-[ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="4_qaxsu"]
 [ext_resource type="Texture2D" uid="uid://dak106rnrsvrp" path="res://scenes/card/visuals/card_preset.png" id="5_26hgj"]
 [ext_resource type="Script" path="res://scripts/Deck.gd" id="6_sbxb1"]
 [ext_resource type="Script" path="res://scripts/dice_selection.gd" id="8_3oo5e"]
 [ext_resource type="ButtonGroup" uid="uid://37lcotm7gde" path="res://button_groups/lofty_selection_btn_group.tres" id="8_200mg"]
 [ext_resource type="Texture2D" uid="uid://bbq3eyk2q4hq6" path="res://assets/rest/lofty_1.svg" id="8_jqjl3"]
-[ext_resource type="Script" path="res://scripts/NewRoundButton.gd" id="8_vxqrd"]
 [ext_resource type="Texture2D" uid="uid://irnrwx3nq72y" path="res://assets/rest/lofty_2.svg" id="9_2rlq8"]
-[ext_resource type="Script" path="res://scripts/GameOverStats.gd" id="9_mioui"]
-[ext_resource type="Script" path="res://scripts/NewGameButton.gd" id="10_m3kql"]
 [ext_resource type="Texture2D" uid="uid://b3ufsygq82u1f" path="res://assets/rest/lofty_1_pressed.svg" id="10_ml0yv"]
 [ext_resource type="Texture2D" uid="uid://juhgiaew4qig" path="res://assets/rest/lofty_3.svg" id="10_v1rnv"]
 [ext_resource type="Texture2D" uid="uid://bo8p8xgav6a18" path="res://assets/backgrounds/cave.png" id="11_lvt0k"]
@@ -22,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://cgnkb35bnn5ha" path="res://assets/rest/lofty_3_pressed.svg" id="14_ec826"]
 [ext_resource type="PackedScene" uid="uid://dfwqqpqavplgh" path="res://scenes/fortune_wheel.tscn" id="17_yrr48"]
 [ext_resource type="PackedScene" uid="uid://dadljf7sfmpob" path="res://scenes/card/card.tscn" id="22_jfthc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6hth"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkh57"]
 bg_color = Color(1, 0.898039, 0.741176, 0.752941)
@@ -40,116 +36,108 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6hth"]
-
 [node name="Game" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "table")]
 script = ExtResource("1_t3f4k")
-player_1 = NodePath("CanvasLayer/VBoxContainer/Player1")
-player_2 = NodePath("CanvasLayer/VBoxContainer/Panel/Player2")
-table = NodePath("CanvasLayer/VBoxContainer/Table")
+player_1 = NodePath("BoardUi/VBoxContainer/Player1")
+player_2 = NodePath("BoardUi/VBoxContainer/Panel/Player2")
+table = NodePath("BoardUi/VBoxContainer/Table")
 
-[node name="Table" type="Node2D" parent="."]
+[node name="BoardUi" type="CanvasLayer" parent="."]
 
-[node name="Player1" type="Node2D" parent="."]
-script = ExtResource("2_dbbpl")
+[node name="Background" type="TextureRect" parent="BoardUi"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_lvt0k")
 
-[node name="Player2" type="Node2D" parent="."]
-script = ExtResource("3_qm4nx")
-
-[node name="TableUi" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TableUi"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BoardUi"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Player1" type="HBoxContainer" parent="TableUi/VBoxContainer"]
+[node name="Panel" type="Panel" parent="BoardUi/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c6hth")
 
-[node name="ProfileImage" type="TextureRect" parent="TableUi/VBoxContainer/Player1"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("4_qaxsu")
-expand_mode = 3
-stretch_mode = 5
+[node name="Player2" parent="BoardUi/VBoxContainer/Panel" instance=ExtResource("12_hmlvb")]
+layout_mode = 1
+rotation = 3.14159
+pivot_offset = Vector2(960, 133)
+size_flags_vertical = 3
+player_id = 2
 
-[node name="EndTurn" type="Button" parent="TableUi/VBoxContainer/Player1"]
+[node name="Table" type="Control" parent="BoardUi/VBoxContainer" node_paths=PackedStringArray("deck", "drawn_cards_area", "card_placement_area")]
+z_index = 1
+custom_minimum_size = Vector2(0, 540)
 layout_mode = 2
-size_flags_horizontal = 3
-text = "End Turn"
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+script = ExtResource("1_0c6vw")
+deck = NodePath("Cards/DeckArea/MarginContainer/Deck")
+drawn_cards_area = NodePath("Cards/CardPlacementArea/DrawnCardsArea")
+card_placement_area = NodePath("Cards/CardPlacementArea")
+played_card_scene = ExtResource("22_jfthc")
 
-[node name="ShowCards" type="Button" parent="TableUi/VBoxContainer/Player1"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Show Cards"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TableUi/VBoxContainer/Player1"]
-layout_mode = 2
-
-[node name="PlayerName" type="Label" parent="TableUi/VBoxContainer/Player1/VBoxContainer"]
-layout_mode = 2
-text = "PlayerName"
-
-[node name="Score" type="Label" parent="TableUi/VBoxContainer/Player1/VBoxContainer"]
-layout_mode = 2
-text = "Score:"
-
-[node name="Cards" type="HBoxContainer" parent="TableUi/VBoxContainer"]
-layout_mode = 2
+[node name="Cards" type="HBoxContainer" parent="BoardUi/VBoxContainer/Table"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -284.0
+offset_bottom = 284.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="MarginContainer" type="MarginContainer" parent="TableUi/VBoxContainer/Cards"]
+[node name="DeckArea" type="Control" parent="BoardUi/VBoxContainer/Table/Cards"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Deck" type="TextureButton" parent="TableUi/VBoxContainer/Cards/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BoardUi/VBoxContainer/Table/Cards/DeckArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 63
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 0
+
+[node name="Deck" type="TextureButton" parent="BoardUi/VBoxContainer/Table/Cards/DeckArea/MarginContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_26hgj")
+ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("6_sbxb1")
 
-[node name="GridContainer" type="GridContainer" parent="TableUi/VBoxContainer/Cards"]
+[node name="CardPlacementArea" type="Control" parent="BoardUi/VBoxContainer/Table/Cards"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 7.0
-columns = 6
+size_flags_stretch_ratio = 4.0
 
-[node name="Player2" type="HBoxContainer" parent="TableUi/VBoxContainer"]
+[node name="DrawnCardsArea" type="Control" parent="BoardUi/VBoxContainer/Table/Cards/CardPlacementArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player1" parent="BoardUi/VBoxContainer" instance=ExtResource("12_hmlvb")]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="ProfileImage" type="TextureRect" parent="TableUi/VBoxContainer/Player2"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("4_qaxsu")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TableUi/VBoxContainer/Player2"]
-layout_mode = 2
-
-[node name="PlayerName" type="Label" parent="TableUi/VBoxContainer/Player2/VBoxContainer"]
-layout_mode = 2
-text = "PlayerName"
-
-[node name="Score" type="Label" parent="TableUi/VBoxContainer/Player2/VBoxContainer"]
-layout_mode = 2
-text = "Score:"
-
-[node name="EndTurn" type="Button" parent="TableUi/VBoxContainer/Player2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "End Turn"
-
-[node name="ShowCards" type="Button" parent="TableUi/VBoxContainer/Player2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Show Cards"
+player_id = 1
 
 [node name="DiceSelectionUi" type="CanvasLayer" parent="." node_paths=PackedStringArray("box_panel", "dice_select_panel", "lofty_button_1", "lofty_button_2", "lofty_button_3", "start_wheel_button", "fortune_wheel")]
 visible = false
@@ -251,179 +239,5 @@ layout_mode = 1
 [node name="RoundEndUi" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Panel" type="Panel" parent="RoundEndUi"]
-self_modulate = Color(0, 0.65355, 0.325028, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="RoundEndUi"]
-anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.2
-anchor_right = 0.8
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="RoundEndUi/VBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_vertical = 10
-text = "No cards in deck.
-Start new round"
-autowrap_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="RoundEndUi/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="NewRoundButton" type="Button" parent="RoundEndUi/VBoxContainer"]
-layout_mode = 2
-text = "OK"
-script = ExtResource("8_vxqrd")
-
 [node name="GameEndUi" type="CanvasLayer" parent="."]
 visible = false
-
-[node name="Panel" type="Panel" parent="GameEndUi"]
-self_modulate = Color(0, 0.65355, 0.325028, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameEndUi"]
-anchors_preset = -1
-anchor_left = 0.2
-anchor_top = 0.2
-anchor_right = 0.8
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="GameEndUi/VBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_vertical = 10
-text = "Game Over"
-autowrap_mode = 2
-script = ExtResource("9_mioui")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GameEndUi/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="NewGameButton" type="Button" parent="GameEndUi/VBoxContainer"]
-layout_mode = 2
-text = "Start new Game"
-script = ExtResource("10_m3kql")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Background" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_lvt0k")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_c6hth")
-
-[node name="Player2" parent="CanvasLayer/VBoxContainer/Panel" instance=ExtResource("12_hmlvb")]
-layout_mode = 1
-rotation = 3.14159
-pivot_offset = Vector2(960, 133)
-size_flags_vertical = 3
-player_id = 2
-
-[node name="Table" type="Control" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("deck", "drawn_cards_area", "card_placement_area")]
-z_index = 1
-custom_minimum_size = Vector2(0, 540)
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-script = ExtResource("1_0c6vw")
-deck = NodePath("Cards/DeckArea/MarginContainer/Deck")
-drawn_cards_area = NodePath("Cards/CardPlacementArea/DrawnCardsArea")
-card_placement_area = NodePath("Cards/CardPlacementArea")
-played_card_scene = ExtResource("22_jfthc")
-
-[node name="Cards" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Table"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -284.0
-offset_bottom = 284.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
-
-[node name="DeckArea" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/Table/Cards/DeckArea"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 63
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 0
-
-[node name="Deck" type="TextureButton" parent="CanvasLayer/VBoxContainer/Table/Cards/DeckArea/MarginContainer"]
-layout_mode = 2
-texture_normal = ExtResource("5_26hgj")
-ignore_texture_size = true
-stretch_mode = 5
-script = ExtResource("6_sbxb1")
-
-[node name="CardPlacementArea" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 4.0
-
-[node name="DrawnCardsArea" type="Control" parent="CanvasLayer/VBoxContainer/Table/Cards/CardPlacementArea"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Player1" parent="CanvasLayer/VBoxContainer" instance=ExtResource("12_hmlvb")]
-layout_mode = 2
-size_flags_vertical = 3
-player_id = 1
-
-[connection signal="pressed" from="TableUi/VBoxContainer/Player1/EndTurn" to="Player1" method="_on_end_turn_pressed"]
-[connection signal="pressed" from="TableUi/VBoxContainer/Player1/ShowCards" to="Player1" method="_on_show_cards_pressed"]
-[connection signal="card_drawn_from_deck" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="Table" method="_card_drawn_from_deck"]
-[connection signal="pressed" from="TableUi/VBoxContainer/Cards/MarginContainer/Deck" to="TableUi/VBoxContainer/Cards/MarginContainer/Deck" method="_on_pressed"]
-[connection signal="pressed" from="TableUi/VBoxContainer/Player2/EndTurn" to="Player2" method="_on_end_turn_pressed"]
-[connection signal="pressed" from="TableUi/VBoxContainer/Player2/ShowCards" to="Player2" method="_on_show_cards_pressed"]
-[connection signal="pressed" from="RoundEndUi/VBoxContainer/NewRoundButton" to="RoundEndUi/VBoxContainer/NewRoundButton" method="_on_pressed"]
-[connection signal="pressed" from="GameEndUi/VBoxContainer/NewGameButton" to="GameEndUi/VBoxContainer/NewGameButton" method="_on_pressed"]
