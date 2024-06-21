@@ -153,7 +153,15 @@ func _move_cards_to_player(cards: Array[Node], player_position: Vector2, speed: 
 		# Sizing to zero
 		var size_tween = create_tween()
 		size_tween.tween_property(cards[n], "scale", Vector2(0, 0), speed).from_current()
+	await get_tree().create_timer(speed).timeout
 
 
 func move_cards_to_player(cards: Array[Node], player: Control):
 	await _move_cards_to_player(cards, player.get_player_position(), 0.25)
+
+
+func clean_up_table():
+	cards_on_table.clear()
+	for ui_card_on_table in drawn_cards_area.get_children():
+		drawn_cards_area.remove_child(ui_card_on_table)
+		ui_card_on_table.queue_free()
