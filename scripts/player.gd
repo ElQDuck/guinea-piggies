@@ -28,11 +28,16 @@ var colorColection: Dictionary = {
 @export var uiNameLabelBackground: Panel
 @export var uiPlayerNameLabel: Label
 @export var ui_profile_image_button: TextureButton
+@export var cards_in_hand_ui: CanvasLayer
+@export var cards_in_hand_ui_box_panel: Panel
+@export var cards_in_hand_ui_header_label: Label
+@export var cards_in_hand_ui_close_button: Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	button_end_turn.pressed.connect(_handle_button_click)
-	ui_profile_image_button.pressed.connect(_handle_ui_profile_image_button_pressed)
+	ui_profile_image_button.pressed.connect(_cards_in_hand_ui_visible_on)
+	cards_in_hand_ui_close_button.pressed.connect(_cards_in_hand_ui_visible_off)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -101,5 +106,16 @@ func _handle_button_click():
 	end_turn.emit()
 
 
-func _handle_ui_profile_image_button_pressed():
-	show_player_cards.emit(cards_in_hand)
+func _cards_in_hand_ui_visible_on() -> void:
+	cards_in_hand_ui_header_label.set_text(tr("LABEL_PLAYER_CARDS_IN_HAND") % player_name)
+	if player_id == 1:
+		cards_in_hand_ui_box_panel.set_pivot_offset(Vector2(0, 0))
+		cards_in_hand_ui_box_panel.set_rotation_degrees(0)
+	else:
+		cards_in_hand_ui_box_panel.set_pivot_offset(cards_in_hand_ui_box_panel.get_size() / 2)
+		cards_in_hand_ui_box_panel.set_rotation_degrees(180)
+	cards_in_hand_ui.set_visible(true)
+
+
+func _cards_in_hand_ui_visible_off() -> void:
+	cards_in_hand_ui.set_visible(false)

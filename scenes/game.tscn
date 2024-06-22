@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b74phqnk6cljg"]
+[gd_scene load_steps=21 format=3 uid="uid://b74phqnk6cljg"]
 
 [ext_resource type="Script" path="res://scripts/Table.gd" id="1_0c6vw"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t3f4k"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://76gblt156g3q" path="res://assets/rest/lofty_2_pressed.svg" id="12_3y6em"]
 [ext_resource type="PackedScene" uid="uid://bkpglbq6yv1v0" path="res://scenes/player.tscn" id="12_hmlvb"]
 [ext_resource type="Texture2D" uid="uid://cgnkb35bnn5ha" path="res://assets/rest/lofty_3_pressed.svg" id="14_ec826"]
-[ext_resource type="Script" path="res://scripts/PlayerCardsUi.gd" id="17_tsn65"]
 [ext_resource type="PackedScene" uid="uid://dfwqqpqavplgh" path="res://scenes/fortune_wheel.tscn" id="17_yrr48"]
 [ext_resource type="PackedScene" uid="uid://dadljf7sfmpob" path="res://scenes/card/card.tscn" id="22_jfthc"]
 
@@ -37,12 +36,11 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "table", "player_cards_ui")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player_1", "player_2", "table")]
 script = ExtResource("1_t3f4k")
 player_1 = NodePath("BoardUi/VBoxContainer/Player1")
 player_2 = NodePath("BoardUi/VBoxContainer/Panel/Player2")
 table = NodePath("BoardUi/VBoxContainer/Table")
-player_cards_ui = NodePath("PlayerCardsUi")
 
 [node name="BoardUi" type="CanvasLayer" parent="."]
 
@@ -243,67 +241,3 @@ visible = false
 
 [node name="GameEndUi" type="CanvasLayer" parent="."]
 visible = false
-
-[node name="PlayerCardsUi" type="CanvasLayer" parent="." node_paths=PackedStringArray("header_label", "close_button", "box_panel")]
-script = ExtResource("17_tsn65")
-header_label = NodePath("DiceSelectPanel/MarginContainer/VBoxContainer/Label")
-close_button = NodePath("DiceSelectPanel/MarginContainer/VBoxContainer/CloseUiButton")
-box_panel = NodePath("DiceSelectPanel")
-
-[node name="Background" type="Panel" parent="PlayerCardsUi"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bkh57")
-
-[node name="DiceSelectPanel" type="Panel" parent="PlayerCardsUi"]
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7mtn8")
-
-[node name="MarginContainer" type="MarginContainer" parent="PlayerCardsUi/DiceSelectPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 6
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0.603922, 0.392157, 0.211765, 1)
-text = "LABEL_PLAYER_CARDS_IN_HAND"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 6.0
-horizontal_scroll_mode = 0
-
-[node name="FlowContainer" type="FlowContainer" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-
-[node name="CloseUiButton" type="Button" parent="PlayerCardsUi/DiceSelectPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "BUTTON_CLOSE_UI"
