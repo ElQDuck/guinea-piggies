@@ -11,7 +11,7 @@ var score: int
 var colorColection: Dictionary = {
 	"primary": Color("ff6b6b"),
 	"secondary": Color("f7b7bb"),
-	"font_color": Color("ffffff"),
+	"font_color": Color("000000"),
 	"complementary_primary": Color("2fadcc"),
 	"complementary_secondary": Color("d0ecff"),
 	"complementary_font_color": Color("ffffff")
@@ -28,6 +28,8 @@ var colorColection: Dictionary = {
 @export var uiNameLabelBackground: Panel
 @export var uiPlayerNameLabel: Label
 @export var ui_profile_image_button: TextureButton
+@export var ui_cards_count_label: Label
+@export var ui_cards_count_background_panel: Panel
 
 # CardsInHandUi
 @export var cards_in_hand_ui: CanvasLayer
@@ -41,6 +43,7 @@ func _ready():
 	button_end_turn.pressed.connect(_handle_button_click)
 	ui_profile_image_button.pressed.connect(_cards_in_hand_ui_visible_on)
 	cards_in_hand_ui_close_button.pressed.connect(_cards_in_hand_ui_visible_off)
+	ui_cards_count_label.set_text("0")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -103,6 +106,12 @@ func _update_ui():
 	buttonStyleBoxPressed.set("bg_color", colorColection["complementary_secondary"])
 	buttonStyleBoxPressed.set("border_color", colorColection["complementary_primary"])
 	button_end_turn.add_theme_stylebox_override("pressed", buttonStyleBoxPressed)
+	
+	# Cards count label
+	ui_cards_count_label.set("theme_override_colors/font_color", colorColection["primary"])
+	var ui_cards_count_background_style_box: StyleBoxFlat = ui_cards_count_background_panel.get_theme_stylebox("panel").duplicate()
+	ui_cards_count_background_style_box.set("bg_color", colorColection["font_color"])
+	ui_cards_count_background_panel.add_theme_stylebox_override("panel", ui_cards_count_background_style_box)
 
 
 func _handle_button_click():
@@ -141,3 +150,12 @@ func _cards_in_hand_ui_visible_on() -> void:
 
 func _cards_in_hand_ui_visible_off() -> void:
 	cards_in_hand_ui.set_visible(false)
+
+
+func change_cards_count_label_value(from: int, to: int):
+	var tween = create_tween()
+	tween.tween_method(_change_cards_count_label_value, from, to, 0.25)
+
+
+func _change_cards_count_label_value(value: int):
+	ui_cards_count_label.set_text(str(value))

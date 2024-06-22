@@ -32,8 +32,10 @@ func _process(delta):
 func _handle_player_end_turn_button(player: Control):
 	print(player.name + " ended turn.")
 	if table.drawn_cards_area.get_children().size() > 0:
+		var old_cards_in_hand_count = player.cards_in_hand.size()
 		player.cards_in_hand.append_array(table.cards_on_table)
 		await table.move_cards_to_player(table.drawn_cards_area.get_children(), player)
+		player.change_cards_count_label_value(old_cards_in_hand_count, player.cards_in_hand.size())
 		table.clean_up_table()
 	_switch_active_player()
 
@@ -45,4 +47,5 @@ func _switch_active_player():
 	else:
 		player_1.player_is_active = true
 		player_2.player_is_active = false
+
 

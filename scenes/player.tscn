@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkpglbq6yv1v0"]
+[gd_scene load_steps=13 format=3 uid="uid://bkpglbq6yv1v0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dom8a"]
 [ext_resource type="Texture2D" uid="uid://dibt7gh4myqa8" path="res://assets/avatar_images/profile5.png" id="2_ox6sx"]
@@ -39,6 +39,13 @@ bg_color = Color(1, 0.494118, 0.713726, 1)
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3joq"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jml6w"]
 bg_color = Color(0.145098, 0.145098, 0.145098, 0.631373)
 corner_radius_top_left = 16
@@ -59,7 +66,7 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
-[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater", "uiPanel", "uiProfileImage", "uiProfileImageBorder", "uiNameLabelBackground", "uiPlayerNameLabel", "ui_profile_image_button", "cards_in_hand_ui", "cards_in_hand_ui_box_panel", "cards_in_hand_ui_grid_container", "cards_in_hand_ui_header_label", "cards_in_hand_ui_close_button")]
+[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater", "uiPanel", "uiProfileImage", "uiProfileImageBorder", "uiNameLabelBackground", "uiPlayerNameLabel", "ui_profile_image_button", "ui_cards_count_label", "ui_cards_count_background_panel", "cards_in_hand_ui", "cards_in_hand_ui_box_panel", "cards_in_hand_ui_grid_container", "cards_in_hand_ui_header_label", "cards_in_hand_ui_close_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,6 +85,8 @@ uiProfileImageBorder = NodePath("Panel/TextureButton/Panel")
 uiNameLabelBackground = NodePath("Panel/TextureButton/Name")
 uiPlayerNameLabel = NodePath("Panel/TextureButton/Name/Label")
 ui_profile_image_button = NodePath("Panel/TextureButton")
+ui_cards_count_label = NodePath("Panel/TextureButton/MarginContainer/CardsCountLabel")
+ui_cards_count_background_panel = NodePath("Panel/TextureButton/MarginContainer/Panel")
 cards_in_hand_ui = NodePath("CardsInHandUi")
 cards_in_hand_ui_box_panel = NodePath("CardsInHandUi/Panel")
 cards_in_hand_ui_grid_container = NodePath("CardsInHandUi/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer")
@@ -248,6 +257,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TextureButton"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="Panel" type="Panel" parent="Panel/TextureButton/MarginContainer"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v3joq")
+
+[node name="CardsCountLabel" type="Label" parent="Panel/TextureButton/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.929412, 0.427451, 0.588235, 1)
+theme_override_font_sizes/font_size = 20
+text = "28"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="IsDisabledOverlayAvatar" type="Panel" parent="Panel/TextureButton"]
 visible = false
