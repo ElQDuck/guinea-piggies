@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bkpglbq6yv1v0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dom8a"]
-[ext_resource type="Texture2D" uid="uid://b5fwknhuot5gb" path="res://assets/icon.svg" id="1_pdcv7"]
+[ext_resource type="Texture2D" uid="uid://dibt7gh4myqa8" path="res://assets/avatar_images/profile5.png" id="2_ox6sx"]
 [ext_resource type="Texture2D" uid="uid://br5sng1ho8px8" path="res://assets/avatar_images/profile1.png" id="3_nosaa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa5oh"]
@@ -155,7 +155,7 @@ text = "/77
 [node name="Icon" type="TextureRect" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("1_pdcv7")
+texture = ExtResource("2_ox6sx")
 expand_mode = 3
 stretch_mode = 4
 
@@ -175,7 +175,7 @@ text = "0"
 [node name="Icon" type="TextureRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("1_pdcv7")
+texture = ExtResource("2_ox6sx")
 expand_mode = 3
 stretch_mode = 4
 
