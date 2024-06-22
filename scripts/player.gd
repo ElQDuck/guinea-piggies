@@ -112,8 +112,10 @@ func _handle_button_click():
 func _cards_in_hand_ui_visible_on() -> void:
 	cards_in_hand_ui_header_label.set_text(tr("LABEL_PLAYER_CARDS_IN_HAND") % player_name)
 	
-	var needed_columns = ceili(cards_in_hand.size())
-	cards_in_hand_ui_grid_container.set_columns(needed_columns)
+	#var needed_columns = ceili(cards_in_hand.size())
+	#cards_in_hand_ui_grid_container.set_columns(needed_columns)
+	# TODO: Change custom minimum size y depending on cards
+	
 	# Clean previous cards
 	for element in cards_in_hand_ui_grid_container.get_children():
 		cards_in_hand_ui_grid_container.remove_child(element)
@@ -124,9 +126,12 @@ func _cards_in_hand_ui_visible_on() -> void:
 		ui_card.flip_instant()
 		ui_card.set_anchors_preset(LayoutPreset.PRESET_CENTER)
 		var panel: Panel = Panel.new()
-		var panel_theme = Theme.new()
-		panel_theme.set_stylebox("empty", "empty", StyleBoxEmpty.new())
-		panel.set_theme(panel_theme)
+		panel.set_h_size_flags(SizeFlags.SIZE_SHRINK_CENTER ^ SizeFlags.SIZE_EXPAND)
+		panel.set_v_size_flags(SizeFlags.SIZE_SHRINK_CENTER ^ SizeFlags.SIZE_EXPAND)
+		panel.size_flags_horizontal
+		#var panel_theme = Theme.new()
+		#panel_theme.set_stylebox("empty", "empty", StyleBoxEmpty.new())
+		#panel.set_theme(panel_theme)
 		panel.add_child(ui_card)
 		cards_in_hand_ui_grid_container.add_child(panel)
 	
