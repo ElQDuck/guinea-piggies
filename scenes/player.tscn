@@ -66,7 +66,7 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
-[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater", "uiPanel", "uiProfileImage", "uiProfileImageBorder", "uiNameLabelBackground", "uiPlayerNameLabel", "ui_profile_image_button", "ui_cards_count_label", "ui_cards_count_background_panel", "cards_in_hand_ui", "cards_in_hand_ui_box_panel", "cards_in_hand_ui_grid_container", "cards_in_hand_ui_header_label", "cards_in_hand_ui_close_button")]
+[node name="Player" type="Control" node_paths=PackedStringArray("score_value_label", "button_end_turn", "disable_layer_panel", "disable_layer_avater", "uiPanel", "uiProfileImage", "uiProfileImageBorder", "uiNameLabelBackground", "uiPlayerNameLabel", "ui_profile_image_button", "ui_cards_count_label", "ui_cards_count_background_panel", "cards_in_hand_ui", "cards_in_hand_ui_box_panel", "cards_in_hand_ui_grid_container", "cards_in_hand_ui_header_label", "cards_in_hand_ui_close_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,8 +74,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dom8a")
-scoreValueLabel = NodePath("Panel/Panel/VBoxContainer/HBoxContainer/ScoreValueLabel")
-CardsCountValueLabel = NodePath("Panel/Panel/VBoxContainer/HBoxContainer2/CardsCountValueLabbel")
+score_value_label = NodePath("Panel/Panel/VBoxContainer/HBoxContainer/ScoreValueLabel")
 button_end_turn = NodePath("Panel/Button")
 disable_layer_panel = NodePath("Panel/IsDisabledOverlay")
 disable_layer_avater = NodePath("Panel/TextureButton/IsDisabledOverlayAvatar")
@@ -140,6 +139,7 @@ offset_top = -69.0
 offset_right = 594.0
 offset_bottom = 69.0
 grow_vertical = 2
+alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel/VBoxContainer"]
 layout_mode = 2
@@ -162,26 +162,6 @@ text = "/77
 "
 
 [node name="Icon" type="TextureRect" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("2_ox6sx")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/Panel/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "LABEL_CARDS"
-
-[node name="CardsCountValueLabbel" type="Label" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-
-[node name="Icon" type="TextureRect" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("2_ox6sx")

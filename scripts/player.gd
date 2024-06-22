@@ -17,8 +17,7 @@ var colorColection: Dictionary = {
 	"complementary_font_color": Color("ffffff")
 }
 @export var player_id: int
-@export var scoreValueLabel: Label
-@export var CardsCountValueLabel: Label
+@export var score_value_label: Label
 @export var button_end_turn: Button
 @export var disable_layer_panel: Panel
 @export var disable_layer_avater: Panel
