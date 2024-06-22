@@ -60,7 +60,7 @@ corner_radius_top_right = 64
 corner_radius_bottom_right = 64
 corner_radius_bottom_left = 64
 
-[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater", "uiPanel", "uiProfileImage", "uiProfileImageBorder", "uiNameLabelBackground", "uiPlayerNameLabel", "ui_profile_image_button", "cards_in_hand_ui", "cards_in_hand_ui_box_panel", "cards_in_hand_ui_header_label", "cards_in_hand_ui_close_button")]
+[node name="Player" type="Control" node_paths=PackedStringArray("scoreValueLabel", "CardsCountValueLabel", "button_end_turn", "disable_layer_panel", "disable_layer_avater", "uiPanel", "uiProfileImage", "uiProfileImageBorder", "uiNameLabelBackground", "uiPlayerNameLabel", "ui_profile_image_button", "cards_in_hand_ui", "cards_in_hand_ui_box_panel", "cards_in_hand_ui_grid_container", "cards_in_hand_ui_header_label", "cards_in_hand_ui_close_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,6 +81,7 @@ uiPlayerNameLabel = NodePath("Panel/TextureButton/Name/Label")
 ui_profile_image_button = NodePath("Panel/TextureButton")
 cards_in_hand_ui = NodePath("CardsInHandUi")
 cards_in_hand_ui_box_panel = NodePath("CardsInHandUi/Panel")
+cards_in_hand_ui_grid_container = NodePath("CardsInHandUi/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer")
 cards_in_hand_ui_header_label = NodePath("CardsInHandUi/Panel/MarginContainer/VBoxContainer/Label")
 cards_in_hand_ui_close_button = NodePath("CardsInHandUi/Panel/MarginContainer/VBoxContainer/CloseUiButton")
 

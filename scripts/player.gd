@@ -28,8 +28,11 @@ var colorColection: Dictionary = {
 @export var uiNameLabelBackground: Panel
 @export var uiPlayerNameLabel: Label
 @export var ui_profile_image_button: TextureButton
+
+# CardsInHandUi
 @export var cards_in_hand_ui: CanvasLayer
 @export var cards_in_hand_ui_box_panel: Panel
+@export var cards_in_hand_ui_grid_container: GridContainer
 @export var cards_in_hand_ui_header_label: Label
 @export var cards_in_hand_ui_close_button: Button
 
@@ -108,6 +111,25 @@ func _handle_button_click():
 
 func _cards_in_hand_ui_visible_on() -> void:
 	cards_in_hand_ui_header_label.set_text(tr("LABEL_PLAYER_CARDS_IN_HAND") % player_name)
+	
+	var needed_columns = ceili(cards_in_hand.size())
+	cards_in_hand_ui_grid_container.set_columns(needed_columns)
+	# Clean previous cards
+	for element in cards_in_hand_ui_grid_container.get_children():
+		cards_in_hand_ui_grid_container.remove_child(element)
+		element.queue_free()
+	# Add cards to grid
+	for card in cards_in_hand:
+		var ui_card = card.get_scene()
+		ui_card.flip_instant()
+		ui_card.set_anchors_preset(LayoutPreset.PRESET_CENTER)
+		var panel: Panel = Panel.new()
+		var panel_theme = Theme.new()
+		panel_theme.set_stylebox("empty", "empty", StyleBoxEmpty.new())
+		panel.set_theme(panel_theme)
+		panel.add_child(ui_card)
+		cards_in_hand_ui_grid_container.add_child(panel)
+	
 	if player_id == 1:
 		cards_in_hand_ui_box_panel.set_pivot_offset(Vector2(0, 0))
 		cards_in_hand_ui_box_panel.set_rotation_degrees(0)
