@@ -71,10 +71,10 @@ func _place_card_on_table(card: Card):
 			size_tween2.tween_property(current_card, "scale", Vector2(1, 1), animation_speed).set_ease(Tween.EASE_IN).from_current()
 			# At the end rotate the card slightly to have an effect of drawn cards
 			var rotation_tween = create_tween()
-			await rotation_tween.tween_property(current_card, "rotation", deg_to_rad(randi_range(-5, 5)), animation_speed)
+			rotation_tween.tween_property(current_card, "rotation", deg_to_rad(randi_range(-5, 5)), animation_speed)
 		else:
 			# moving already placed cards to the needed position
-			await move_card_to(current_card, card_final_position, animation_speed)
+			move_card_to(current_card, card_final_position, animation_speed)
 	# move_card(played_card, deck_position, cards_area_center_position, animation_speed)
 	# await played_card.flip_card(animation_speed)
 	_check_double_cards()
