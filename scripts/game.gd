@@ -22,6 +22,8 @@ func _ready():
 	
 	player_1._update_ui()
 	player_2._update_ui()
+	
+	table.add_cards_to_active_player.connect(_handle_add_cards_to_active_player)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,6 +42,16 @@ func _handle_player_end_turn_button(player: Control):
 	_switch_active_player()
 
 
+func _handle_add_cards_to_active_player(cards: Array[Card]):
+	var active_player: Control = _get_active_player()
+	var old_cards_in_hand_count = active_player.cards_in_hand.size()
+	active_player.cards_in_hand.append_array(cards)
+	await table.move_cards_to_player(table.drawn_cards_area.get_children(), active_player)
+	active_player.change_cards_count_label_value(old_cards_in_hand_count, active_player.cards_in_hand.size())
+	table.clean_up_table()
+	_switch_active_player()
+
+
 func _switch_active_player():
 	if player_1.player_is_active:
 		player_1.player_is_active = false
@@ -48,4 +60,7 @@ func _switch_active_player():
 		player_1.player_is_active = true
 		player_2.player_is_active = false
 
-
+func _get_active_player() -> Control:
+	if player_1.player_is_active:
+		return player_1
+	return player_2

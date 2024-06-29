@@ -90,17 +90,18 @@ func _check_double_cards():
 		for i in range(cards_on_table.size() - 1):
 			if cards_on_table[i].type == last_card.type:
 				print("Double card found: " + Card.PiggyType.keys()[last_card.type] + " at " + str(i))
-				# TODO: Add event what happens after the double card was found -> drop between and add rest to player
 				# Destroy all cards inbetween the double ones
 				var cards_to_destroy: Array[Node] = []
+				var cards_for_the_player: Array[Card] = []
 				var cards_in_scene := drawn_cards_area.get_children()
 				for drawn_card_index in range(cards_in_scene.size()):
 					if drawn_card_index >= i:
 						cards_to_destroy.append(cards_in_scene[drawn_card_index])
-				_destroy_cards(cards_to_destroy, 0.25)
+					else:
+						cards_for_the_player.append(cards_on_table[drawn_card_index])
+				await _destroy_cards(cards_to_destroy, 0.25)
 				# Add rest to the player
-				# TODO: ADD rest CARDS INTO emit()
-				add_cards_to_active_player.emit()
+				add_cards_to_active_player.emit(cards_for_the_player)
 				break
 
 #func CheckPredator(newCard: Card):
