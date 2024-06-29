@@ -1,4 +1,5 @@
 extends Control
+signal add_cards_to_active_player(cards: Array[Card])
 
 @export var deck: TextureButton
 @export var drawn_cards_area: Control
@@ -75,8 +76,8 @@ func _place_card_on_table(card: Card):
 		else:
 			# moving already placed cards to the needed position
 			move_card_to(current_card, card_final_position, animation_speed)
-	# move_card(played_card, deck_position, cards_area_center_position, animation_speed)
-	# await played_card.flip_card(animation_speed)
+	# Wait until card is placed
+	await get_tree().create_timer(animation_speed).timeout
 	_check_double_cards()
 	# After everything is done, a new card can be drawn. The deck button gets activated again.
 	deck.set_disabled(false)
@@ -90,6 +91,16 @@ func _check_double_cards():
 			if cards_on_table[i].type == last_card.type:
 				print("Double card found: " + Card.PiggyType.keys()[last_card.type] + " at " + str(i))
 				# TODO: Add event what happens after the double card was found -> drop between and add rest to player
+				# Destroy all cards inbetween the double ones
+				var cards_to_destroy: Array[Node] = []
+				var cards_in_scene := drawn_cards_area.get_children()
+				for drawn_card_index in range(cards_in_scene.size()):
+					if drawn_card_index >= i:
+						cards_to_destroy.append(cards_in_scene[drawn_card_index])
+				_destroy_cards(cards_to_destroy, 0.25)
+				# Add rest to the player
+				# TODO: ADD rest CARDS INTO emit()
+				add_cards_to_active_player.emit()
 				break
 
 #func CheckPredator(newCard: Card):
@@ -126,8 +137,7 @@ func get_object_global_center_position(object) -> Vector2:
 	var object_center_global_position: Vector2 = object_global_position + object_size / 2
 	return object_center_global_position
 
-
-func _move_cards_to_player(cards: Array[Node], player_position: Vector2, speed: float):
+func _move_cards_to_center(cards: Array[Node], speed: float):
 	var display_area: Vector2 = DisplayServer.window_get_size() - DisplayServer.window_get_size() / 4
 	var center: Vector2 = DisplayServer.window_get_size() / 2
 	var overlap: int = 15 * cards.size()
@@ -147,6 +157,10 @@ func _move_cards_to_player(cards: Array[Node], player_position: Vector2, speed: 
 		rotation_tween.tween_property(cards[n], "rotation", deg_to_rad(0), speed).from_current()
 	# Waiting a bit
 	await get_tree().create_timer(0.5).timeout
+	
+	
+func _move_cards_to_player(cards: Array[Node], player_position: Vector2, speed: float):
+	await _move_cards_to_center(cards, speed)
 	for n in range(cards.size()):
 		# Moving to player
 		move_card_to(cards[n], player_position, speed)
@@ -154,6 +168,12 @@ func _move_cards_to_player(cards: Array[Node], player_position: Vector2, speed: 
 		var size_tween = create_tween()
 		size_tween.tween_property(cards[n], "scale", Vector2(0, 0), speed).from_current()
 	await get_tree().create_timer(speed).timeout
+
+
+func _destroy_cards(cards: Array[Node], speed: float):
+	await _move_cards_to_center(cards, speed)
+	for card in cards:
+		card.destroy_card()
 
 
 func move_cards_to_player(cards: Array[Node], player: Control):
