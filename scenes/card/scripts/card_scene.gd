@@ -4,10 +4,14 @@ extends Panel
 @export var back_texture: CompressedTexture2D
 @export var front_texture: CompressedTexture2D
 @export var displayed_card_image: TextureRect
+@export var explosion_shader: GPUParticles2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	displayed_card_image.set_texture(back_texture)
+	var shader: ShaderMaterial = explosion_shader.get_process_material()
+	shader.set("shader_parameter/sprite", front_texture)
+	explosion_shader.set_process_material(shader)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,7 +33,11 @@ func flip_instant():
 
 
 func destroy_card():
-	# TODO: Add explosion effect
+	# Scale down to have an expolosion from inside effect
+	var scale_tween = create_tween()
+	await scale_tween.tween_property(self, "scale", Vector2(0, 0), 0.25).from_current().finished
+	explosion_shader.set_emitting(true)
+	await explosion_shader.finished
 	card_view_port.set_visible(false)
 
 

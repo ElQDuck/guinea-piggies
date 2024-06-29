@@ -25,7 +25,7 @@ resource_local_to_scene = true
 shader = ExtResource("5_hqnli")
 shader_parameter/spread = 180.0
 shader_parameter/inherit_emitter_velocity_ratio = 0.0
-shader_parameter/initial_linear_velocity_min = 100.0
+shader_parameter/initial_linear_velocity_min = 0.0
 shader_parameter/initial_linear_velocity_max = 100.0
 shader_parameter/orbit_velocity_min = 0.0
 shader_parameter/orbit_velocity_max = 0.0
@@ -47,7 +47,7 @@ shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
 shader_parameter/emission_box_extents = Vector3(12, 18, 0)
 shader_parameter/sprite = ExtResource("6_rgnc5")
 
-[node name="Card" type="Panel" node_paths=PackedStringArray("card_view_port", "displayed_card_image")]
+[node name="Card" type="Panel" node_paths=PackedStringArray("card_view_port", "displayed_card_image", "explosion_shader")]
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_npqod")
@@ -55,6 +55,7 @@ card_view_port = NodePath("SubViewportContainer")
 back_texture = ExtResource("2_5bkqo")
 front_texture = ExtResource("2_5bkqo")
 displayed_card_image = NodePath("SubViewportContainer/SubViewport/Panel/CardImage")
+explosion_shader = NodePath("SubViewportContainer/GPUParticles2D")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_am5o8")
@@ -88,10 +89,12 @@ texture = ExtResource("3_5nqvb")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="SubViewportContainer"]
 position = Vector2(300, 480)
-amount = 1024
+emitting = false
+amount = 4096
 process_material = SubResource("ShaderMaterial_2txnt")
 texture = ExtResource("7_q3jsh")
 lifetime = 10.0
+one_shot = true
 speed_scale = 10.0
 explosiveness = 1.0
 local_coords = true
