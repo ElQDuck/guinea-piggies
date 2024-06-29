@@ -174,6 +174,7 @@ func _destroy_cards(cards: Array[Node], speed: float):
 	await _move_cards_to_center(cards, speed)
 	for card in cards:
 		card.destroy_card()
+	await get_tree().create_timer(1.25).timeout
 
 
 func move_cards_to_player(cards: Array[Node], player: Control):

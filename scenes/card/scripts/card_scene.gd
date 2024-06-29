@@ -34,8 +34,10 @@ func flip_instant():
 
 func destroy_card():
 	# Scale down to have an expolosion from inside effect
+	displayed_card_image.set_pivot_offset(displayed_card_image.get_size() / 2)
 	var scale_tween = create_tween()
-	await scale_tween.tween_property(self, "scale", Vector2(0, 0), 0.25).from_current().finished
+	scale_tween.tween_property(displayed_card_image, "scale", Vector2(0, 0), 0.125).from_current()
+	await get_tree().create_timer(0.25).timeout
 	explosion_shader.set_emitting(true)
 	# waiting one second. This is the time of the explosion animation
 	await get_tree().create_timer(1).timeout
