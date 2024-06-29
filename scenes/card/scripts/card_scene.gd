@@ -37,8 +37,9 @@ func destroy_card():
 	var scale_tween = create_tween()
 	await scale_tween.tween_property(self, "scale", Vector2(0, 0), 0.25).from_current().finished
 	explosion_shader.set_emitting(true)
-	await explosion_shader.finished
-	card_view_port.set_visible(false)
+	# waiting one second. This is the time of the explosion animation
+	await get_tree().create_timer(1).timeout
+	self.set_visible(false)
 
 
 func get_card_size() -> Vector2:
