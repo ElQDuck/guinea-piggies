@@ -78,7 +78,7 @@ func _place_card_on_table(card: Card):
 			move_card_to(current_card, card_final_position, animation_speed)
 	# Wait until card is placed
 	await get_tree().create_timer(animation_speed).timeout
-	_check_double_cards()
+	await _check_double_cards()
 	# After everything is done, a new card can be drawn. The deck button gets activated again.
 	deck.set_disabled(false)
 
@@ -102,6 +102,8 @@ func _check_double_cards():
 				await _destroy_cards(cards_to_destroy, 0.25)
 				# Add rest to the player
 				add_cards_to_active_player.emit(cards_for_the_player)
+				# wait for signal to finish
+				await get_tree().create_timer(1).timeout
 				break
 
 #func CheckPredator(newCard: Card):
